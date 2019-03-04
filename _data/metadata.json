@@ -1,9 +1,9 @@
 {
-  "title": "Eleventy Netlify Boilerplate",
-  "url": "https://eleventy-netlify-boilerplate.netlify.com",
+  "title": "aaronpeters.nl",
+  "url": "https://www.aaronpeters.nl",
   "author": {
-    "name": "Dan Urbanowicz",
-    "email": "dan.urbanowicz@gmail.com",
-    "github": "https://github.com/danurbanowicz"
+    "name": "Aaron Peters",
+    "email": "aaronpeters.nl@gmail.com",
+    "github": "https://github.com/aaronpeters"
   }
 }
