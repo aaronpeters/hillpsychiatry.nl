@@ -5,18 +5,28 @@
 
 	<body>
 
-		<header>
-			<em>
-				<a href="{{ '/' | url }}">{{ metadata.title }}</a>
-			</em>
+		<div class="wrapper header">
+			{#{% include "components/lang-switch.njk" %}#}
+			<header>
+				<em>
+					<a href="{{ '/' | url }}">{{ metadata.title }}</a>
+				</em>
+			</header>
+		</div>
+
+		<div class="wrapper nav">
 			{% include "components/nav.njk" %}
-		</header>
+		</div>
 
-		<main>
-			{{ layoutContent | safe }}
-		</main>
 
-		{% include "components/footer.njk" %}
+		<div class="wrapper">
+			<main>
+				{{ layoutContent | safe }}
+			</main>
+
+			{% include "components/footer.njk" %}
+
+		</div>
 
 	</body>
 

@@ -1,13 +1,13 @@
 ---
-title: About 
-description: Learn more about Aaron Peters and how he can help you improve the speed and performance of your website.
-tags:
-  - nav
-navtitle: About
-section: about
+layout: layouts/home.njk
+title: Web Performance Consultant for hire 
+description: Web Performance Consultant for hire
 date: 2017-01-01
-permalink: /about/index.html
+permalink: /en/index.html
+
 ---
+
+# Web Performance Consultant <small style="font-size: 40%; font-weight: 400">[Nederlandse versie](/)</small>
 
 <img src="/static/img/aaron-peters-profile-400x400.jpg">
 

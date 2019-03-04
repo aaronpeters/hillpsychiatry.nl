@@ -1,20 +1,25 @@
 ---
 layout: layouts/home.njk
-title: Home
+description: Aaron Peters - Web Performance Consultant
+title: Aaron Peters - Web Performance Consultant
 date: 2016-01-01T00:00:00.000Z
 permalink: /
 navtitle: Home
 tags:
   - nav
 ---
-# Welcome
+# Web Performance Consultant <small style="font-size: 40%; font-weight: 400">[English version](/en/)</small>
 
-This is a template for building a simple blog website with the [Eleventy static site generator](https://www.11ty.io), with deployment to [Netlify](https://www.netlify.com).
+NL talig
 
-Includes [Netlify CMS](https://www.netlifycms.org) for WYSIWYG content editing, and [Netlify Forms](https://www.netlify.com/docs/form-handling) for processing your site's form data.
+Keywords: laadtijd optimalisatie, website laadtijd, website snelheid
 
-For more info on installation and usage, view the [project repo]({{ pkg.repository.url }}) on Github.
+1. Waarom webperf, wat levert het op?
+2. Kort: ervaring van Aaron (expertise, klanten), met link naar 'About' page
 
-Or click the button below to deploy your own copy of this project to Netlify.
+Pitch:
+8+ jaar ervaring als web perf consultant
+Frontend, CDN, DNS, load balancing
+Performance analytics en performance koppelen aan business metrics.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/danurbanowicz/eleventy-netlify-boilerplate&stack=cms)
+Hollandsnieuwe, Kruidvat en Beslist.nl
