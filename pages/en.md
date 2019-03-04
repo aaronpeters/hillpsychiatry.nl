@@ -9,7 +9,7 @@ permalink: /en/index.html
 
 # Web Performance Consultant <small style="font-size: 40%; font-weight: 400">[Nederlandse versie](/)</small>
 
-<img src="/static/img/aaron-peters-profile-400x400.jpg">
+<img class="profile-pic" src="/static/img/aaron-peters-profile-400x400.jpg">
 
 Oprichter van TurboBytes en CDN Planet.
 
