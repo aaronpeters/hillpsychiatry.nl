@@ -12,6 +12,7 @@ permalink: /about/index.html
 <img src="/static/img/aaron-peters-profile-400x400.jpg">
 
 Oprichter van TurboBytes en CDN Planet.
+[Velocity speaker](https://)
 
 1. Make it fast
 2. Ensure it stays fast

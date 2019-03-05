@@ -40,13 +40,16 @@ code {
 	line-height: 1.5;
 }
 
-a[href]:not(:hover) {
+a[href] {
 	text-decoration: none;
 }
 
 a[href],
 a[href]:visited {
 	color: var(--blue);
+}
+a[href]:hover {
+	color: var(--orange);
 }
 
 header,
@@ -141,6 +144,7 @@ nav li {
 	display: inline-block;
 	margin: 0 2em 0 0;
 	padding: 0.8em 0;
+	letter-spacing: 0.03em
 }
 
 nav li a[href]:not(:hover) {
@@ -148,8 +152,7 @@ nav li a[href]:not(:hover) {
 }
 
 nav li a[data-current="current item"] {
-	font-weight: 500;
-	text-decoration: underline;
+	border-bottom: 2px dotted var(--white);
 }
 
 /* Footer */

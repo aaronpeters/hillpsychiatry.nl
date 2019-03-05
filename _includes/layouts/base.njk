@@ -6,7 +6,6 @@
 	<body>
 
 		<div class="wrapper header">
-			{#{% include "components/lang-switch.njk" %}#}
 			<header>
 				<em>
 					<a href="{{ '/' | url }}">{{ metadata.title }}</a>
@@ -21,6 +20,7 @@
 
 		<div class="wrapper">
 			<main>
+				<img class="profile-pic slidein" src="/static/img/aaron-peters-profile-400x400.jpg">
 				{{ layoutContent | safe }}
 			</main>
 

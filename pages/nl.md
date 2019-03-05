@@ -21,6 +21,5 @@ Performance analytics en performance koppelen aan business metrics.
 
 Hollandsnieuwe, Kruidvat en Beslist.nl
 
-<img class="profile-pic slidein" src="/static/img/aaron-peters-profile-400x400.jpg">
 Oprichter van TurboBytes en CDN Planet.
 

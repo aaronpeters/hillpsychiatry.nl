@@ -23,7 +23,8 @@ Enjoy!
 
 ### Doug Sillars
 
-[Link](https://dougsillars.com/blog/)
+Doug is an independent performance expert and developer advocate, speaker at meetups and conferences and he wrote the book [High Performance Android Apps](https://dougsillars.com/book/).
+His [blog](https://dougsillars.com/blog/) has articles like [Base64 Encoding on the web: Anti-Pattern](https://dougsillars.com/2018/12/12/base64-encoding-on-the-web-anti-pattern/) and [Chrome’s Experimental Image Lazy Loading Flag](https://dougsillars.com/2018/09/21/chromes-experimental-image-lazy-loading-flag/)
 
 
 ### Dean Hume
