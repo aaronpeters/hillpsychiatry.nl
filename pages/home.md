@@ -8,18 +8,40 @@ navtitle: Home
 tags:
   - nav
 ---
-# Web Performance Consultant <small style="font-size: 40%; font-weight: 400">[English version](/en/)</small>
+# Web Performance Consultant
 
-NL talig
+EN talig !
 
-Keywords: laadtijd optimalisatie, website laadtijd, website snelheid
+Keywords: 
 
-1. Waarom webperf, wat levert het op?
-2. Kort: ervaring van Aaron (expertise, klanten), met link naar 'About' page
+1. Make it fast
+2. Ensure it stays fast
+3. Knowledge transfer
+4. Performance analytics
 
-Pitch:
-8+ jaar ervaring als web perf consultant
-Frontend, CDN, DNS, load balancing
-Performance analytics en performance koppelen aan business metrics.
+### Frontend
 
-Hollandsnieuwe, Kruidvat en Beslist.nl
+HTML, CSS, Vanilla JavaScript and frameworks like Angular
+
+### Backend and Networking
+
+DNS, HTTP, CDN
+Quickly understand your architecture
+Up to speed with modern technologies
+Oprichter van TurboBytes en CDN Planet.
+
+### Tools and processes
+
+WoW:
+Build and deploy: 
+
+### Performance analytics
+
+Passion for data visualization and years of experience in defining metrics and transforming data into actionable insights.
+
+Metrics, monitoring, reporting & analysis
+
+Tie to business metrics
+
+
+

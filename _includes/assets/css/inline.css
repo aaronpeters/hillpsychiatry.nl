@@ -4,6 +4,7 @@
 	--white: white;
 	--blue: #1976D2;
 	--bluelight: #2196F3;
+	--bluelightest: #90CAF9;
 	--orange: #E64A19;
 }
 
@@ -103,7 +104,7 @@ ul {
 /* Header Logo (style as h2) */
 .lang-switch {
   font-size: 0.8em;
-  color: #90CAF9 !important;
+  color: var(--bluelightest) !important;
   position: absolute;
   right: 2%;
   top: 0.5em;
@@ -128,6 +129,9 @@ header > em {
 	color: var(--white);
 }
 
+nav ul {
+	margin: 0;
+}
 
 nav ul :last-child {
 	margin-right: 0;
@@ -136,6 +140,7 @@ nav ul :last-child {
 nav li {
 	display: inline-block;
 	margin: 0 2em 0 0;
+	padding: 0.8em 0;
 }
 
 nav li a[href]:not(:hover) {
@@ -150,6 +155,10 @@ nav li a[data-current="current item"] {
 /* Footer */
 footer {
 	border-top: 1px dotted var(--mediumgrey);
+}
+
+footer, footer a[href], footer a[href]:visited {
+	color: var(--mediumgrey);
 }
 
 
@@ -234,7 +243,33 @@ button {
 	right: 10px;
 	width: 80px;
 	border-radius: 40px;
-	border: 2px solid #90CAF9;
+	border: 2px solid var(--bluelightest);
+}
+
+/*.fadein {
+	animation: animate 2s;
+	animation-delay: 1s;
+}
+@keyframes animate {
+  0%   {opacity: 0; }
+  100% { opacity: 1; }
+}*/
+
+.slidein {
+	animation-name: spin;
+	animation-duration: 1s;
+	animation-timing-function: ease-in;
+	animation-iteration-count: 1; 
+}
+
+@keyframes spin { 100% 
+	{ 
+		transform:rotate(360deg); 
+	}
+}
+
+.timing-stats {
+	margin-left: 2em
 }
 
 @media screen and (min-width:768px) {
@@ -244,6 +279,6 @@ button {
 	.profile-pic {
 		width: 120px;
 		border-radius: 60px;
-		border: 4px solid #90CAF9;
+		border: 4px solid var(--bluelightest);
 	}
 }
