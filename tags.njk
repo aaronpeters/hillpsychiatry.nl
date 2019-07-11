@@ -12,11 +12,12 @@ permalink: /tags/{{ tag }}/
 layout: layouts/base.njk
 ---
 
-<h1>Tagged “{{ tag }}”</h1>
+Articles tagged “{{ tag }}”
+
 
 {% set postslist = collections[ tag ] %}
 {% include "components/postslist.njk" %}
 
 <nav>
-  <a href="{{ '/blog/' | url }}">← Blog index</a>
+  ← go back to the <a href="{{ '/blog/' | url }}">Web Performance Blog</a>
 </nav>

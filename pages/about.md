@@ -3,14 +3,12 @@ title: Hire me as your web performance consultant
 description: Learn more about Aaron Peters and how he can help you improve the speed and performance of your website.
 tags:
   - nav
-navtitle: Hire me
+navtitle: Hire Me
 section: about
 date: 2019-06-02
 permalink: /about/index.html
 
 ---
-
-# Title is here
 
 <img src="/static/img/aaron-peters-profile-400x400.jpg">
 

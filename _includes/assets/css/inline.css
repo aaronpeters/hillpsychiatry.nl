@@ -17,10 +17,18 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 	--bluelight: #42a5f5;
 	--blue: #1976d2;
 	--bluedark: #1565C0;
-	
+
+	--redlighter: #EF9A9A;
 	--red: #D32F2F;
-	--orange: #E64A19;
-	--green: #388E3C;
+
+	--orangelighter: #FFAB91;
+	--orange: #e64a19;
+
+	--greenlighter: #A5D6A7;
+	--green: #388e3c;
+
+	--yellowlighter: #FFF59D;
+	--yellow: #fbc02d;
 }
 
 *, *:before, *:after {
@@ -48,7 +56,7 @@ body {
 }
 
 main {
-	max-width: 40em;
+	max-width: 50em;
 }
 
 h1 { line-height: 100%  }
@@ -78,6 +86,11 @@ a[href] {
   background-position: 0 1.05em;
   background-position: 0 calc(1em + 1px);
 }
+
+h2 a[href]:not(:hover) {
+	background-image: none
+}
+
 
 header,
 main,
@@ -116,14 +129,26 @@ pre {
 	margin: .5em 0;
 }
 
-ul {
+
+/* Lists */
+Xul {
 	padding: 0;
 	list-style: none;
 }
 
+ul.inline-list { 
+	list-style: initial; 
+	margin-left: 2em; }
+
+ol.inline-list li { 
+	margin-bottom: 0.5em; 
+}
+
 .list-horizontal { 
+	padding: 0;
 	list-style: none;  
 }
+
 
 .wrapper.header {
 	background-color: var(--bluedark);
@@ -167,6 +192,7 @@ header > em {
 
 nav ul {
 	margin: 0;
+	padding: 0;
 }
 
 nav ul :last-child {
@@ -320,6 +346,171 @@ button {
 	margin-left: 2em;
 }
 
+/* Notice messages */
+.notice-msg { 
+  display: inline-block; 
+  margin: 1em 0 1em; 
+  padding: 0.78125em;
+  color: #272727;
+  padding-left:2.4em;
+  background-color: transparent;
+  background-image: url(/static/img/information.svg);
+  background-repeat: no-repeat;
+  background-position: 0.49em 0.78125em;
+  background-size: 24px 24px;
+}
+.notice-msg svg, .notice-msg img { 
+  display: inline-block;
+  float: left;
+  margin-right: 0.3em;
+}
+
+.notice-msg.danger  { background-image: url(/static/img/close-circle.svg); background-color: var(--redlighter); border:1px solid var(--red); }
+.notice-msg.warning { background-image: url(/static/img/alert-warning.svg); background-color: var(--yellowlighter); border:1px solid var(--yellow); }
+.notice-msg.success { background-image: url(/static/img/check-circle.svg); background-color: var(--greenlighter); border:1px solid var(--green); }
+.notice-msg.info    { background-image: url(/static/img/information.svg); background-color: #bbdefb; border:1px solid var(--blue); }
+
+/* PrismJS 1.16.0
+https://prismjs.com/download.html#themes=prism&languages=markup+css+http */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: var(--black);
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #9a6e3a;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function,
+.token.class-name {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
 
 @media screen and (min-width:768px) {
 	:root {
@@ -345,7 +536,5 @@ button {
 		display: inline-block;
 		margin-right: 2em;  
 	}
-	form {
-	 	padding: 2em 0;
-	}
+	
 }
