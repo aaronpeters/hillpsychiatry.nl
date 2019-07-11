@@ -1,11 +1,11 @@
 ---
 layout: layouts/blog.njk
-title: Web Performance Blog
-description: 
+title: Web Performance Optimization Blog
+description: Articles about web performance optimization (WPO) and how to make your site blazing fast.
 tags:
   - nav
 navtitle: Web Performance Blog
-date: 2017-01-01
+date: 2019-06-03
 permalink: /blog/index.html
 ---
 

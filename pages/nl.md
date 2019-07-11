@@ -1,17 +1,18 @@
 ---
-layout: layouts/home.njk
-title: Web Performance consultancy & implementatie
-description: Aaron Peters helpt u de website snel te maken én te houden. Probleemanalyse, advisering, implementatie en kennisoverdracht.
-date: 2019-02-07
+layout: layouts/nl.njk
+title: Aaron Peters - Websitesnelheid consultancy & optimalisatie
+description: Aaron Peters zorgt dat uw website supersnel wordt én blijft. Ruim 10 jaar ervaring bij o.a. Vodafone en Beslist.
+date: 2019-07-10
 permalink: /nl/index.html
 
 ---
 
 # Web Performance Consultant
 
-Keywords: laadtijd optimalisatie, website laadtijd, website snelheid
+Keywords: laadtijd, optimalisatie, websitesnelheid, web performance
 
 1. Waarom webperf, wat levert het op?
+2. Hoe kan Aaron u helpen? Monitoring, analyse, problemen oplossen (techniek!) en training.
 2. Kort: ervaring van Aaron (expertise, klanten), met link naar 'About' page
 
 Pitch:
@@ -23,3 +24,5 @@ Hollandsnieuwe, Kruidvat en Beslist.nl
 
 Oprichter van TurboBytes en CDN Planet.
 
+Analyse, advies en hands-on optimalisatie.
+Consultancy, optimalisatie en training. Ruim 10 jaar ervaring.

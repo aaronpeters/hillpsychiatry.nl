@@ -5,12 +5,17 @@ section: post
 
 <article>
   <h1>{{ title }}</h1>
-  <p>
-    <small>
-      <time datetime="{{ date | machineDate }}">{{ date | readableDate }}</time> by {{ metadata.author.name }}
-    </small>
-  </p>
-
+  <ul class="list-horizontal">
+    <li>
+      <small><time datetime="{{ date | machineDate }}">First published on {{ date | readableDate }}</time></small>
+    </li>
+    {% if dateUpdated %}
+    <li>
+      <small><time datetime="{{ dateUpdated | machineDate }}">Last updated on {{ dateUpdated | readableDate }}</time></small>
+    </li>
+    {% endif %}
+  </ul>
+  
   {{ layoutContent | safe }}
 
   {% if tags %}
@@ -26,6 +31,33 @@ section: post
 
 </article>
 
+<a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet"
+  data-size="large"
+  data-text="{{ title }}"
+  data-url="{{ url }}"
+>
+Tweet</a>
+
 <nav>
-  <a href="{{ '/blog/' | url }}">← Blog index</a>
+  ← go back to the <a href="{{ '/blog/' | url }}">Web Performance Blog</a>
 </nav>
+
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>

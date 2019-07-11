@@ -1,10 +1,12 @@
 ---
 title: 10 Great Web Performance Blogs
 summary: Bla bla
-date: 2019-02-08
+date: 2019-07-11
+dateUpdated: 2019-07-12
 tags:
   - webperf
   - blogs
+  - community
   - list
 ---
 Bla bla ... all blogs listed here are maintained by web performance experts and have new content frequently.

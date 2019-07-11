@@ -1,5 +1,5 @@
 <!doctype html>
-<html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
+<html {% if section %} data-current="{{ section }}"{% endif %} {% if lang %} lang="{{ lang }}" {% else %} lang="en" {% endif %}>
 
 	{% include "components/head.njk" %}
 
@@ -20,7 +20,7 @@
 
 		<div class="wrapper">
 			<main>
-				<img class="profile-pic slidein" src="/static/img/aaron-peters-profile-400x400.jpg">
+				<!-- <img class="profile-pic Xslidein" src="/static/img/aaron-peters-profile-400x400.jpg"> -->
 				{{ layoutContent | safe }}
 			</main>
 
@@ -31,26 +31,28 @@
 	<script>
 		window.addEventListener('load', () => {
      setTimeout(() => {
-      var t = window.performance && performance.timing;
-      function round2(num) { return Math.round(num * 100) / 100; }
+      const t = window.performance && performance.timing
+      function round2(num) { return Math.round(num * 100) / 100 }
       if (t) {
-        var timingStats = document.querySelector('.timing-stats');
-        var loadTime = (t.loadEventEnd - t.navigationStart) / 1000;
-        var timingStatsHTML = 'This page loaded in ' + round2(loadTime) + ' seconds. ';
-        var performanceEntries = performance.getEntriesByType('paint');
+        const loadTime = (t.loadEventEnd - t.navigationStart) / 1000
+        const performanceEntries = performance.getEntriesByType('paint')
+        let timingStats = document.querySelector('.timing-stats')
+        let timingStatsHTML = 'How fast did this page load? '
+
         performanceEntries.forEach(function(performanceEntry, i, entries) {
-          var name = performanceEntry.name;
+          let name = performanceEntry.name
           if (name === 'first-paint') {
             name = '<abbr title=' + name + '>FP</abbr>';
           } else if (name === 'first-contentful-paint') {
-            name = '<abbr title=' + name + '>FCP</abbr>';
+            name = 'First Contentful Paint'
+            timingStatsHTML += name + ' = ' + round2(performanceEntry.startTime / 1000) + ' seconds. '
+            timingStatsHTML += 'Completely Loaded = ' + round2(loadTime) + ' seconds.'
           }
-          timingStatsHTML += name + ' was ' + round2(performanceEntry.startTime / 1000) + ' seconds. ';
-        });
-        timingStatsHTML += '<a href="https://jmperezperez.com/page-load-footer/">More info</a>.';
-        timingStats.innerHTML = timingStatsHTML;
+        })
+        // timingStatsHTML += '<a href="https://jmperezperez.com/page-load-footer/">More info</a>.'
+        timingStats.innerHTML = timingStatsHTML
       }
-    }, 0);
+    }, 0)
   })
 	</script>
 

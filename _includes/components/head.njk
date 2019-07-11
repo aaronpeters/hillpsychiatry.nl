@@ -3,18 +3,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{ description }}">
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-9166753-1', 'auto');
+  ga('send', 'pageview');
+  </script>
   <title>{{ title or metadata.title }}</title>
   {% set css %}
     {% include "assets/css/inline.css" %}
   {% endset %}
-  <!-- Google Analytics -->
-	<script>
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-9166753-1', 'auto');
-	ga('send', 'pageview');
-	</script>
-	<script async src='https://www.google-analytics.com/analytics.js'></script>
-	<!-- End Google Analytics -->
+	<script defer src='https://www.google-analytics.com/analytics.js'></script>
 	
   <style>{{ css | cssmin | safe }}</style>
   

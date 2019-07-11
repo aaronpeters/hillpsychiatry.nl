@@ -1,47 +1,26 @@
 ---
 layout: layouts/home.njk
-description: Aaron Peters - Web Performance Consultant
 title: Aaron Peters - Web Performance Consultant
+description2: Aaron Peters helps businesses make their website blazing fast. 10 years experience in web performance optimization.
+description: I'm a freelance web performance consultant / engineer with 10 years experience in helping businesses make their website blazing fast.
 date: 2016-01-01T00:00:00.000Z
 permalink: /
 navtitle: Home
-tags:
-  - nav
+
 ---
-# Web Performance Consultant
 
-EN talig !
+# Web Performance Consultant / Engineer
 
-Keywords: 
+Short pitch: 
+help medium and large businesses improve customer satisfaction, do better in Google (search, ads) and increase conversion by making their website blazing fast.
 
-1. Make it fast
-2. Ensure it stays fast
-3. Knowledge transfer
-4. Performance analytics
+Trusted by:
+Logos of customers
 
-### Frontend
-
-HTML, CSS, Vanilla JavaScript and frameworks like Angular
-
-### Backend and Networking
-
-DNS, HTTP, CDN
-Quickly understand your architecture
-Up to speed with modern technologies
-Oprichter van TurboBytes en CDN Planet.
-
-### Tools and processes
-
-WoW:
-Build and deploy: 
-
-### Performance analytics
-
-Passion for data visualization and years of experience in defining metrics and transforming data into actionable insights.
-
-Metrics, monitoring, reporting & analysis
-
-Tie to business metrics
+Quote of a customer:
+Ewout Kalkman
 
 
 
+
+Web performance - Learn web development | MDN
