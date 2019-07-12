@@ -9,5 +9,4 @@ date: 2019-06-03
 permalink: /blog/index.html
 ---
 
-Tips on how to make your site faster, reviews of third party scripts and tools, links to quality web performance resources online, and more. 
-Let's make the web fast !
+Tips on how to make your site faster, reviews of third party scripts and tools and links to high quality web performance resources online.

@@ -11,7 +11,7 @@ tags:
 ---
 
 <div class="notice-msg info">
-	This article is quite old but the key message - loading third party scripts late helps improve page load times - still stands.
+	This article is quite old but the key message still stands: try to load your third party scripts late.
 </div>
 
 Loading third party scripts async is key for having high performance web pages, but those scripts still block onload. Take the time to analyze your web performance data and understand if and how those not-so-important content/widgets/ads/tracking codes impact page load times. Maybe you should do what we did on CDN Planet: defer their loading until after onload.

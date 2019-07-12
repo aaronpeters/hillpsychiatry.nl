@@ -1,8 +1,7 @@
 ---
 title: 10 Great Web Performance Blogs
 summary: Bla bla
-date: 2019-07-11
-dateUpdated: 2019-07-12
+date: 2019-07-12
 tags:
   - webperf
   - blogs
@@ -13,14 +12,32 @@ Bla bla ... all blogs listed here are maintained by web performance experts and 
 Enjoy!
  
 
-### Jeremy Wagner
-
-[Link](https://jeremy.codes/writing/)
-
 
 ### Addy Osmani
 
-[b](https://addyosmani.com/blog/)
+Addy is an Engineering Manager at Google working on Chrome. 
+In 2018, he wrote a 'famous' article [The Cost Of JavaScript In 2018](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4
+) on Medium. Not to my suprise, on June 25 2019 Addy published the follow-up [The cost of JavaScript in 2019](https://v8.dev/blog/cost-of-javascript-2019) and again it's packed with useful information that any frontend developer must know.<br>
+[Check out Addy Osmani's blog](https://addyosmani.com/blog/).
+
+
+### Jeremy Wagner
+
+Jeremy is a [web performance consultant](https://jeremy.codes/) and 'loves to make the web both fast and fun for everyone, everywhere'.
+Sometimes Jeremy publishes an article on his own site but most of his articles are on sites like Google Web Fundamentals, Smashing Magazine and A List Apart.
+I especially like his articles [Delivering Fast and Light Applications with Save-Data](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/save-data/) and [Get Ready for Priority Hints](https://developers.google.com/web/updates/2019/02/priority-hints).
+
+
+### CSS Wizardry
+
+Harry Roberts provides CSS and performance consultancy services to companies around the world and is well-known within the CSS and web performance communities.
+Since 2009, Harry has published well over 200 articles on his [blog about CSS, architecture, performance, and web development](https://csswizardry.com/archive/).
+
+
+### Tim Kadlec
+
+Tim is 'that friendly tall guy' and an active, well-known and respected member of the web performance community.
+Tim works as an independent performance consultant, publishes [web performance articles](https://timkadlec.com/remembers/) at a high frequency, speaks at conferences and writes books like High Performance Images.
 
 
 ### Doug Sillars
@@ -31,19 +48,7 @@ His [blog](https://dougsillars.com/blog/) has articles like [Base64 Encoding on 
 
 ### Dean Hume
 
-Dean is a ... and regularly writes about Progressive Web Apps (PWA) and [web performance](https://deanhume.com/tag/web-performance/).
-
-
-### CSS Wizardry
-
-Harry Roberts provides CSS and performance consultancy services to companies around the world and is well-known within the CSS and web performance communities.
-His blog covers mostly CSS, architecture, performance, and web development contains well over 200 articles with the first article published in 2009.
-Check out the [CSS Wizardry blog](https://csswizardry.com/archive/).
-
-
-### Tim Kadlec
-
-[s](https://timkadlec.com/remembers/)
+Dean is a author, blogger, and software developer and regularly writes about Progressive Web Apps (PWA) and [web performance](https://deanhume.com/tag/web-performance/).
 
 
 ### A Faster Web
@@ -55,13 +60,14 @@ Recommended recent reads include [Choosing Project Performance Goals](https://ww
 ### José M. Perez
 
 José is an engineer at Facebook and Google Developer Expert in Web Techologies.
-His blog posts are often long reads (good!) and cover important topics, like [performance culture](https://jmperezperez.com/fostering-web-performance-culture/).
-Also, those page load time metrics in the footer of my site ... I copied the code snippet from José's blog after reading his [Displaying Page Load Metrics on Your Site](https://jmperezperez.com/page-load-footer/).
+His [blog](https://jmperezperez.com/) posts are often long reads (good!) and cover important topics, like [performance culture](https://jmperezperez.com/fostering-web-performance-culture/).
 
 
-### SpeedCurve
+### Andy Davies
 
-[SpeedCurve blog](https://speedcurve.com/blog/)
+Andy is a UK-based independent web performance consultant and a regular attendee and speaker at the bigger web performance conferences. 
+Andy has written a few [web performance books](https://andydavies.me/books/) including A Pocket Guide to Web Performance and Using WebPageTest. 
+Every now and then Andy will publish a lengthy article on his blog and this is always worth the 10 minute read. Check out [Andy Davies' blog](https://andydavies.me/)
 
 
 ### Performance Calendar
