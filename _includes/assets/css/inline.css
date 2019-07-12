@@ -59,7 +59,8 @@ main {
 	max-width: 50em;
 }
 
-h1 { line-height: 100%  }
+h1 { line-height: 140%; }
+h2 { line-height: 120%; }
 p,
 pre,
 code {
@@ -370,6 +371,15 @@ button {
 .notice-msg.success { background-image: url(/static/img/check-circle.svg); background-color: var(--greenlighter); border:1px solid var(--green); }
 .notice-msg.info    { background-image: url(/static/img/information.svg); background-color: #bbdefb; border:1px solid var(--blue); }
 
+
+code {
+	background-color: var(--graylightest);
+  color: var(--graydark);
+  /* margin-right: 0.33em; */
+  /* margin-left: 0.33em; */
+  padding: 0.15em 0.3em;
+  word-wrap: break-word;
+}
 /* PrismJS 1.16.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+http */
 /**
@@ -405,7 +415,7 @@ pre[class*="language-"] {
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
 	text-shadow: none;
-	background: #b3d4fc;
+	background: #880e4f; /*b3d4fc*/
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
@@ -444,11 +454,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: slategray;
+	color: var(--graydark);
 }
 
 .token.punctuation {
-	color: #999;
+	color: var(--graymedium)
 }
 
 .namespace {
@@ -462,7 +472,7 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #905;
+	color: var(--bluelight);
 }
 
 .token.selector,
@@ -471,7 +481,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #690;
+	color: var(--green);
 }
 
 .token.operator,
@@ -479,25 +489,25 @@ pre[class*="language-"] {
 .token.url,
 .language-css .token.string,
 .style .token.string {
-	color: #9a6e3a;
+	color: #8d6e63;
 	background: hsla(0, 0%, 100%, .5);
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: #07a;
+	color: var(--blue);
 }
 
 .token.function,
 .token.class-name {
-	color: #DD4A68;
+	color: var(--red);
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-	color: #e90;
+	color: var(--orange);
 }
 
 .token.important,
