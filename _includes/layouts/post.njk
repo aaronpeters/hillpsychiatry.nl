@@ -20,7 +20,7 @@ section: post
     <p>
     {% for tag in tags %}
       {%- if tag != "post" -%}
-        {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+        {% set tagUrl %}/blog/tags/{{ tag }}/{% endset %}
         <a href="{{ tagUrl | url }}" rel="tag">{{ tag }}</a>
       {%- endif -%}
     {% endfor %}
@@ -39,7 +39,7 @@ section: post
 >
 Tweet</a>
 
-<nav>
+<nav class="bottom-body-nav">
   ← go back to the <a href="{{ '/blog/' | url }}">Web Performance Blog</a>
 </nav>
 

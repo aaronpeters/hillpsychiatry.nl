@@ -114,12 +114,13 @@ main > article :first-child {
 }
 
 pre {
+	position: relative;
 	font-size: 14px;
 	direction: ltr;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
-	word-break: normal;
+	word-break: break-all;
 	-moz-tab-size: 2;
 	tab-size: 2;
 	-webkit-hyphens: none;
@@ -371,6 +372,22 @@ button {
 .notice-msg.success { background-image: url(/static/img/check-circle.svg); background-color: var(--greenlighter); border:1px solid var(--green); }
 .notice-msg.info    { background-image: url(/static/img/information.svg); background-color: #bbdefb; border:1px solid var(--blue); }
 
+.tag-inactive-large {
+	background-color: var(--graylighter);
+  color: var(--graydark);
+  padding: 0.4em 0.3em;
+  border-radius: .25em;
+  margin: 0 0.15em;
+  /* font-weight: 500; */
+  /* color: inherit; */
+  text-transform: uppercase;
+  /* background-color: var(--bluelightest); */
+  /* color: var(--blue); */
+}
+
+.bottom-body-nav {
+	 margin-top: 1em;
+}
 
 code {
 	background-color: var(--graylightest);
@@ -379,6 +396,7 @@ code {
   /* margin-left: 0.33em; */
   padding: 0.15em 0.3em;
   word-wrap: break-word;
+  word-break: break-all;
 }
 /* PrismJS 1.16.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+http */
@@ -415,7 +433,7 @@ pre[class*="language-"] {
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
 	text-shadow: none;
-	background: #880e4f; /*b3d4fc*/
+	background: #880e4f; 
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
@@ -431,11 +449,12 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	}
 }
 
-/* Code blocks */
+
 pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
+	max-width: 350px; /* TODO: this is stupid hack ; */
 }
 
 :not(pre) > code[class*="language-"],
@@ -443,7 +462,7 @@ pre[class*="language-"] {
 	background: #f5f2f0;
 }
 
-/* Inline code */
+
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
@@ -521,6 +540,7 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
+
 
 @media screen and (min-width:768px) {
 	:root {

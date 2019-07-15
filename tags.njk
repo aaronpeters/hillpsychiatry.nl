@@ -8,11 +8,11 @@ pagination:
     - nav
     - post
     - posts
-permalink: /tags/{{ tag }}/
+permalink: /blog/tags/{{ tag }}/
 layout: layouts/base.njk
 ---
 
-Articles tagged “{{ tag }}”
+<p>Articles tagged <span class="tag-inactive-large">{{ tag }}</span></p>
 
 {% set postslist = collections[ tag ] %}
 {% include "components/postslist.njk" %}
