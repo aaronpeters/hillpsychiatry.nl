@@ -6,10 +6,13 @@ date: 2019-07-15
 tags:
   - webperf
   - monitoring
+  - rum
+  - 3pc
+  - google
+  - firebase
   - javascript
   - async
   - defer
-  - 3pc
 ---
 
 At Google I/O 2019, Google announced the beta release of Firebase Performance Monitoring for Web, a free service that helps you gain insight into the performance characteristics of your website / web app.
@@ -74,6 +77,7 @@ Consequently, those other more important content and scripts will finish downloa
 My advice is to defer the downloading of third party scripts until after the page has completely loaded (the load event has fired).
 
 #### Poor man's hook into the 'page is done loading' event
+TODO
 or: Risk of monitoring not starting when snippet injected into page with a tag manager
 what if the snippet is injectect with a tag manager and executes after onload? The SDK will be fetched, but the monitoring will not initialize (because that is triggered by window.onload).
 

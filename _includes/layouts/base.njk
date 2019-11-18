@@ -28,12 +28,14 @@
 
 		</div>
 
-	<script src="/static/js/prism.js"></script>
+	<script src="/static/js/prism.js" defer></script>
 	<script>
 		window.addEventListener('load', () => {
      setTimeout(() => {
       const t = window.performance && performance.timing
-      function round2(num) { return Math.round(num * 100) / 100 }
+      function round2(num) { 
+      	return Math.round(num * 100) / 100 
+      }
       if (t) {
         const loadTime = (t.loadEventEnd - t.navigationStart) / 1000
         const performanceEntries = performance.getEntriesByType('paint')
