@@ -5,7 +5,7 @@ tags:
   - nav
 navtitle: Hire Me
 section: about
-date: 2019-06-02
+date: 2019-11-20T01:00:00.000Z
 permalink: /about/index.html
 
 ---

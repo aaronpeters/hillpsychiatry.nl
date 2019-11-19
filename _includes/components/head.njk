@@ -6,18 +6,20 @@
   <meta name="description" content="{{ description }}">
   
   <meta name="referrer" content="unsafe-url">
-  <meta name="robots" content="index,follow,noydir,noodp">
+  <meta name="robots" content="index,follow">
 
   <script>
+  /*
   window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
   ga('create', 'UA-9166753-1', 'auto');
   ga('send', 'pageview');
+  */
   </script>
   <title>{{ title or metadata.title }}</title>
   {% set css %}
     {% include "assets/css/inline.css" %}
   {% endset %}
-	<script defer src='https://www.google-analytics.com/analytics.js'></script>
+	<!-- <script defer src='https://www.google-analytics.com/analytics.js'></script> -->
 	
   <style>{{ css | cssmin | safe }}</style>
   

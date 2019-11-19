@@ -6,7 +6,7 @@ tags:
   - nav
 navtitle: Contact
 section: contact
-date: 2019-06-04
+date: 2019-11-20T02:00:00.000Z
 permalink: /contact/index.html
 ---
 Interested in hiring me or have some other inquiry? 

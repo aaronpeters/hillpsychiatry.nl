@@ -153,13 +153,13 @@ ol.inline-list li {
 
 
 .wrapper.header {
-	background-color: var(--bluedark);
+	background-color: var(--white);
 	/*color: #fff;
 	box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);*/
 }
 .wrapper.header a[href],
 .wrapper.header a[href]:visited {
-	color: var(--white);
+	color: var(--black);
 	background-image: none
 }
 
@@ -177,19 +177,21 @@ header > em {
 	display: block;
   font-size: 1.4em;
   margin: .5em 0;
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
 }
 
 /* Header Nav */
 .wrapper.nav {
-	background-color: var(--blue);
-	color: var(--white);
-	box-shadow: 0 4px 8px rgba(0,0,0,.28);
+	old_background-color: var(--white);
+	color: var(--black);
+	old_box-shadow: 0 4px 8px rgba(0,0,0,.28);
+	xbox-shadow: 0 4px 2px -2px var(--graylighter);
+	border-bottom: 2px solid var(--graylighter);
 }
 .wrapper.nav a[href],
 .wrapper.nav a[href]:visited {
-	color: var(--white);
+	old_color: var(--black);
 }
 
 nav ul {
@@ -214,8 +216,14 @@ nav li a[href], nav li a[href]:hover {
 }
 
 nav li a[data-current="current item"] {
-	padding-bottom: 12px;
-  border-bottom: 3px solid var(--white);
+	old_padding-bottom: 12px;
+  old_border-bottom: 3px solid var(--graylighter);
+  padding-bottom: 14px;
+  border-bottom: 4px solid var(--orange);
+}
+
+nav li a.secondary, nav li a.secondary:visited {
+	color: var(--graymedium);
 }
 
 /* Footer */

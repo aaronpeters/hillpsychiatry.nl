@@ -3,7 +3,7 @@ layout: layouts/home.njk
 title: Aaron Peters - Web Performance Consultant
 description2: Aaron Peters helps businesses make their website blazing fast. 10 years experience in web performance optimization.
 description: I'm a freelance web performance consultant / engineer with 10 years experience in helping businesses make their website blazing fast.
-date: 2016-01-01T00:00:00.000Z
+date: 2019-11-20T00:00:00.000Z
 permalink: /
 navtitle: Home
 
