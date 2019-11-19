@@ -8,6 +8,10 @@
   <meta name="referrer" content="unsafe-url">
   <meta name="robots" content="index,follow">
 
+  <title>{{ title or metadata.title }}</title>
+
+  {% include "components/seo.njk" %}
+  
   <script>
   /*
   window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -15,13 +19,14 @@
   ga('send', 'pageview');
   */
   </script>
-  <title>{{ title or metadata.title }}</title>
+  {# <script>{{ js | jsmin | safe }}</script> #}
+
   {% set css %}
     {% include "assets/css/inline.css" %}
   {% endset %}
-	<!-- <script defer src='https://www.google-analytics.com/analytics.js'></script> -->
 	
   <style>{{ css | cssmin | safe }}</style>
   
-  {# <script>{{ js | jsmin | safe }}</script> #}
+  <!-- <script defer src='https://www.google-analytics.com/analytics.js'></script> -->
+  
 </head>

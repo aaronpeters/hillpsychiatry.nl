@@ -186,10 +186,12 @@ header > em {
 .lang-switch {
 	justify-self: end;
   font-size: 0.9em;
-  color: var(--graymedium);
   /*position: absolute;
   right: 2%;
   top: 0.5em;*/
+}
+.lang-switch a {
+	color: var(--graymedium) !important;
 }
 
 /* Header Nav */
@@ -215,7 +217,7 @@ header > em {
 .nav a {
 	display: inline-block;
   margin: 0 1em 0 0;
-  padding: 0 0 .3em 0;
+  padding: 3px 0 6px 0;
   letter-spacing: .03em;
   font-size: 0.9em;
 }
@@ -225,7 +227,7 @@ header > em {
 }
 
 .nav a[data-current="current item"] {
-	old_padding-bottom: 14px;
+	padding-bottom: 2px;
   border-bottom: 4px solid var(--orange);
 }
 
@@ -551,6 +553,10 @@ pre[class*="language-"] {
 		color: var(--graymedium);
 	}
 
+	.nav a.secondary[data-current="current item"], .nav a.secondary[data-current="current item"]:visited {
+		color: var(--black);
+	}
+	
 	.nav a {
 		margin: 0 2em 0 0;
 	}

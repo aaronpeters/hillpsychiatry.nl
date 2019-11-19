@@ -1,6 +1,13 @@
 <nav>
   {%- for nav in collections.nav | sort(attribute="date") -%}
-    {#<a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>#}
-    <a href="{{ nav.url | url }}" {% if nav.url in page.url %}data-current="current item"{% else %}{% if nav.data.secondary %}class="secondary"{% endif %}{% endif %}>{{ nav.data.navtitle }}</a>
+    <a href="{{ nav.url | url }}" 
+    	{% if nav.url in page.url %}
+    		data-current="current item"
+    	{% endif %}
+  		{% if nav.data.secondary %}
+  			class="secondary"
+  		{% endif %}>
+    	{{ nav.data.navtitle }}
+    </a>
   {%- endfor -%}
 </nav>
