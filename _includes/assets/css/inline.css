@@ -31,6 +31,10 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 	--yellow: #fbc02d;
 }
 
+:root {
+	font-size: 1.1rem;
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -104,7 +108,7 @@ header {
 }
 
 main {
-	padding-top: 2em;
+	padding-top: 1.4em;
 	padding-bottom: 2em;
 }
 
@@ -151,26 +155,24 @@ ol.inline-list li {
 	list-style: none;  
 }
 
-
+/* Header */
 .wrapper.header {
 	background-color: var(--white);
 	/*color: #fff;
 	box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);*/
 }
+
 .wrapper.header a[href],
 .wrapper.header a[href]:visited {
 	color: var(--black);
 	background-image: none
 }
 
-
-/* Header Logo (style as h2) */
-.lang-switch {
-  font-size: 0.8em;
-  color: var(--bluelighter) !important;
-  position: absolute;
-  right: 2%;
-  top: 0.5em;
+header {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	align-items: center;
+	/*grid-auto-columns: auto;*/
 }
 
 header > em {
@@ -181,49 +183,54 @@ header > em {
   font-style: normal;
 }
 
+.lang-switch {
+	justify-self: end;
+  font-size: 0.9em;
+  color: var(--graymedium);
+  /*position: absolute;
+  right: 2%;
+  top: 0.5em;*/
+}
+
 /* Header Nav */
+
+/* https://iamsteve.me/blog/entry/horizontal-scrolling-responsive-menu */
+.scroll {
+  white-space: nowrap; /* [1] */
+  overflow-x: auto; /* [2] */
+  -webkit-overflow-scrolling: touch; /* [3] */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */ 
+}
+
+/* [5] */
+.scroll::-webkit-scrollbar {
+  display: none; 
+}
+
 .wrapper.nav {
-	old_background-color: var(--white);
 	color: var(--black);
-	old_box-shadow: 0 4px 8px rgba(0,0,0,.28);
-	xbox-shadow: 0 4px 2px -2px var(--graylighter);
 	border-bottom: 2px solid var(--graylighter);
 }
-.wrapper.nav a[href],
-.wrapper.nav a[href]:visited {
-	old_color: var(--black);
-}
 
-nav ul {
-	margin: 0;
-	padding: 0;
-}
-
-nav ul :last-child {
-	margin-right: 0;
-}
-
-nav li {
+.nav a {
 	display: inline-block;
   margin: 0 1em 0 0;
-  padding: .6em 0;
+  padding: 0 0 .3em 0;
   letter-spacing: .03em;
   font-size: 0.9em;
 }
 
-nav li a[href], nav li a[href]:hover {
+.nav a[href], .nav a[href]:hover {
 	background-image: none;
 }
 
-nav li a[data-current="current item"] {
-	old_padding-bottom: 12px;
-  old_border-bottom: 3px solid var(--graylighter);
-  padding-bottom: 14px;
+.nav a[data-current="current item"] {
+	old_padding-bottom: 14px;
   border-bottom: 4px solid var(--orange);
 }
 
-nav li a.secondary, nav li a.secondary:visited {
-	color: var(--graymedium);
+.nav a.secondary {
+	display: none;
 }
 
 /* Footer */
@@ -320,36 +327,10 @@ button {
 }
 
 .profile-pic {
-	visibility: hidden;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	width: 80px;
-	border-radius: 40px;
-	border: 2px solid var(--bluelighter);
+	border-radius: 50%;
+	border: 4px solid var(--graylighter);
 }
 
-/*.fadein {
-	animation: animate 2s;
-	animation-delay: 1s;
-}
-@keyframes animate {
-  0%   {opacity: 0; }
-  100% { opacity: 1; }
-}*/
-
-.slidein {
-	animation-name: spin;
-	animation-duration: 1s;
-	animation-timing-function: ease-in;
-	animation-iteration-count: 1; 
-}
-
-@keyframes spin { 100% 
-	{ 
-		transform:rotate(360deg); 
-	}
-}
 
 /* Helpers */
 .margin-left-medium {
@@ -380,17 +361,18 @@ button {
 .notice-msg.success { background-image: url(/static/img/check-circle.svg); background-color: var(--greenlighter); border:1px solid var(--green); }
 .notice-msg.info    { background-image: url(/static/img/information.svg); background-color: #bbdefb; border:1px solid var(--blue); }
 
-.tag-inactive-large {
-	background-color: var(--graylighter);
-  color: var(--graydark);
+/*.tag-inactive-large {
+	margin: 0 0.15em;
   padding: 0.4em 0.3em;
-  border-radius: .25em;
-  margin: 0 0.15em;
-  /* font-weight: 500; */
-  /* color: inherit; */
+  background-color: var(--bluelightest);
+  color: var(--blue);
   text-transform: uppercase;
-  /* background-color: var(--bluelightest); */
-  /* color: var(--blue); */
+  border-radius: .25em;
+}*/
+
+.tag-inactive-large {
+	/*text-transform: uppercase;*/
+	font-weight: 700
 }
 
 .bottom-body-nav {
@@ -551,25 +533,28 @@ pre[class*="language-"] {
 
 
 @media screen and (min-width:768px) {
-	:root {
-		font-size: 1.1rem;
-	}
+	
 	header > em {
 		font-size: 1.6em;
 	  margin: .67em 0;
 	}
-	nav li {
+
+	.lang-switch {
+		display: none;
+	}
+	
+	.nav a.secondary {
+		display: inline-block;
+	}
+	
+	.nav a.secondary, .nav a.secondary:visited {
+		color: var(--graymedium);
+	}
+
+	.nav a {
 		margin: 0 2em 0 0;
-	  padding: .67em 0;
-	  letter-spacing: .03em;
 	}
-	.profile-pic {
-		visibility: visible;
-		top: 6px;
-		width: 100px;
-		border-radius: 50px;
-		border: 4px solid var(--bluelighter);
-	}
+	
 	.list-horizontal li { 
 		display: inline-block;
 		margin-right: 2em;  

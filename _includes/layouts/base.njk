@@ -10,12 +10,20 @@
 				<em>
 					<a href="{{ '/' | url }}">{{ metadata.title }}</a>
 				</em>
+        <div class="lang-switch">
+          Nederlands
+        </div>
 			</header>
 		</div>
 
-		<div class="wrapper nav">
+		<!-- <div class="wrapper nav">
 			{% include "components/nav.njk" %}
-		</div>
+		</div> -->
+
+    <div class="wrapper nav scroll">
+      {% include "components/nav-new.njk" %}
+    </div>
+
 
 
 		<div class="wrapper">

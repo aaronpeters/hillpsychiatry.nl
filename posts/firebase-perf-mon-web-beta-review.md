@@ -8,9 +8,9 @@ tags:
   - webperf
   - monitoring
   - review
-  - google
-  - firebase
-  - 3pc
+  - Google
+  - Firebase
+  - 3PC
 ---
 
 TODO: first paragraph, like a TL;DR / Summary and super important for SEO

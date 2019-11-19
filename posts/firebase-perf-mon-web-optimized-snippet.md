@@ -7,10 +7,10 @@ tags:
   - webperf
   - monitoring
   - rum
-  - 3pc
-  - google
-  - firebase
-  - javascript
+  - 3PC
+  - Google
+  - Firebase
+  - JavaScript
   - async
   - defer
 ---
