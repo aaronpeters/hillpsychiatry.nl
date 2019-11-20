@@ -5,5 +5,5 @@ permalink: /contact/success/index.html
 
 ---
 
-Your email should be in my inbox now.
-I will respond within one or two business days.
+I will respond to your email within one or two business days, but sometimes it takes a bit longer.
+Don't hesitate to poke me on <a href="http://twitter.com/aaronpeters">Twitter</a> when you are impatient ;-)
