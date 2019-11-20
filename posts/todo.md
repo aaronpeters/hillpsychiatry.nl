@@ -56,6 +56,8 @@ Kleinere kans dat uw website plat gaat of erg traag wordt.
 
 - Structured Data
 - Sitemap.xml
+- robots.txt
+- meta noindex, nofollow ?
 
 
 ## Design

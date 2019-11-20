@@ -332,6 +332,7 @@ textarea {
 
 button {
 	width: 50%;
+	border: 1px solid #bf360c;
 	background-color: var(--orange);
 	color: var(--white);
 	cursor: pointer;
@@ -346,7 +347,6 @@ textarea:active {
 
 button:focus {
 	background: #ff5722;
-	border: 1px solid #bf360c;
 	outline: 4px solid #bf360c;
 }
 
