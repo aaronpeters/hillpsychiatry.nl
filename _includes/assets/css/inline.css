@@ -244,6 +244,7 @@ header > em {
 /* Footer */
 footer {
 	border-top: 1px solid var(--graylighter);
+	text-align: center;
 }
 
 footer, footer a[href], footer a[href]:visited {
@@ -368,6 +369,66 @@ button:active {
 /* Helpers */
 .margin-left-medium {
 	margin-left: 2em;
+}
+
+/* Customers */
+
+.customers {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		"cOne cTwo"
+		"cThree cFour"
+		"cSix cFive"
+		"cSeven cEight"
+		"cNine cNine";
+	grid-column-gap: 2em;
+  grid-row-gap: 2em;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 2em;
+}
+
+.customer {
+	justify-self: center;
+}
+
+.c1 {
+	grid-area: cOne;
+}
+.c2 {
+	grid-area: cTwo;
+}
+.c3 {
+	grid-area: cThree;
+}
+.c4 {
+	grid-area: cFour;
+}
+.c5 {
+	grid-area: cFive;
+}
+.c6 {
+	grid-area: cSix;
+}
+.c7 {
+	grid-area: cSeven;
+}
+.c8 {
+	grid-area: cEight;
+}
+.c9 {
+	grid-area: cNine;
+}
+
+.customer > img {
+	height: 55px;
+	width: auto;
+}
+
+.customer.big > img {
+	height: 110px;
+	width: auto;
 }
 
 /* Notice messages */
@@ -606,6 +667,34 @@ pre[class*="language-"] {
 	}
 
 }
+
+@media screen and (min-width:820px) {
+
+	.customers {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-areas: none;
+		grid-column-gap: 3em;
+	  grid-row-gap: 3em;
+		align-items: center;
+		justify-content: center;
+		margin-top: 2em;
+	}
+
+	.c1,
+	.c2,
+	.c3,
+	.c4,
+	.c5,
+	.c6,
+	.c7,
+	.c8,
+	.c9 {
+		grid-area: auto;
+	}
+
+}
+
 
 /* such a stupid way to have the pre elements be sortof as wide as main element :( */
 @media screen and (min-width:600px) {

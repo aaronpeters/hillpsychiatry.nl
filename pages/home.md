@@ -17,13 +17,34 @@ navtitle: Home
 Short pitch: 
 help medium and large businesses improve customer satisfaction, do better in Google (search, ads) and increase conversion by making their website blazing fast.
 
-Trusted by:
-Logos of customers
 
-Quote of a customer:
-Ewout Kalkman
+<div class="customers">
+	<div class="customer c1 big">
+		<img src="/static/img/logo-pitchup.png" width="252" height="221" alt="Pitchup logo">
+	</div>
+	<div class="customer c2 big">
+		<img src="/static/img/logo-vodafone-portrait.jpg" width="300" height="262" alt="Vodafone logo">
+	</div>
+	<div class="customer c3 big">
+		<img src="/static/img/logo-tsr.png" width="133" height="120" alt="The Student Room logo">
+	</div>
+	<div class="customer c4">
+		<img src="/static/img/logo-coxmediagroup.png" width="320" height="95" alt="Cox Media Group logo">
+	</div>
+	<div class="customer c5">
+		<img src="/static/img/logo-hollandsnieuwe.png" width="147" height="55" alt="hollandsnieuwe logo">
+	</div>
+	<div class="customer c6">
+		<img src="/static/img/Logo-Kruidvat-2019-Rood-SVG-RGB-zonder-outline.png" width="853" height="223" alt="Kruidvat logo">
+	</div>
+	<div class="customer c7">
+		<img src="/static/img/logo-snsbank.png" width="171" height="60" alt="SNS Bank logo">
+	</div>
+	<div class="customer c8">
+		<img src="/static/img/logo-fbto.png" width="250" height="77" alt="FBTO logo">
+	</div>
+	<div class="customer c9">
+		<img src="/static/img/logo-beslist-59h.png" width="300" height="59" alt="Beslist.nl logo">
+	</div>
+</div>
 
-
-
-
-Web performance - Learn web development | MDN

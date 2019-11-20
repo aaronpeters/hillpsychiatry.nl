@@ -13,8 +13,6 @@ permalink: /nl/index.html
 
 ---
 
-# Web Performance Consultant
-
 Keywords: laadtijd, optimalisatie, websitesnelheid, web performance
 
 1. Waarom webperf, wat levert het op?

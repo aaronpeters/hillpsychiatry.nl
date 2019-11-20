@@ -30,6 +30,8 @@ dns4.p07.nsone.net
 ## Homepage
 
 - Laatste/beste 2 blog artikelen 
+- Quote Ewout Kalkman
+
 - Quote Peter Geurts: 
 Referentie
 "Aaron heeft ons geholpen bij de laadtijd optimalisatie van Telefoonboek.nl. Zijn diepgaande expertise en praktische begeleiding heeft geresulteerd in een verhoging van de conversie, lagere hostingkosten en een site die ruim 30% sneller is.
@@ -50,6 +52,11 @@ Hogere posities, meer pagina's geïndexeerd en lagere Adwords CPC's
 
 Beter bestand tegen pieken in verkeer
 Kleinere kans dat uw website plat gaat of erg traag wordt.
+
+
+## Legal
+
+- Cookie consent & privacy policy 
 
 
 ## SEO
