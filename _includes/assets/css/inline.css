@@ -21,6 +21,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 	--redlighter: #EF9A9A;
 	--red: #D32F2F;
 
+	--orangelightest: #FBE9E7;
 	--orangelighter: #FFAB91;
 	--orange: #e64a19;
 
@@ -50,13 +51,13 @@ body {
 
 body {
 	display: grid;
-	/*height: 100vh;*/
 	grid-template-rows: auto 1fr auto;
+	padding: 1.2em;
 	background-color: var(--white);
 }
 
 .wrapper {
-	padding: 0 2%;
+	padding: 0;
 }
 
 main {
@@ -73,23 +74,24 @@ code {
 
 a[href] {
 	text-decoration: none;
-}
-
-a[href],
-a[href]:visited {
-	color: var(--black);
-}
-a[href]:hover {
-	/*color: var(--orange);*/
-}
-a[href] {
-	text-decoration: none;
   background-repeat: repeat-x;
   background-image: linear-gradient(to right,rgba(0,0,0,.42) 100%,rgba(0,0,0,0) 0);
   /*background-image: linear-gradient(to right,currentColor 100%,currentColor 0);*/
   background-size: 1px 1px;
   background-position: 0 1.05em;
   background-position: 0 calc(1em + 1px);
+}
+a[href],
+a[href]:visited {
+	color: var(--black);
+}
+a[href]:hover {
+	/*color: var(--orange);*/
+	cursor: pointer;
+}
+a[href]:focus, a[href]:active {
+	background-color: var(--orangelightest);
+	outline: 0;
 }
 
 h2 a[href]:not(:hover) {
@@ -108,7 +110,7 @@ header {
 }
 
 main {
-	padding-top: 1.4em;
+	padding-top: 3em;
 	padding-bottom: 2em;
 }
 
@@ -157,14 +159,12 @@ ol.inline-list li {
 
 /* Header */
 .wrapper.header {
-	background-color: var(--white);
-	/*color: #fff;
-	box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);*/
+	margin-bottom: 1.0em;
+	/*box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);*/
 }
 
 .wrapper.header a[href],
 .wrapper.header a[href]:visited {
-	color: var(--black);
 	background-image: none
 }
 
@@ -172,13 +172,12 @@ header {
 	display: grid;
 	grid-template-columns: 50% 50%;
 	align-items: center;
-	/*grid-auto-columns: auto;*/
 }
 
 header > em {
 	display: block;
   font-size: 1.4em;
-  margin: .5em 0;
+  margin: 0;
   font-weight: 400;
   font-style: normal;
 }
@@ -210,15 +209,16 @@ header > em {
 }
 
 .wrapper.nav {
-	color: var(--black);
-	border-bottom: 2px solid var(--graylighter);
+	/*border-bottom: 2px solid var(--graylighter);*/
+	border-bottom: 1px solid var(--graylighter);
+	/*box-shadow: 0 6px 4px -3px var(--graylighter);*/
 }
 
 .nav a {
 	display: inline-block;
-  margin: 0 1em 0 0;
-  padding: 3px 0 6px 0;
-  letter-spacing: .03em;
+  margin: 0 1.2em 0 0;
+  padding: 0 0 0.1em 0;
+  letter-spacing: .015em;
   font-size: 0.9em;
 }
 
@@ -227,8 +227,13 @@ header > em {
 }
 
 .nav a[data-current="current item"] {
-	padding-bottom: 2px;
+	/*padding-bottom: 2px;*/
   border-bottom: 4px solid var(--orange);
+}
+
+.nav a:not([data-current="current item"]) {
+	/*padding-bottom: 2px;*/
+  border-bottom: 4px solid var(--white);
 }
 
 .nav a.secondary {
@@ -237,7 +242,7 @@ header > em {
 
 /* Footer */
 footer {
-	border-top: 1px dotted var(--graymedium);
+	border-top: 1px solid var(--graylighter);
 }
 
 footer, footer a[href], footer a[href]:visited {
@@ -446,7 +451,7 @@ pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
-	max-width: 350px; /* TODO: this is stupid hack ; */
+	max-width: 360px;
 }
 
 :not(pre) > code[class*="language-"],
@@ -533,20 +538,32 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+@media screen and (min-width:601px) {
 
-@media screen and (min-width:768px) {
-	
-	header > em {
-		font-size: 1.6em;
-	  margin: .67em 0;
+	body {
+		padding: 2em;
+	}
+
+	.wrapper.header {
+		margin-bottom: 1.8em;
 	}
 
 	.lang-switch {
 		display: none;
 	}
 	
+	header > em {
+		font-size: 1.6em;
+	  margin: 0;
+	}
+
+	.nav a {
+		margin: 0 2em 0 0;
+	}
+
 	.nav a.secondary {
 		display: inline-block;
+		letter-spacing: .015em;
 	}
 	
 	.nav a.secondary, .nav a.secondary:visited {
@@ -556,18 +573,35 @@ pre[class*="language-"] {
 	.nav a.secondary[data-current="current item"], .nav a.secondary[data-current="current item"]:visited {
 		color: var(--black);
 	}
-	
-	.nav a {
-		margin: 0 2em 0 0;
-	}
-	
+
 	.list-horizontal li { 
 		display: inline-block;
 		margin-right: 2em;  
 	}
 
+}
+
+/* such a stupid way to have the pre elements be sortof as wide as main element :( */
+@media screen and (min-width:600px) {
+	
 	pre[class*="language-"] {
-		max-width: initial;
+		max-width: 540px;
+	}
+	
+}
+
+@media screen and (min-width:768px) {
+	
+	pre[class*="language-"] {
+		max-width: 680px;
+	}
+	
+}
+
+@media screen and (min-width:1000px) {
+	
+	pre[class*="language-"] {
+		max-width: 920px;
 	}
 	
 }

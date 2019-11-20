@@ -44,16 +44,14 @@
         const loadTime = (t.loadEventEnd - t.navigationStart) / 1000
         const performanceEntries = performance.getEntriesByType('paint')
         let timingStats = document.querySelector('.timing-stats')
-        let timingStatsHTML = 'How fast did this page load? '
+        let timingStatsHTML = ''
 
         performanceEntries.forEach(function(performanceEntry, i, entries) {
           let name = performanceEntry.name
-          if (name === 'first-paint') {
-            name = '<abbr title=' + name + '>FP</abbr>';
-          } else if (name === 'first-contentful-paint') {
+          if (name === 'first-contentful-paint') {
             name = 'First Contentful Paint'
-            timingStatsHTML += name + ' = ' + round2(performanceEntry.startTime / 1000) + ' seconds. '
-            timingStatsHTML += 'Completely Loaded = ' + round2(loadTime) + ' seconds.'
+            timingStatsHTML += 'FCP = ' + round2(performanceEntry.startTime / 1000) + ' seconds.<br>'
+            timingStatsHTML += 'PLT = ' + round2(loadTime) + ' seconds.'
           }
         })
         // timingStatsHTML += '<a href="https://jmperezperez.com/page-load-footer/">More info</a>.'

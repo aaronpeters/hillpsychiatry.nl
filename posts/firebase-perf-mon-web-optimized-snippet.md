@@ -96,7 +96,6 @@ The optimized snippet below fixes all the problems mentioned in the previous sec
 
 <pre>
 <code class="language-html">&lt;script&gt;</code><code class="language-javascript">
-&lt;script&gt;
 (function(win, doc, sa, fbc) {
 
   if(!win.fetch){ // do nothing if browser does not support the Fetch API
