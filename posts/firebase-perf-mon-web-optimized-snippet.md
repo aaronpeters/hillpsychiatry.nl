@@ -2,7 +2,7 @@
 title: Optimized JS snippet for Firebase Performance Monitoring
 description: Learn about the problems with the default code snippet for Firebase Performance Monitoring for Web and grab your copy of the optimized version.
 summary: Find out why the default code snippet for Firebase Performance Monitoring for Web is suboptimal for performance, and grab your copy of the optimized snippet.
-date: 2019-11-21
+date: 2019-11-18
 tags:
   - webperf
   - monitoring

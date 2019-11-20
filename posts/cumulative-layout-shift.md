@@ -3,7 +3,7 @@ draft: true
 title: Tips for Understanding Cumulative Layout Shift (CLS)
 description: TODO
 summary: TODO
-date: 2019-12-01
+date: 2019-01-01
 tags:
   - webperf
   - tips

@@ -3,7 +3,7 @@ draft: true
 title: Review of Firebase Performance Monitoring for Web (beta)
 description: TODO
 summary: TODO
-date: 2019-12-01
+date: 2019-01-01
 tags:
   - webperf
   - monitoring
