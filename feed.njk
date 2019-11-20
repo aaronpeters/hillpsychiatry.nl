@@ -5,9 +5,8 @@ meta:
   url: https://www.aaronpeters.nl
   author:
     name: Aaron Peters
-    email: aaronpeters.nl@gmail.com
   feed:
-    subtitle: I am writing about my experiences as a naval navel-gazer.
+    subtitle: 
     filename: feed.xml
     path: /rss/feed.xml
     url: https://www.aaronpeters.nl/rss/feed.xml
@@ -17,13 +16,12 @@ meta:
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ meta.title }}</title>
   <subtitle>{{ meta.feed.subtitle }}</subtitle>
-  <link href="{{ meta.feed.url }}" rel="self"/>
-  <link href="{{ meta.url }}"/>
+  <link rel="self" href="{{ meta.feed.url }}" />
+  <link rel="alternate" type="text/html" href="{{ meta.url }}"/>
   <updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
   <id>{{ meta.feed.id }}</id>
   <author>
     <name>{{ meta.author.name }}</name>
-    <email>{{ meta.author.email }}</email>
   </author>
   {%- for post in collections.posts %}
   {% if not post.data.draft %}
@@ -31,9 +29,10 @@ meta:
   <entry>
     <title>{{ post.data.title }}</title>
     <link href="{{ absolutePostUrl }}"/>
-    <updated>{{ post.date | rssDate }}</updated>
+    <published>{{ post.date | rssDate }}</published>{% if post.data.dateUpdated %}<updated>{{ post.data.dateUpdated | rssDate }}</updated>{% endif %}
     <id>{{ absolutePostUrl }}</id>
-    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+    <description type="text/plain">{{ post.data.summary }}</description>
+    <content type="text/html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
   </entry>
   {% endif %}
   {%- endfor %}

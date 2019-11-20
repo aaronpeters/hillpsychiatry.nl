@@ -27,7 +27,7 @@ This article is about loading third party async scripts after onload, yes, but t
 
 ## Case: CDN Planet, async scripts and New Relic
 
-On October 3 2011, [Sajal Kayan](http://www.sajalkayan.com/) and I launched [CDN Planet](http://www.cdnplanet.com/), a new site packed with information about Content Delivery Networks. Our mission: help people select the right CDN.
+On October 3 2011, [Sajal Kayan](https://www.sajalkayan.com/) and I launched [CDN Planet](https://www.cdnplanet.com/), a new site packed with information about Content Delivery Networks. Our mission: help people select the right CDN.
 
 Being WPO consultants we of course made a big effort to make CDN Planet fast. Our goal: the average page page load time must be &lt;2 seconds for 95% of all page views.<br>
 Before we launched we did some tests on Webpagetest.org and we believed we could reach that goal. After launch, we continued to run ad hoc tests on Webpagetest.org, usually when we published a new blog post or changed something on a page. But to be honest, we had not been closely monitoring page load times. Shame on us.
@@ -87,11 +87,11 @@ On CDN Planet blog post pages an extra third party script is loaded, asynchronou
 
 Now, let's take a look at how these scripts impact page load times.
 
-We ran several tests for the <a href="http://www.cdnplanet.com/">CDN Planet homepage</a> on Webpagetest.org: IE9, New York, DSL, empty cache. 
+We ran several tests for the <a href="https://www.cdnplanet.com/">CDN Planet homepage</a> on Webpagetest.org: IE9, New York, DSL, empty cache. 
 The waterfall chart below is the median of 10 runs. Requests 10 - 43 are not shown to keep the chart image small.
 
 <img class="img-a" src="/static/img/waterfall-IE8-cdnplanet-3rdparty-scripts-async-before-onload.png" width="660" height="308" alt="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart" title="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart"><br>
-<a href="http://www.webpagetest.org/result/111121_RP_b8b9a13ca2b55f3abf5f7dc252e3dfe2/5/details/">View full test results on Webpagetest.org</a>
+<a href="https://www.webpagetest.org/result/111121_RP_b8b9a13ca2b55f3abf5f7dc252e3dfe2/5/details/">View full test results on Webpagetest.org</a>
 
 The page finished loading at 3.6 seconds, as indicated by the vertical blue bar. Either the sprite.png (Google Plus) or xd_proxy.php object (FB Like button) needed to finish first before the load event fired. That may surprise you, because the initial JS files are loaded async, right!? Yes, but script-inserted scripts that are inserted into the DOM by <code class="language-javascript">appendChild</code> or <code class="language-javascript">insertBefore</code> do delay <code class="language-javascript">window.onload</code>. And that is not all. If that initial script-inserted, async loaded script loads another file then that other file delays onload too. The FB Like button needs 8 files, the Google Plus button needs 7 files and the Twitter Share &amp; Follow buttons need 6 files (all when the visitor is not signed in to the social network). Yes, some of these files load in parallel, but definitely not all. As you will find out in the next section, <strong>these async buttons delay onload a lot</strong>.
 
@@ -121,7 +121,7 @@ We changed Stoyan's code a bit to make the social sharing buttons start loading 
 Here's the new waterfall chart for the CDN Planet homepage, again using IE9 from New York on a DSL connection and empty browser cache:
 
 <img class="img-a" src="/static/img/waterfall-IE8-cdnplanet-3rdparty-scripts-async-after-onload.png" width="660" height="274" alt="Third party scripts async after onload - IE8 empty cache - waterfall chart" title="Third party scripts async after onload - IE8 empty cache - waterfall chart"><br>
-<a href="http://www.webpagetest.org/result/111121_1V_7b77cefeaf978767b2aed6de20590145/10/details/">View full test results on Webpagetest.org</a>
+<a href="https://www.webpagetest.org/result/111121_1V_7b77cefeaf978767b2aed6de20590145/10/details/">View full test results on Webpagetest.org</a>
 
 Time to First Byte and Start Render are of course not impacted, but the total page load time sure is: <strong>Doc Complete dropped from 3.63 seconds to 1.14 seconds (-68%)</strong>.<br>
 The question is: does this 1.14 seconds better reflect the user experience? In our opinion, yes. At that 1.14 second mark, all content has finished loading and is displayed on screen. The only stuff that comes after that are the aforementioned social sharing buttons and the Twitter Tweet Box (and on a blog post page, the Disqus comments would also come in late). We believe it is fine those buttons load and display some time after onload, because most likely, our site visitors will not want to use the buttons until after using/reading the actual content. 
