@@ -1,18 +1,16 @@
 ---
-draft: true
 title: 10 Great Web Performance Blogs
-summary: Bla bla
-date: 2019-01-01
+summary: Want to learn about web performance from the pros? Check out my list of active blogs maintained by web performance experts.
+date: 2019-11-20
 tags:
   - webperf
   - blogs
   - community
   - list
 ---
-Bla bla ... all blogs listed here are maintained by web performance experts and have new content frequently.
+Want to learn about web performance from the pros? 
+Check out my list of active blogs maintained by web performance experts.
 Enjoy!
- 
-
 
 ### Addy Osmani
 
@@ -20,13 +18,6 @@ Addy is an Engineering Manager at Google working on Chrome.
 In 2018, he wrote a 'famous' article [The Cost Of JavaScript In 2018](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4
 ) on Medium. Not to my suprise, on June 25 2019 Addy published the follow-up [The cost of JavaScript in 2019](https://v8.dev/blog/cost-of-javascript-2019) and again it's packed with useful information that any frontend developer must know.<br>
 [Check out Addy Osmani's blog](https://addyosmani.com/blog/).
-
-
-### Jeremy Wagner
-
-Jeremy is a [web performance consultant](https://jeremy.codes/) and 'loves to make the web both fast and fun for everyone, everywhere'.
-Sometimes Jeremy publishes an article on his own site but most of his articles are on sites like Google Web Fundamentals, Smashing Magazine and A List Apart.
-I especially like his articles [Delivering Fast and Light Applications with Save-Data](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/save-data/) and [Get Ready for Priority Hints](https://developers.google.com/web/updates/2019/02/priority-hints).
 
 
 ### CSS Wizardry
@@ -39,6 +30,13 @@ Since 2009, Harry has published well over 200 articles on his [blog about CSS, a
 
 Tim is 'that friendly tall guy' and an active, well-known and respected member of the web performance community.
 Tim works as an independent performance consultant, publishes [web performance articles](https://timkadlec.com/remembers/) at a high frequency, speaks at conferences and writes books like High Performance Images.
+
+
+### Jeremy Wagner
+
+Jeremy is a [web performance consultant](https://jeremy.codes/) and 'loves to make the web both fast and fun for everyone, everywhere'.
+Sometimes Jeremy publishes an article on his own site but most of his articles are on sites like Google Web Fundamentals, Smashing Magazine and A List Apart.
+I especially like his articles [Delivering Fast and Light Applications with Save-Data](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/save-data/) and [Get Ready for Priority Hints](https://developers.google.com/web/updates/2019/02/priority-hints).
 
 
 ### Doug Sillars

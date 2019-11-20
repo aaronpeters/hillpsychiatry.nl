@@ -74,12 +74,11 @@ code {
 
 a[href] {
 	text-decoration: none;
-  background-repeat: repeat-x;
-  background-image: linear-gradient(to right,rgba(0,0,0,.42) 100%,rgba(0,0,0,0) 0);
-  /*background-image: linear-gradient(to right,currentColor 100%,currentColor 0);*/
-  background-size: 1px 1px;
-  background-position: 0 1.05em;
-  background-position: 0 calc(1em + 1px);
+	background-repeat: no-repeat;
+	background-image: linear-gradient(to right, #1d252d, #1d252d);
+	background-size: 100% 1px;
+	/*background-position: 0 1.05em;*/
+	background-position: center bottom;
 }
 a[href],
 a[href]:visited {
@@ -90,7 +89,7 @@ a[href]:hover {
 	cursor: pointer;
 }
 a[href]:focus, a[href]:active {
-	background-color: var(--orangelightest);
+	background-color: var(--graylighter);
 	outline: 0;
 }
 
@@ -258,6 +257,10 @@ article {
 	border-bottom: 1px solid var(--white);
 }
 
+main > section {
+	margin-top: 2em;
+}
+
 main > section > article > * {
 	margin-top: 0;
 	margin-bottom: .5em;
@@ -363,10 +366,10 @@ button {
   margin-right: 0.3em;
 }
 
-.notice-msg.danger  { background-image: url(/static/img/close-circle.svg); background-color: var(--redlighter); border:1px solid var(--red); }
-.notice-msg.warning { background-image: url(/static/img/alert-warning.svg); background-color: var(--yellowlighter); border:1px solid var(--yellow); }
-.notice-msg.success { background-image: url(/static/img/check-circle.svg); background-color: var(--greenlighter); border:1px solid var(--green); }
-.notice-msg.info    { background-image: url(/static/img/information.svg); background-color: #bbdefb; border:1px solid var(--blue); }
+.notice-msg.danger  { background-image: url(/static/img/close-circle.svg); background-color: var(--redlighter); }
+.notice-msg.warning { background-image: url(/static/img/alert-warning.svg); background-color: var(--yellowlighter); }
+.notice-msg.success { background-image: url(/static/img/check-circle.svg); background-color: var(--greenlighter); }
+.notice-msg.info    { background-image: url(/static/img/information.svg); background-color: #bbdefb; }
 
 /*.tag-inactive-large {
 	margin: 0 0.15em;

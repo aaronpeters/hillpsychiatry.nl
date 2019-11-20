@@ -11,6 +11,17 @@ tags:
   - hollandsnieuwe
 ---
 
+## Go Live
+
+- Homepage
+- /nl
+- Hire Me
+- 10 Great Web Performance Blogs
+
+- Optimized JS snippet for Firebase Performance Monitoring
+
+
+
 ## SEO
 
 - Structured Data
