@@ -89,7 +89,9 @@ a[href]:hover {
 	cursor: pointer;
 }
 a[href]:focus, a[href]:active {
-	background-color: var(--graylighter);
+	color: var(--white) !important;
+	background-color: var(--orange) !important;
+	background-image: linear-gradient(to right, #e64a19, #e64a19);
 	outline: 0;
 }
 
@@ -330,10 +332,31 @@ textarea {
 
 button {
 	width: 50%;
-	border: 1px solid var(--orange);
 	background-color: var(--orange);
 	color: var(--white);
 	cursor: pointer;
+}
+
+input:focus, 
+input:active,
+textarea:focus, 
+textarea:active {
+	outline: 4px solid var(--orange);
+}
+
+button:focus {
+	background: #ff5722;
+	border: 1px solid #bf360c;
+	outline: 4px solid #bf360c;
+}
+
+button:hover {
+	background: #bf360c;
+	outline: 0;
+}
+
+button:active {
+	top:-10px;
 }
 
 .profile-pic {

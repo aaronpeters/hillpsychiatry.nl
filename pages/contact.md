@@ -1,7 +1,7 @@
 ---
 layout: layouts/contact.njk
 title: Get in touch with Aaron Peters
-description: Interested in hiring me as your WPO consultant or have some other inquiry? Let me know.
+description: Interested in hiring me as your web performance optimization consultant or have some other inquiry? Let me know.
 tags:
   - nav
 navtitle: Contact
