@@ -1,10 +1,9 @@
 ---
 layout: layouts/home.njk
 title: Aaron Peters - Web Performance Consultant
-description-a: Happier users, More pageviews, More revenue. Your website can do better, by making it secure, fast and Google-friendly. I can help !
-description-b: I'm a freelance web performance optimization consultant / engineer with 10 years experience in making websites fast, secure and Google-friendly.
+description-b: I'm a freelance web performance optimization consultant & engineer with 10 years experience in making websites fast, secure and Google-friendly.
 description-c: I'm a freelance web performance optimization consultant and engineer with 10 years experience in making (large) websites blazing fast.
-description0: Freelance web performance consultant / engineer with 10 years experience in helping medium / large businesses make their website strong and fast.
+description0: Freelance web performance consultant & engineer with 10 years experience in helping medium / large businesses make their website strong and fast.
 description-d: Since 2010, I help medium and large businesses improve customer satisfaction, do better in Google and increase revenue by making their website fast.
 description: Since 2010, I help medium and large businesses make their website fast, secure and Google-friendly, resulting in more traffic and higher revenue. 
 date: 2019-11-20T00:00:00.000Z
@@ -13,16 +12,21 @@ navtitle: Home
 
 ---
 
-# Web Performance Consultant / Engineer
+# Web Performance Consultant & Engineer
 
-Since 2010, I help medium and large businesses make their website fast, secure and Google-friendly, resulting in more traffic, lower costs and higher revenue.
+Since 2010, I help medium and large businesses make their website blazing fast, secure and Google-friendly, resulting in more traffic, lower costs and higher revenue.
 
-In my toolbox is an up-to-date and deep understanding of browsers, protocols, networking, CDNs, modern web technologies and best practices. 
-More importantly - there is 10 years experience in <i>doing</i> web performance optimization in close cooperation with marketing, product and engineering teams, on location and remote.
+In my toolbox is an up-to-date and deep understanding of browsers, protocols, networking, CDNs, modern web technologies and UX/performance best practices. 
+More importantly - there is <strong>10 years experience in <i>doing</i> web performance optimization</strong> in close cooperation with marketing, product and engineering teams, on location and remote.
 
-Need help improving the speed of your website? Don't hesitate to <a href="/contact/">contact me</a>.
+Need help improving site speed and empowering your team to keep site speed at a high level? 
+Fill out the <a href="/contact/">contact form</a> or ping me on <a href="https://twitter.com/aaronpeters">Twitter</a>.
+I look forward to connecting with you.
 
-## Trusted by these great companies
+
+<div class="trusted-by">
+	Trusted by these great companies
+</div>
 <div class="customers">
 	<div class="customer c1 big">
 		<img src="/static/img/logo-pitchup.png" width="252" height="221" alt="Pitchup logo">

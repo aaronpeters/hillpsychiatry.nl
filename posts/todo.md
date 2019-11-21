@@ -13,10 +13,7 @@ tags:
 
 ## Go Live
 
-- Homepage
-- /nl
 - Hire Me
-- 10 Great Web Performance Blogs
 
 - Optimized JS snippet for Firebase Performance Monitoring
 
@@ -25,6 +22,26 @@ dns1.p07.nsone.net
 dns2.p07.nsone.net
 dns3.p07.nsone.net
 dns4.p07.nsone.net
+
+## /nl
+
+Keywords: laadtijd, optimalisatie, websitesnelheid, web performance
+
+1. Waarom webperf, wat levert het op?
+2. Hoe kan Aaron u helpen? Monitoring, analyse, problemen oplossen (techniek!) en training.
+2. Kort: ervaring van Aaron (expertise, klanten), met link naar 'About' page
+
+Pitch:
+8+ jaar ervaring als web perf consultant
+Frontend, CDN, DNS, load balancing
+Performance analytics en performance koppelen aan business metrics.
+
+Hollandsnieuwe, Kruidvat en Beslist.nl
+
+Oprichter van TurboBytes en CDN Planet.
+
+Analyse, advies en hands-on optimalisatie.
+Consultancy, optimalisatie en training. Ruim 10 jaar ervaring.
 
 
 ## Homepage

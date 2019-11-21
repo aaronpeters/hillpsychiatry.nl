@@ -1,8 +1,9 @@
 ---
 layout: layouts/nl.njk
 title: Aaron Peters - Websitesnelheid consultant & engineer
-description: Aaron Peters zorgt dat uw website supersnel wordt én blijft. Ruim 10 jaar ervaring bij o.a. Vodafone en Beslist.
+description2: Aaron Peters zorgt dat uw website supersnel wordt én blijft. Ruim 10 jaar ervaring bij o.a. Vodafone en Beslist.
 description1: Ik realiseer dat uw website snel laadt. Uw bezoekers en Google zullen dit waarderen, resulterend in meer traffic, hogere conversie en meer vertrouwen in uw merk.
+description: Sinds 2010 help ik (grote) bedrijven om hun website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic en hogere conversie.
 tags:
   - nav
 navtitle: Nederlands
@@ -13,20 +14,12 @@ permalink: /nl/index.html
 
 ---
 
-Keywords: laadtijd, optimalisatie, websitesnelheid, web performance
+# Websitesnelheid Consultant & Engineer
 
-1. Waarom webperf, wat levert het op?
-2. Hoe kan Aaron u helpen? Monitoring, analyse, problemen oplossen (techniek!) en training.
-2. Kort: ervaring van Aaron (expertise, klanten), met link naar 'About' page
+Sinds 2010 help ik (grote) bedrijven om hun website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic, lagere kosten en hogere conversie.
 
-Pitch:
-8+ jaar ervaring als web perf consultant
-Frontend, CDN, DNS, load balancing
-Performance analytics en performance koppelen aan business metrics.
+In mijn toolbox zit een up-to-date en diepe kennis van browsers, protocollen, networking, CDNs, moderne webtechnologieën en UX/performance best practices. 
+Belangrijk nog is mijn 10 jaren ervaring met websitesnelheidoptimalisatie <i>doen</i>, in nauwe samenwerking met marketing, product en engineering teams, op locatie of op afstand.
 
-Hollandsnieuwe, Kruidvat en Beslist.nl
-
-Oprichter van TurboBytes en CDN Planet.
-
-Analyse, advies en hands-on optimalisatie.
-Consultancy, optimalisatie en training. Ruim 10 jaar ervaring.
+Wilt u een écht snelle website en borgen dat de site ook snel blijft? 
+Neem contact met mij op middels het <a href="/contact/">contactformulier</a> of via <a href="https://twitter.com/aaronpeters">Twitter</a>.

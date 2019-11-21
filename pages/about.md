@@ -1,6 +1,6 @@
 ---
-title: Hire me as your web performance consultant
-description: Learn more about Aaron Peters and how he can help you improve the speed and performance of your website.
+title: Web Performance Consultancy & Engineering Services
+description: Learn more about how I can help you improve the speed and performance of your website.
 tags:
   - nav
 navtitle: Hire Me
