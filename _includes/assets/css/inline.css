@@ -184,8 +184,9 @@ header > em {
 }
 
 .lang-switch {
-	justify-self: end;
+	justify-self: self-end;
   font-size: 0.9em;
+  margin-right: 1em;
   /*position: absolute;
   right: 2%;
   top: 0.5em;*/
