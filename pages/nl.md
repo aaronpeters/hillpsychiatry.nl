@@ -16,7 +16,7 @@ permalink: /nl/index.html
 
 # Websitesnelheid Consultant & Engineer
 
-Sinds 2010 help ik (grote) bedrijven om hun website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic, lagere kosten en hogere conversie.
+Sinds 2010 help ik (grote) bedrijven de website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic, lagere kosten en hogere conversie.
 
 In mijn toolbox zit een up-to-date en diepe kennis van browsers, protocollen, networking, CDNs, moderne webtechnologieën en UX/performance best practices. 
 Belangrijk nog is mijn 10 jaren ervaring met websitesnelheidoptimalisatie <i>doen</i>, in nauwe samenwerking met marketing, product en engineering teams, op locatie of op afstand.
