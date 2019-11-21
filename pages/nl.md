@@ -23,3 +23,28 @@ Belangrijk nog is mijn 10 jaren ervaring met websitesnelheidoptimalisatie <i>doe
 
 Wilt u een écht snelle website en borgen dat de site ook snel blijft? 
 Neem contact met mij op middels het <a href="/contact/">contactformulier</a> of via <a href="https://twitter.com/aaronpeters">Twitter</a>.
+
+<div class="trusted-by">
+&nbsp;
+</div>
+<div class="customers">
+	<div class="customer c1">
+		<img src="/static/img/logo-vodafone-landscape.png" width="300" height="80" alt="hollandsnieuwe logo">
+	</div>
+	<div class="customer c2">
+		<img src="/static/img/logo-hollandsnieuwe.png" width="147" height="55" alt="hollandsnieuwe logo">
+	</div>
+	<div class="customer c3">
+		<img src="/static/img/Logo-Kruidvat-2019-Rood-SVG-RGB-zonder-outline.png" width="853" height="223" alt="Kruidvat logo">
+	</div>
+	<div class="customer c4">
+		<img src="/static/img/logo-snsbank.png" width="171" height="60" alt="SNS Bank logo">
+	</div>
+	<div class="customer c5">
+		<img src="/static/img/logo-fbto.png" width="250" height="77" alt="FBTO logo">
+	</div>
+	<div class="customer c6">
+		<img src="/static/img/logo-beslist-59h.png" width="300" height="59" alt="Beslist.nl logo">
+	</div>
+</div>
+

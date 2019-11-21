@@ -36,7 +36,7 @@ To get a grip on CDN Planet performance, we recently started using New Relic, a 
 We got a free, 14 day Pro account and set up the monitoring: Application, End-User and Server monitoring. We were immediately happy campers: the average response time for our web server was ~20ms. Yeah!<br>
 But then the first weekly report came in via email and I saw this:
 
-<img src="/static/img/new-relic-cdnplanet-weekly-report.png" width="247" height="148">
+<img src="/static/img/new-relic-cdnplanet-weekly-report.png" width="247" height="148" alt="New Relic weekly report screenshot">
 
 3.8 seconds average page load time? 11.5% of page views took between 7 and 28 seconds to load and 1.8% was slower than 28 seconds? For us, this is Code Red.
 

@@ -13,8 +13,6 @@ tags:
 
 ## Go Live
 
-- Hire Me
-
 - Optimized JS snippet for Firebase Performance Monitoring
 
 DNS:
@@ -105,3 +103,85 @@ Kleinere kans dat uw website plat gaat of erg traag wordt.
 ## Error pages
 
 - 404.md
+
+## Hire me 
+
+
+
+
+## Data & Insights ⏱ 📈
+
+
+Your goal: always have a good view on how fast your site is and the impact on your business.
+
+- Metrics definition
+- Data collection
+- 
+
+- Define your metrics: what do I want to measure? Not the same for every site
+- Collect the data: select the right monitoring tool(s)
+- Derive insights: data viz, tie to business metrics
+
+Strong passion for data visualization and years of experience in defining metrics and transforming data into actionable insights.
+
+The Google view (PageSpeed and CRuX).
+Monitoring: GA, WebPageTest, Firebase, Catchpoint, SpeedCurve, Pingdom 
+
+
+## Knowledge Transfer
+Knowledge - Expertise 💬 🧠
+
+Level-up the knowledge and expertise of your team
+
+
+## Get Fast 🔧 💯
+
+Make it fast
+
+
+## Stay Fast 📌 💰
+
+Ensure it stays fast. Make it stick.
+High probability perf will regress if you do not embed web performance in your business goals, way of working and tooling.
+
+- Culture: Empower, Incentivize, Empower.
+- Process: Way of Working
+- Tools: e.g. 
+- Perf budgets.
+
+---
+
+#### Background & Expertise 
+
+- Founder of Multi-CDN provider [TurboBytes](https://www.turbobytes.com)
+- Founder of CDN information & comparison site [CDN Planet](https://www.cdnplanet.com)
+- Speaker at [Velocity conference](https://conferences.oreilly.com/velocity/) and webperf meetups 
+
+
+5. Google and site speed
+
+See: pitch slide in recent WPO Leads deck 
+
+
+### Frontend
+
+I've been building websites since 1995, worked 'on the Internet' since , passion for technology.
+
+Everything, from HTML and CSS to images and webfonts, and of course JavaScript.
+Very good understanding of how browsers work (networking, rendering, JavaScript parse/compile/execute)
+SSR, hydration, ...
+
+### Backend and Networking
+
+DNS, HTTP, CDN
+Quickly understand your architecture
+Up to speed with modern (cloud) technologies like Serverless and Functions, including hands-on experience with Cloudflare Workers, Azure Functions and Table Storage
+
+### Tools and processes
+
+WoW:
+Build and deploy: 
+.
+
+
+

@@ -1,5 +1,6 @@
 ---
-title: Web Performance Consultancy & Engineering Services
+layout: layouts/about.njk
+title: Aaron Peters' Web Performance services
 description: Learn more about how I can help you improve the speed and performance of your website.
 tags:
   - nav
@@ -10,61 +11,24 @@ permalink: /about/index.html
 
 ---
 
-<img class="profile-pic" src="/static/img/aaron-peters-profile-400x400.jpg" width="200" height="200">
+<img class="profile-pic" src="/static/img/aaron-peters-profile-400x400.jpg" width="200" height="200" alt="Aaron Peters profile photo">
 
-Founder of TurboBytes and CDN Planet
-[Velocity speaker](https://)
+# Your Website, Blazing Fast 🔥 🚀
 
-1. Make it fast
-2. Ensure it stays fast
-3. Level-up the knowledge and expertise of your team
-4. Performance analytics
-5. Google and site speed
+I'd love to help you improve speed and performance of your website  - if you are serious about this. 
+Achieving high-performance for your site, short-term and long-term, requires investing time and money and putting in the effort.
 
-See: pitch slide in recent WPO Leads deck 
+My approach to making websites fast can be described as "implementing data-driven, validated optimizations in context of user characteristics/needs and business goals, in close collaboration with your teams and third parties".
 
+Typically a project has four key ingredients:
 
-Services:
-Training / Education
-Consultancy
-Development !
+- Data & Insights
+- Knowledge Transfer
+- Get Fast
+- Stay Fast
 
+At the end of the project, your website is fast and your teams have the enthusiasm, data, expertise, tools and processes to keep the site fast.
 
-1. The why and how
-2. Optimize
-3. Make it stick
-
-1. Lay the foundation (alle neuzen zelfde kant op, Bus en Techniek heeft kennis van zaken, data / monitoring, Google perspective)
-2. Make the site fast
-3. Ensure it stays fast
-
-
-### Frontend
-
-Everything, from HTML and CSS to images and webfonts, and of course JavaScript (vanilla, Angular).
-Service Workers, Web Workers.
-Very good understanding of how browsers work (networking, rendering, JavaScript parse/compile/execute)
-SSR, hydration, ...
-
-### Backend and Networking
-
-DNS, HTTP, CDN
-Quickly understand your architecture
-Up to speed with modern (cloud) technologies like Serverless and Functions, including hands-on experience with Cloudflare Workers, Azure Functions and Table Storage
-
-### Tools and processes
-
-WoW:
-Build and deploy: 
-Perf budgets.
-
-### Performance analytics
-
-Passion for data visualization and years of experience in defining metrics and transforming data into actionable insights.
-
-Metrics, monitoring, reporting & analysis
-Actionable insights
-
-Tie to business metrics
-
-WPT, GA, FB perf monitoring, SpeedCurve, Catchpoint, Pingdom, 
+Interested in learning more about my background, expertise and way of working?
+Fill out the <a href="/contact/">contact form</a> or ping me on <a href="https://twitter.com/aaronpeters">Twitter</a>.
+I look forward to connecting with you.
