@@ -361,6 +361,7 @@ button:active {
 }
 
 .profile-pic {
+	display: none;
 	position: absolute;
 	top: 2em;
   right: 1.4em;
@@ -637,6 +638,11 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+.responsive-ugh {
+	max-width: 300px;
+	height: auto;
+}
+
 @media screen and (min-width:601px) {
 
 	body {
@@ -723,12 +729,24 @@ pre[class*="language-"] {
 	pre[class*="language-"] {
 		max-width: 540px;
 	}
+
+	.responsive-ugh {
+		max-width: 540px;
+	}
 	
 }
 
 @media screen and (min-width:768px) {
+
+	.profile-pic {
+		display: block;
+	}
 	
 	pre[class*="language-"] {
+		max-width: 680px;
+	}
+
+	.responsive-ugh {
 		max-width: 680px;
 	}
 	
@@ -739,5 +757,9 @@ pre[class*="language-"] {
 	pre[class*="language-"] {
 		max-width: 920px;
 	}
-	
+
+	.responsive-ugh {
+		max-width: 920px;
+	}
+		
 }
