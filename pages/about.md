@@ -12,7 +12,7 @@ permalink: /about/index.html
 
 <img class="profile-pic" src="/static/img/aaron-peters-profile-400x400.jpg" width="200" height="200">
 
-Founder ofTurboBytes and CDN Planet
+Founder of TurboBytes and CDN Planet
 [Velocity speaker](https://)
 
 1. Make it fast

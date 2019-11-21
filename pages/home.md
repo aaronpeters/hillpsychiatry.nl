@@ -23,7 +23,6 @@ Need help improving site speed and empowering your team to keep site speed at a 
 Fill out the <a href="/contact/">contact form</a> or ping me on <a href="https://twitter.com/aaronpeters">Twitter</a>.
 I look forward to connecting with you.
 
-
 <div class="trusted-by">
 	Trusted by these great companies
 </div>
