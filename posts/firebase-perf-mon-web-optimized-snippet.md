@@ -141,7 +141,7 @@ Inline JS in the <code>&lt;head&gt;</code> that comes _after_ CSS (inline or ext
 So, put the Firebase JS snippet _before_ any inline or external CSS.
 
 
-## Takeaways
+## Take-aways
 
 * Do not assume a snippet provided by a third party is optimized for performance
 * Defer the loading of third party scripts until after the load event (even if the script loads async)
