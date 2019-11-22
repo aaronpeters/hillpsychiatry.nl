@@ -7,20 +7,22 @@ date: 2019-01-01
 
 ---
 
-## Go Live
+## Top Prio
 
-- Optimized JS snippet for Firebase Performance Monitoring
+### Blog
+
+- Add articles: Optimized JS snippet for Firebase Performance Monitoring, ...
+- Responsive images: 11ty plugin
+- Auto generate images: 
 
 
 ## Performance
 
 - Lazy load images (native)
-
-DNS:
-dns1.p07.nsone.net
-dns2.p07.nsone.net
-dns3.p07.nsone.net
-dns4.p07.nsone.net
+- Static assets
+--- Versioning
+--- Caching, max-age=365d (/.jpg|png|css|js|woff2)
+- DNS: use Netlify?
 
 
 ## Legal
@@ -31,8 +33,10 @@ dns4.p07.nsone.net
 ## SEO
 
 - Structured Data
-- Sitemap.xml <= https://developers.google.com/search/docs/guides/submit-URLs , https://github.com/11ty/eleventy/issues/248
-- meta noindex, nofollow anywhere?
+- Sitemap.xml
+--- 11ty github issue for why only one /tags/.../ is in https://www.aaronpeters.nl/sitemap.xml
+--- add properties in XML? https://www.sitemaps.org/protocol.html#xmlTagDefinitions
+
 - robots.txt 
 
 
@@ -40,8 +44,6 @@ dns4.p07.nsone.net
 
 - Webfonts: Inter (self-hosted)
 - Links: cool underline
-- Fix the issue with pre elements not being as wide as main element :(
-- inspiration: https://lynnandtonic.com/web/
 
 
 ## Security
@@ -49,18 +51,9 @@ dns4.p07.nsone.net
 - CSP
 
 
-## Error pages
-
-- 404.md
-
-
 ---
 
 Content:
-
-## Blog
-
-- 11ty : draft blog posts, sitemap.xml and other SEO stuff
 
 
 ## Hire me 
