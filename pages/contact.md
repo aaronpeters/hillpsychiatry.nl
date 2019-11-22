@@ -1,13 +1,14 @@
 ---
 layout: layouts/contact.njk
+permalink: /contact/index.html
 title: Get in touch with Aaron Peters
 description: Interested in hiring me as your web performance optimization consultant or have some other inquiry? Let me know.
 tags:
   - nav
 navtitle: Contact
 section: contact
-date: 2019-11-20T02:00:00.000Z
-permalink: /contact/index.html
+date: 2019-11-20
+
 ---
 
 Interested in hiring me or have some other inquiry? 

@@ -6,9 +6,8 @@ description-c: I'm a freelance web performance optimization consultant and engin
 description0: Freelance web performance consultant & engineer with 10 years experience in helping medium / large businesses make their website strong and fast.
 description-d: Since 2010, I help medium and large businesses improve customer satisfaction, do better in Google and increase revenue by making their website fast.
 description: Since 2010, I help medium and large businesses make their website fast, secure and Google-friendly, resulting in more traffic and higher revenue. 
-date: 2019-11-20T00:00:00.000Z
+date: 2019-11-20
 permalink: /
-navtitle: Home
 
 ---
 

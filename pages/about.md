@@ -1,13 +1,13 @@
 ---
 layout: layouts/about.njk
+permalink: /about/index.html
 title: Aaron Peters' Web Performance services
 description: Learn more about how I can help you improve the speed and performance of your website.
 tags:
   - nav
 navtitle: Hire Me
 section: about
-date: 2019-11-20T01:00:00.000Z
-permalink: /about/index.html
+date: 2019-11-19
 
 ---
 

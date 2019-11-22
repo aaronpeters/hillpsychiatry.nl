@@ -1,5 +1,6 @@
 ---
 layout: layouts/nl.njk
+permalink: /nl/index.html
 title: Aaron Peters - Websitesnelheid consultant & engineer
 description2: Aaron Peters zorgt dat uw website supersnel wordt én blijft. Ruim 10 jaar ervaring bij o.a. Vodafone en Beslist.
 description1: Ik realiseer dat uw website snel laadt. Uw bezoekers en Google zullen dit waarderen, resulterend in meer traffic, hogere conversie en meer vertrouwen in uw merk.
@@ -9,8 +10,7 @@ tags:
 navtitle: Nederlands
 secondary: true
 section: nl
-date: 2019-11-20T03:00:00.000Z
-permalink: /nl/index.html
+date: 2019-11-21
 
 ---
 

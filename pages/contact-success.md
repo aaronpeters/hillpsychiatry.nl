@@ -1,7 +1,9 @@
 ---
-title: Message received !
+eleventyExcludeFromCollections: true
 layout: layouts/page.njk
 permalink: /contact/success/index.html
+title: Message received !
+date: 2019-11-21
 
 ---
 

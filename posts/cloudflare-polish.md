@@ -4,11 +4,7 @@ title: Cloudflare Polish something
 description: TODO
 summary: TODO
 date: 2019-01-01
-tags:
-  - webperf
-  - Cloudflare
-  - Polish
-  - CDN
+
 ---
 
 Note: the Title is the H1, so make it awesome !
