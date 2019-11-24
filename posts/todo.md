@@ -13,7 +13,9 @@ date: 2019-01-01
 
 - Add articles: Optimized JS snippet for Firebase Performance Monitoring, ...
 - Responsive images: 11ty plugin
-- Auto generate images: 
+- Auto generate images: convert ...
+- tags on /tags/ pages are lowercase :(
+
 
 ## Performance
 
@@ -41,7 +43,9 @@ date: 2019-01-01
 
 ## Design
 
-- Webfonts: Inter (self-hosted)
+- Webfonts: 
+--- Inter (self-hosted)
+--- Variable fonts (Sia's or Inter), but https://bugs.chromium.org/p/chromium/issues/list?can=2&q=variable+component%3ABlink%3EFonts
 - Links: cool underline
 
 

@@ -1,5 +1,5 @@
 ---
-title: 10 Great Web Performance Blogs
+title: 10 great web performance blogs
 summary: Want to learn about web performance from the pros? Check out my list of active blogs maintained by web performance experts.
 date: 2019-11-21
 tags:
