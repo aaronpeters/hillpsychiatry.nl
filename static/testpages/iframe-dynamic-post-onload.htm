@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html lang="en" class="js red-logo ">
+<head>
+  <meta charset="utf-8">
+
+  <!--[if IE]><![endif]-->
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Iframe - dynamic insertion, after onload</title>
+  <meta name="description" content="">
+</head>
+
+<body>
+	<h1>Iframe - dynamic insertion, after onload</h1>
+		
+	<div id="test1">
+	</div>
+
+	<hr>
+
+	<hr>
+	
+	<p>
+		<img src="http://www.nasa.gov/images/content/385240main_image_1465_1600-1200.jpg?123" width="400" height="300"><br>
+	</p>
+
+<script>
+    //doesn't block the load event
+	function createIframe(){
+		var i = document.createElement("iframe");
+		i.src = "http://syndication.zoover.nl/Syndication/RequestTestimonial.aspx?entid=80959&entlvl=accommodation&toid=waverunner";
+		i.scrolling = "auto";
+		i.frameborder = "0";
+		i.width = "747px";
+		i.height = "3000px";
+		document.getElementById("test2").appendChild(i);
+	};
+	
+	// Check for browser support of event handling capability
+	if (window.addEventListener)
+	window.addEventListener("load", createIframe, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", createIframe);
+	else window.onload = createIframe;
+	
+</script>
+
+	<div id="test2">
+	</div>
+<!--<iframe src="http://syndication.zoover.nl/Syndication/RequestTestimonial.aspx?entid=80959&entlvl=accommodation&toid=waverunner" frameborder="0" width="747px" height="3000px" scrolling="auto"></iframe>-->
+
+</body>
+</html>

@@ -1,20 +1,20 @@
 ---
 title: Iframe loading techniques and performance
 description: Overview of different ways to use an iframe for loading content, ads & widgets. How does each technique affect performance?
-summary: dlakdla
+summary: Overview of different ways to use an iframe for loading content, ads & widgets. Which technique is best for performance?
 date: 2010-12-20
 tags:
-  - webperf
+  - iframe
   - tips
 ---
 
 <div class="notice-msg warning">
-	This article is 9+ years old. Do not assume any recommendations are still valid today.
+	This article is 9+ years old. Do not assume any recommendations are still valid today. And my old test pages are broken (404).
 </div>
 
 <div class="notice-msg info">
 Iframe setTimeout() does not work in IE9.<br>
-Chad Barnsdale of <a href="http://www.unfinishedman.com">Unfinishedman.com</a> mentioned to me on May 25 that the Iframe setTimeout() technique does not work in IE9. And he was right. 
+Chad Barnsdale of <a href="https://www.unfinishedman.com/">Unfinishedman.com</a> mentioned to me on May 25 that the Iframe setTimeout() technique does not work in IE9. And he was right. 
 The file that gets loaded into the iframe simply does not load. Nothing happens. I will dive into this sometime soon. It's probably something small with the JavaScript code.
 </div>
 
@@ -54,8 +54,11 @@ Using the Normal Iframe technique will result in the following behaviour in all 
 I created a simple test page and ran it through Webpagetest.org (IE7 and IE8).
 The waterfall chart below clearly shows how the Normal Iframe blocks the main page onload.
 
-<a href="/blog/images/iframe/normal-iframe-IE8-waterfall-big.png" rel="nofollow"><img class="responsive-ugh" src="/static/img/normal-iframe-IE8-waterfall-small.png" width="660" height="121" alt="Normal Iframe - Performance - IE8 waterfall chart" title="Normal Iframe - Performance - IE8 waterfall chart"></a>
-<span>Click for bigger version. <a href="https://www.webpagetest.org/result/101216_d88600690d762d434a1337e8c67119fc/">View full test results on Webpagetest.org</a></span>
+<a class="no-styling" href="/static/img/waterfalls-charts/normal-iframe-IE8-waterfall-big.png">
+	<img class="responsive-ugh" src="/static/img/waterfalls-charts/normal-iframe-IE8-waterfall-small.png" width="660" height="121" alt="Normal Iframe - Performance - IE8 waterfall chart" title="Normal Iframe - Performance - IE8 waterfall chart">
+</a>
+
+<small>Click image for a bigger version</small>
 
 My advice: be aware of the onload blocking. It's not a big problem if the iframe content takes a short time to load (and execute), and the iframe in itself is good to use because it loads in parallel with the main page. 
 But if it takes long for the iframe to finish, the user experience is damaged.
@@ -98,8 +101,11 @@ The Iframe After Onload technique will consistently show the following behaviour
 
 I ran some tests with my Iframe After Onload test page on Webpagetest.org (IE7 and IE8): as expected, onload is not blocked:
 
-<a href="/blog/images/iframe/iframe-after-onload-IE8-waterfall-big.png" rel="nofollow"><img class="img-a" src="http://lw.aaronpeters.nl/blog/images/iframe/iframe-after-onload-IE8-waterfall-small.png" width="660" height="121" alt="Iframe After Onload - Performance - IE8 waterfall chart"></a><br>
-<span class="remark-small">Click for bigger version. <a href="http://www.webpagetest.org/result/101215_3a0cd9a522be1fee6ea7fb5006122f67/" rel="nofollow">View full test results on Webpagetest.org</a></span>
+<a class="no-styling" href="/static/img/waterfalls-charts/iframe-after-onload-IE8-waterfall-big.png">
+	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-after-onload-IE8-waterfall-small.png" width="660" height="121" alt="Iframe After Onload - Performance - IE8 waterfall chart">
+</a>
+
+<small>Click image for a bigger version</small>
 
 What do you gain by this versus the Normal Iframe?
 The load event of the main page fires sooner, and this has 2 benefits:
@@ -146,17 +152,25 @@ main page onload (note: except in IE8 with empty cache)
 - Why does the iframe not block main page onload in all-but-IE8 browsers? Because of the <code>setTimeout()</code>
 - While the iframe is loading, one or more browser busy indicators show something is loading
 
-I ran tests on Webpagetest.org (IE7 and IE8) with <a href="http://www.aaronpeters.nl/blog/testpages/iframe-settimeout.htm" rel="nofollow">Iframe After Onload test page A</a> and  <a href="http://www.aaronpeters.nl/blog/testpages/iframe-non-blocking.htm" rel="nofollow">Iframe After Onload test page B</a>: all is fine in IE7, onload is blocked on first view in IE8.<br>
-			<a href="/blog/images/iframe/iframe-settimeout-IE8-waterfall-big.png" rel="nofollow"><img class="img-a" src="http://lw.aaronpeters.nl/blog/images/iframe/iframe-settimeout-IE8-waterfall-small.png" width="660" height="257" alt="Iframe setTimeout - Performance - IE8 waterfall chart" title="Iframe setTimeout - Performance - IE8 waterfall chart"></a><br>
-			<span class="remark-small">IE8 first view. Click for bigger version. <a href="http://www.webpagetest.org/result/101217_05_f3682f3e391ecf16f8c7601af72249df/" rel="nofollow">View full test results on Webpagetest.org</a></span><br><br>
-			<a href="/blog/images/iframe/iframe-settimeout-IE8-repeat-waterfall-big.png" rel="nofollow"><img class="img-a" src="http://lw.aaronpeters.nl/blog/images/iframe/iframe-settimeout-IE8-repeat-waterfall-small.png" width="660" height="70" alt="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart" title="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart"></a><br>
-			<span class="remark-small">IE8 repeat view (note: my HTML is cached for 10 minutes, so only iframe content is reloaded). Click for bigger version. <a href="http://www.webpagetest.org/result/101217_05_f3682f3e391ecf16f8c7601af72249df/" rel="nofollow">View full test results on Webpagetest.org</a></span><br><br>
+I ran tests on Webpagetest.org (IE7 and IE8) with [Iframe After Onload test page A](/static/testpages/iframe-settimeout.htm) and [Iframe After Onload test page B](/static/testpages/iframe-non-blocking.htm): all is fine in IE7, onload is blocked on first view in IE8.
+
+<a class="no-styling" href="/static/img/waterfalls-charts/iframe-settimeout-IE8-waterfall-big.png">
+	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-settimeout-IE8-waterfall-small.png" width="660" height="257" alt="Iframe setTimeout - Performance - IE8 waterfall chart" title="Iframe setTimeout - Performance - IE8 waterfall chart">
+</a>
+
+<small>IE8 first view. Click image for a bigger version</small>
+
+<a class="no-styling" href="/static/img/waterfalls-charts/iframe-settimeout-IE8-repeat-waterfall-big.png">
+	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-settimeout-IE8-repeat-waterfall-small.png" width="660" height="70" alt="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart" title="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart">
+</a>
+
+<small>IE8 repeat view (note: my HTML is cached for 10 minutes, so only iframe content is reloaded). Click image for a bigger version</small>
 
 Because of the IE8 issue I believe this technique is not usable in production for many sites. If more than 10% of your visitors have IE8, 1 in 10 will get a lesser experience. You could argue that it's only worse compared to the Normal Iframe technique which isn't a really bad for performance anyway. And onload firing later for 10% of your users ... ah well. You decide, but not after you read below about the ultra awesome Dynamic Asynch Iframe-technique. 
 
 ## <a name="dynamic"></a> Dynamic Asynch Iframe
 
-When I was at the <a href="http://velocityconf.com/velocity2010/" rel="nofollow">Velocity 2010 web performance conference</a>, two Meebo engineers (<a href="http://twitter.com/marcuswestin" rel="nofollow">@marcuswestin</a> and <a href="http://www.linkedin.com/pub/martin-hunt/4/542/472" rel="nofollow">Martin Hunt</a>) gave a <a href="http://velocityconf.com/velocity2010/public/schedule/detail/13070" rel="nofollow">presentation</a> about the new <a href="http://bar.meebo.com" rel="nofollow">Meebo Bar</a> and how they improved this widget's performance. They came up with a truly non-blocking, instantly loading technique for including their widget in a page, using an iframe. For many web developers, their 'dynamic asynch iframe' approach was new. And it's awesome. Double awesome. For some reason, this technique has not gotten the attention it deserves. I hope this blog post can help spread the word.
+When I was at the [Velocity 2010 web performance conference](https://conferences.oreilly.com/velocity/velocity2010), two Meebo engineers [@marcuswestin](http://twitter.com/marcuswestin) and [Martin Hunt](http://www.linkedin.com/pub/martin-hunt/4/542/472)) gave a [presentation](https://conferences.oreilly.com/velocity/velocity2010/public/schedule/detail/13070) about the new Meebo Bar and how they improved this widget's performance. They came up with a truly non-blocking, instantly loading technique for including their widget in a page, using an iframe. For many web developers, their 'dynamic asynch iframe' approach was new. And it's awesome. Double awesome. For some reason, this technique has not gotten the attention it deserves. I hope this blog post can help spread the word.
 
 <pre>
 <code class="language-javascript">
@@ -192,8 +206,11 @@ You should see the following behaviour of the Dynamic Asynch Iframe technique co
 
 My [Dynamic Asynch Iframe test page](http://www.aaronpeters.nl/blog/testpages/iframe-dynamic-asynch.htm) gave this result on Webpagetest.org (IE8):
 
-<a href="/blog/images/iframe/iframe-dynamic-asynch-IE8-waterfall-big.png" rel="nofollow"><img class="img-a" src="http://lw.aaronpeters.nl/blog/images/iframe/iframe-dynamic-asynch-IE8-waterfall-small.png" width="660" height="121" alt="Iframe Dynamic Asynch - Performance - IE8 waterfall chart" title="Iframe Dynamic Asynch - Performance - IE8 waterfall chart"></a><br>
-<span class="remark-small">Click for bigger version. <a href="http://www.webpagetest.org/result/101219_39_da7bd2e6f13c2753569dce3fdb00c1d8/" rel="nofollow">View full test results on Webpagetest.org</a></span><br><br>
+<a class="no-styling" href="/static/img/waterfalls-charts/iframe-dynamic-asynch-IE8-waterfall-big.png">
+	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-dynamic-asynch-IE8-waterfall-small.png" width="660" height="121" alt="Iframe Dynamic Asynch - Performance - IE8 waterfall chart" title="Iframe Dynamic Asynch - Performance - IE8 waterfall chart">
+</a>
+
+<small>Click image for a bigger version</small>
 
 Espacing characters makes it more difficult to read and error prone, but in my opinion these are minor cons.
 Do give this technique a try and post a comment if it works, or doesn't.
@@ -212,15 +229,15 @@ The Friendly Iframe works in all browsers.
 The Ad Ops Council of the IAB has been recommending this technique since October 2008 as per their [Best Practices for Rich Media Ads in Asynchronous Ad Environments](http://www.iab.net/media/file/rich_media_ajax_best_practices.pdf) (PDF). 
 AOL uses this technique and Dave Artz of AOL describes it in his Velocity 2009 presentation: [download PDF](http://assets.en.oreilly.com/1/event/29/The%20Secret%20Weapons%20of%20the%20AOL%20Optimization%20Team%20Presentation.pdf).
 Wanna see code? Dave has a [Friendly Iframe test page](http://www.artzstudio.com/files/fif-demo/) on his blog.
-Aftonbladet - a large publisher in Sweden - had good results with the Friendly Iframe: on their Homepage, load time went down by 30%, visits/week went up by 7% and click-throughs to the Latest News section increased by 35%! I recommend watching the Aftonbladet presentation [High Performance Web Sites, With Ads: Don't let third parties make you slow](http://www.slideshare.net/jarlund/hign-performance-web-sites-with-ads-dont-let-third-parties-make-you-slow)
+Aftonbladet - a large publisher in Sweden - had good results with the Friendly Iframe: on their Homepage, load time went down by 30%, visits/week went up by 7% and click-throughs to the Latest News section increased by 35%! I recommend watching the Aftonbladet presentation [High Performance Web Sites, With Ads: Don't let third parties make you slow](https://www.slideshare.net/jarlund/hign-performance-web-sites-with-ads-dont-let-third-parties-make-you-slow)
 
 I've not created a test page for the Friendly Iframe, so I don't have any hands-on experience with it.
 From what I've read so far, and by reviewing and using Dave Artz' test page, this is my view on the Friendly Iframe:
 
-- It is not useful if you simply want to load a single iframe on a page with a fixed src.
+- It is not useful if you simply want to load a single iframe on a page with a fixed src
 - It's a good technique for loading one or more ads on a web page, in a flexible way: load any ad, update the iframe with another ad, ...
 - The DOMContentLoaded event of the main page is not blocked and neither is page rendering: yeah!
-- However, the load event of the main page *is* blocked. ([test results on Webpagetest.org (IE8)](https://www.webpagetest.org/result/101217_EX_f6d4dd3b561af131122b9e60ba7a4252/))
+- However, the load event of the main page *is* blocked
 
 ## Iframe Performance Links
 

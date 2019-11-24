@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Iframe non-blocking</title>
+	<link rel="stylesheet" type="text/css" href="http://www.aaronpeters.nl/sandbox/css/style.css">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<script> 
+function reloadPage(url) {
+	document.body.innerHTML = '';
+	document.location = url;
+}
+ 
+var gTop = Number(new Date());
+function cuz_addHandler(elem, sType, fn, capture) {
+    capture = (capture) ? true : false;
+    if (elem.addEventListener) {
+        elem.addEventListener(sType, fn, capture);
+    }
+    else if (elem.attachEvent) {
+        elem.attachEvent("on" + sType, fn);
+    }
+    else {
+        // Netscape 4
+        if ( elem["on" + sType] ) {
+            // Do nothing - we don't want to overwrite an existing handler.
+        }
+        else {
+            elem["on" + sType] = fn;
+        }
+    }
+}
+ 
+function doOnload() {
+	var end = Number(new Date());
+    document.getElementById('loadtime').innerHTML = 'page load time: ' + (end - gTop) + ' ms' +
+		( "undefined" === typeof(t_iframe) ? '' : '<br>iframe src set at: ' + (t_iframe - gTop) + ' ms' );
+}
+cuz_addHandler(window, 'load', doOnload);
+</script> 
+</head>
+
+<body>
+<div id=loadtime style="text-align: left; margin-top: 10px;">page load time: </div>
+<p> 
+<script>
+</script>
+<input type=button value="Reload" onclick="reloadPage('/sandbox/wpo/iframe-non-blocking.html')"> 
+</p>
+<div id="alert1"></div>
+
+<iframe id="iframe1" src="sleep3.php" width="100" height="100" border="2"></iframe>
+  
+<h1>Iframe - non-blocking</h1>
+	
+<p>
+  <img src="http://www.aaronpeters.nl/sandbox/images/album.png" width="128" height="128" alt="">
+  <img src="http://www.aaronpeters.nl/sandbox/images/badge.png" width="128" height="128" alt="">
+  <img src="http://www.aaronpeters.nl/sandbox/images/buddy.png" width="128" height="128" alt="">
+  <img src="http://www.aaronpeters.nl/sandbox/images/buddy_chat.png" width="128" height="128" alt="">
+  <img src="http://www.aaronpeters.nl/sandbox/images/buddy_group.png" width="128" height="128" alt="">
+  <img src="http://www.aaronpeters.nl/sandbox/images/calendar.png" width="128" height="128" alt="">
+  <img src="http://www.aaronpeters.nl/sandbox/images/chart_bar.png" width="128" height="128" alt="">
+  <img src="http://www.aaronpeters.nl/sandbox/images/chart_pie.png" width="128" height="128" alt="">
+</p>
+
+
+</body>
+</html>

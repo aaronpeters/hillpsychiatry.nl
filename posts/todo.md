@@ -15,7 +15,6 @@ date: 2019-01-01
 - Responsive images: 11ty plugin
 - Auto generate images: 
 
-
 ## Performance
 
 - Lazy load images (native)
@@ -36,8 +35,8 @@ date: 2019-01-01
 - Sitemap.xml
 --- 11ty github issue for why only one /tags/.../ is in https://www.aaronpeters.nl/sitemap.xml
 --- add properties in XML? https://www.sitemaps.org/protocol.html#xmlTagDefinitions
-
 - robots.txt 
+- link rel nofollow: https://github.com/11ty/eleventy/issues/563
 
 
 ## Design

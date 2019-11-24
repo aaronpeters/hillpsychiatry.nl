@@ -99,6 +99,10 @@ h2 a[href]:not(:hover) {
 	background-image: none
 }
 
+a[href].no-styling {
+	background-image: none
+}
+
 
 header,
 main,
