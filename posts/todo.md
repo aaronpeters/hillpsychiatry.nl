@@ -11,10 +11,9 @@ date: 2019-01-01
 
 ### Blog
 
-- Add articles: Optimized JS snippet for Firebase Performance Monitoring, ...
+- Add articles: ...
 - Responsive images: 11ty plugin
 - Auto generate images: convert ...
-- tags on /tags/ pages are lowercase :(
 
 
 ## Performance
