@@ -1,5 +1,6 @@
 ---
 pagination:
+  addAllPagesToCollections: true
   data: collections
   size: 1
   alias: tag
@@ -9,6 +10,8 @@ pagination:
     - homepage
     - post
     - posts
+renderData:
+  title: Web Performance Blog articles tagged "{{ tag }}"
 permalink: /blog/tags/{{ tag }}/
 layout: layouts/base.njk
 

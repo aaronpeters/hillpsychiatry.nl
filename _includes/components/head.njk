@@ -3,12 +3,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="description" content="{{ description }}">
+  <meta name="description" content="{{ renderData.description or description }}">
   
   <meta name="referrer" content="no-referrer-when-downgrade">
   <meta name="robots" content="index,follow">
 
-  <title>{{ title or metadata.title }}</title>
+  <title>{{ renderData.title or title or metadata.title }}</title>
 
   <link rel="alternate" type="application/rss+xml" title="Aaron Peters Web Performance Blog" href="{{ metadata.url + "/rss/feed.xml" }}" />
   <link rel="icon" href="/favicon.ico">

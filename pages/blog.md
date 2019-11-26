@@ -6,7 +6,7 @@ description: Articles about web performance optimization and how to make your si
 tags:
   - nav
 navtitle: Web Performance Blog
-date: 2019-11-18
+date: 2019-11-26
 
 ---
 
