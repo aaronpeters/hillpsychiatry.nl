@@ -1,5 +1,5 @@
 ---
-title: Why loading third party scripts async is not good enough
+title: Why Loading Third Party Scripts Async is not Good Enough
 description: Defer loading third party (async) scripts until after onload, for better, more meaningful page load time data
 summary: Loading third party scripts async is key for having high performance web pages, but those scripts still block onload. Take the time to analyze your web performance data and understand if and how those not-so-important content/widgets/ads/tracking codes impact page load times. Maybe you should do what we did on CDN Planet → defer their loading until after onload.
 date: 2011-11-23

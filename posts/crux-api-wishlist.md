@@ -1,6 +1,6 @@
 ---
 draft: true
-title: CRuX API - my 10 
+title: Google CRuX API - 10 Ingredients for Awesome
 description: TODO
 summary: TODO
 date: 2019-01-01
