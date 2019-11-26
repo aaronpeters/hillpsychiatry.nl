@@ -4,7 +4,7 @@ description: Learn about the problems with the JS code snippet for Firebase Perf
 summary: Find out why the default code snippet for Firebase Performance Monitoring for Web is suboptimal for performance, and grab your copy of the optimized snippet.
 date: 2019-11-25
 highlight: true
-tags:
+tags: 
   - webperf
   - monitoring
   - rum

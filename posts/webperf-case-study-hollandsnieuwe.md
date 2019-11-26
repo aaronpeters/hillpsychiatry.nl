@@ -4,7 +4,7 @@ title: Case study hollandsnieuwe
 description: TODO
 summary: TODO
 date: 2019-01-01
-tags:
+xtags:
   - webperf
   - case study
   - hollandsnieuwe
