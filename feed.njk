@@ -24,7 +24,7 @@ meta:
   <author>
     <name>{{ meta.author.name }}</name>
   </author>
-  {%- for post in collections.posts %}
+  {%- for post in collections.posts | reverse %}
   {% if not post.data.draft %}
   {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(meta.url) }}{% endset %}
   <entry>
