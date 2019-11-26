@@ -6,6 +6,7 @@ description: Learn more about how I can help you improve the speed and performan
 tags:
   - nav
 navtitle: Hire Me
+navorder: 2
 section: about
 date: 2019-11-19
 

@@ -54,10 +54,17 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  eleventyConfig.addCollection("navAscending", function(collection) {
+    return collection.getFilteredByTag("nav").sort(function(a, b) {
+      return a.data.navorder - b.data.navorder;
+    });
+  });
+
+
   // Don't process folders with static assets e.g. images
   eleventyConfig.addPassthroughCopy("static/js");
   eleventyConfig.addPassthroughCopy("static/img");
-  eleventyConfig.addPassthroughCopy("admin");
+  // eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("_includes/assets/");
 
   /* Markdown Plugins */

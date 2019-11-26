@@ -6,6 +6,7 @@ description: Interested in hiring me as your web performance optimization consul
 tags:
   - nav
 navtitle: Contact
+navorder: 3
 section: contact
 date: 2019-11-20
 

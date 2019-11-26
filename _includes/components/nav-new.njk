@@ -1,5 +1,5 @@
 <nav>
-  {%- for nav in collections.nav | sort(attribute="date") -%}
+  {%- for nav in collections.navAscending -%}
     <a href="{{ nav.url | url }}" 
     	{% if nav.url in page.url %}
     		data-current="current item"
