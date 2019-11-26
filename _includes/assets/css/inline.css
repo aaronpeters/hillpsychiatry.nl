@@ -405,6 +405,7 @@ button:active {
 	align-items: center;
 	justify-content: space-between;
 	margin-top: 2em;
+	margin-bottom: 3em;
 }
 
 .customer {
@@ -488,7 +489,7 @@ button:active {
 }
 
 .bottom-body-nav {
-	 margin-top: 1em;
+	 margin-top: 2em;
 }
 
 code {
@@ -648,6 +649,19 @@ pre[class*="language-"] {
 	height: auto;
 }
 
+.list-inline {
+	list-style: none;
+	padding-left: 0;
+}
+.list-inline > li {
+	margin-bottom: 1em;
+}
+
+.list-inline time {
+	display: block;
+  color: var(--graymedium);
+}
+
 @media screen and (min-width:601px) {
 
 	body {
@@ -702,6 +716,7 @@ pre[class*="language-"] {
 		align-items: center;
 		justify-content: center;
 		margin-top: 2em;
+		margin-bottom: 4em;
 	}
 
 	.c1,

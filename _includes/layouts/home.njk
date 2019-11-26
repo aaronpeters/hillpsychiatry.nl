@@ -4,3 +4,24 @@ section: home
 ---
 
 {{ layoutContent | safe }}
+
+<h2>Recent Web Performance Articles</h2>
+
+<ul class="list-inline">
+{%- for post in collections.posts | reverse -%}
+	{% if not post.data.draft %}
+	{% if post.data.highlight %}
+  <li>
+  	<time datetime="{{ post.date | machineDate }}">
+			<small>{{ post.date | readableDate }}</small>
+		</time>
+  	<a href="post.url | url">{{ post.data.title }}</a>
+  </li>
+  {% endif %}
+  {% endif %}
+{%- endfor -%}
+</ul>
+
+<nav class="bottom-body-nav">
+  More articles in my <a href="{{ '/blog/' | url }}">Web Performance Blog</a> →
+</nav>
