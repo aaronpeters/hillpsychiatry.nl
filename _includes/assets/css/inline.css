@@ -75,8 +75,9 @@ code {
 a[href] {
 	text-decoration: none;
 	background-repeat: no-repeat;
-	background-image: linear-gradient(to right, #1d252d, #1d252d);
-	background-size: 100% 1px;
+	old_background-image: linear-gradient(to right, #1d252d, #1d252d);
+	background-image: linear-gradient(to right,#e64a19,#FFAB91,#e64a19);
+	background-size: 100% 2px;
 	/*background-position: 0 1.05em;*/
 	background-position: center bottom;
 }
