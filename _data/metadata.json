@@ -5,5 +5,7 @@
     "name": "Aaron Peters",
     "email": "aaronpeters.nl@gmail.com",
     "github": "https://github.com/aaronpeters"
-  }
+  },
+  "domain": "aaronpeters.nl",
+  "webmentions-from-twitter": "https://brid.gy/twitter/aaronpeters"
 }
