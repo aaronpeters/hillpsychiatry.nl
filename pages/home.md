@@ -19,7 +19,7 @@ In my toolbox is an up-to-date and deep understanding of browsers, protocols, ne
 More importantly - there is <strong>10 years experience in <i>doing</i> web performance optimization</strong> in close cooperation with marketing, product and engineering teams, on location and remote.
 
 Need help improving site speed and empowering your team to keep site speed at a high level? 
-Fill out the <a href="/contact/">contact form</a> or ping me on <a href="https://twitter.com/aaronpeters">Twitter</a>.
+Fill out the <a href="/contact/">contact form</a> or ping me on <a href="https://twitter.com/aaronpeters" rel="me">Twitter</a>.
 I look forward to connecting with you.
 
 <div class="trusted-by">

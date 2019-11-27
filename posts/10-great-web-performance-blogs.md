@@ -8,6 +8,7 @@ tags:
   - blogs
   - community
   - list
+tweetId: 1197916116850552839
 ---
 Want to learn about web performance from the pros? 
 Check out my list of active blogs maintained by web performance experts.

@@ -14,6 +14,7 @@ tags:
   - javascript
   - async
   - defer
+tweetId: 1198914426390360065
 ---
 
 At Google I/O 2019, Google announced the beta release of Firebase Performance Monitoring for Web, a free service that helps you gain insight into the performance characteristics of your website / web app.
