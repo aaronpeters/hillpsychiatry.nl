@@ -31,8 +31,8 @@ section: post
 
 </article>
 
-<section>
-  <h2>Webmentions</h3>
+<section id="webmentions-container">
+  <h3>Webmentions</h3>
   {% set webmentionUrl %}{{ page.url | url | absoluteUrl(site.url) }}{% endset %}
   {% include 'components/webmentions.njk' %}
 </section>
