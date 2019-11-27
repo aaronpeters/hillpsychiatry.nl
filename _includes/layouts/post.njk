@@ -31,6 +31,12 @@ section: post
 
 </article>
 
+<section>
+  <h2>Webmentions</h3>
+  {% set webmentionUrl %}{{ page.url | url | absoluteUrl(site.url) }}{% endset %}
+  {% include 'components/webmentions.njk' %}
+</section>
+
 <a class="twitter-share-button"
   href="https://twitter.com/intent/tweet"
   data-size="large"
