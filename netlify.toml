@@ -1,6 +1,6 @@
 [build]
   publish = "_site"
-  command = "eleventy"
+  command = "node create-env.js && NODE_ENV=production npx eleventy"
 
 # REDIRECT and HEADERS examples
 
