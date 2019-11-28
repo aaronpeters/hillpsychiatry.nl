@@ -31,12 +31,6 @@ section: post
 
 </article>
 
-<section id="webmentions-container">
-  <h3>Webmentions</h3>
-  {% set webmentionUrl %}{{ page.url | url | absoluteUrl(site.url) }}{% endset %}
-  {% include 'components/webmentions.njk' %}
-</section>
-
 <a class="twitter-share-button"
   href="https://twitter.com/intent/tweet"
   data-size="large"
@@ -44,6 +38,13 @@ section: post
   data-url="{{ url }}"
 >
 Tweet</a>
+
+<section id="webmentions-container">
+  <h3>Webmentions</h3>
+  {% set webmentionUrl %}{{ page.url | url | absoluteUrl(site.url) }}{% endset %}
+  {% include 'components/webmentions.njk' %}
+</section>
+
 
 <nav class="bottom-body-nav">
   ← go back to the <a href="{{ '/blog/' | url }}">Web Performance Blog</a>
