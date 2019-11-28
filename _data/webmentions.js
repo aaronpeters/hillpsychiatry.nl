@@ -18,7 +18,7 @@ async function fetchWebmentions(since, perPage = 10000) {
     return false
   }
   let url = `${API}/mentions.jf2?domain=${domain}&token=${TOKEN}&per-page=${perPage}`
-  //if (since) url += `&since=${since}` // only fetch new mentions
+  if (since) url += `&since=${since}` // only fetch new mentions
   const response = await fetch(url)
   if (response.ok) {
     const feed = await response.json()

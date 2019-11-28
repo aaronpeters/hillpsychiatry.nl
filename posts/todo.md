@@ -9,14 +9,6 @@ date: 2019-01-01
 
 ## Top Prio
 
-### Webmentions
-
-- package.json heeft het juist netlify-build script
-- maar, dat staat niet in netlify.toml en niet in Netlify UI
-- .toml gaat voor op wat in UI staat (?)
-- https://docs.netlify.com/configure-builds/file-based-configuration/#sample-file
-
-
 ### Blog
 
 - Add articles: ...
