@@ -1,6 +1,8 @@
 ---
 draft: true
 title: Google CRuX API - 10 Ingredients for Awesome
+title1: Google CRuX API - 10 Must-Have Ingredients
+title2: My Wishlist for the Google CRuX API
 description: TODO
 summary: TODO
 date: 2019-01-01
@@ -12,21 +14,25 @@ xtags:
   - rum
 ---
 
-TODO: first paragraph, like a TL;DR / Summary and super important for SEO
-
 Keyword = CRuX API
 
 TL;DR
 
 
 
-## 1. Data delay
+## 1. More Metrics
 
-1 day rolling window
+Currently: FCP, FID
+In dataset, but not exposed: TTFB
+Per the Pagespeed v6 changes: LCP, TBT, CLS
 
 
-## 2. Granularity: Geo, Network connection
+## 2. Percentiles
 
+50, 75, 90 and 95
+
+
+## 3. Granularity: Geo, Network connection
 
 Platform: mobile/desktop
 Geo: all, <XX>
@@ -35,25 +41,20 @@ Connection: 4g, 3g, ...
 Device?
 
 
-## 3. More Metrics
+## 4. One Day Rolling Window
 
-Currently: FCP, FID
-In dataset, not exposed: TTFB
-Per the Pagespeed v6 changes: LCP, TBT, CLS
+Current 30 day window has the problem that CRuX is not useful for seeing impact of changes to the site.
 
 
-## 4. Percentiles
-50, 75, 90 and 95 (10 and 25 are nice to have)
-
-
-## 5. Count / confidence
+## 5. Count
 
 Number of measurements
+Not likely to be exposed because this makes data public about # pageviews and I assume Google does not want to do that.
 
 
-## 6. Stable versions
+## 6. Stable Versions
 
-Don't change the P90 to P75 just like that !
+Don't change the P90 to P75 just like that (Nov 2 2019)
 Change log + Announcements
 
 
@@ -61,20 +62,35 @@ Change log + Announcements
 Tood often the PSI API returns an error ... sure hope the CRuX API does not suffer from this.
 
 
-## 8. Opt-out for site owners
+## 8. Error handling
 
-Site owner can disable beaconing to CRuX
+Something about ease of use of the API, e.g. the output formats
+
+
+## 9. Documentation
+
+E.g. 
+- Sampling / Rate limiting 
+- 
+
+
+## 10. Sample Code
+
+Always nice to see sample code for popular programming languages.
+Lowers the threshold for (junior) devs to use the API.
+Should include code for 
+- fetching data for multiple URLs/Origins with one API call, or with parallel requests
+- presenting the data ?
+
+
+## 11. Opt-out for Site Owners
+
+Site owner can disable beaconing to CRuX.
 Chrome user can disable it, but a site owner can not.
 I may want others not to be able to easily fetch data about how fast my site loads for the users.
 Response header or - better - a meta element ( name="google-crux" content="disable" )
 
-## 9. Documentation
-
-Rate limiting = none
 
 
-## 10. Error handling
-
-Something about ease of use of the API, e.g. the output formats
 
 

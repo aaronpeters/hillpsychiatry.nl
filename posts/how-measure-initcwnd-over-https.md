@@ -7,10 +7,11 @@ date: 2019-01-01
 xtags:
   - webperf
   - initcwnd
+  - https
   - how-to
 ---
 
-Keyword = initcwnd https
+Keyword = measure initcwnd https
 
 
 
@@ -29,9 +30,12 @@ TL;DR
 
 ## What is initcwnd and why does it matter for web performance?
 
+
 ## Measuring initcwnd over HTTPS is not easy
 
-- can't see it in Chrome Dev Tools
+- why it is not so easy: packets are encrypted, so the tool needs to expose the # packets received at what point in time
+- can't see it in Dev Tools of Chrome, Firefox or any other browser
+- can't see it in curl
 - can't use CDN Planet's tool (HTTP only)
 
 
@@ -39,7 +43,7 @@ TL;DR
 
 
 
-## Take-aways
+## Further reading
 
-
+- CDN Planet
 - Smashing Mag, 14 KB
