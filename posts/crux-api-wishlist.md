@@ -17,19 +17,26 @@ xtags:
 Keyword = CRuX API
 
 TL;DR
-
+- Chrome Dev Summit, Paul Irish and X talked about Lighthouse, PageSpeed and CruX
+- I followed up with Paul on Twitter and he mentioned they are thinking about a CRuX API (vs CRuX data via PSI API)
+- Hey Paul, want my input? Yes, please
+- Here it is, with key items: more metrics, percentiles, granularity, stable version and API reliability
 
 
 ## 1. More Metrics
 
-Currently: FCP, FID
-In dataset, but not exposed: TTFB
-Per the Pagespeed v6 changes: LCP, TBT, CLS
+Currently, the PSI API exposes two metrics that are in the CRuX data set: First Contentful Paint (FCP) and First Input Delay (FID).
 
+In dataset, but not exposed: TTFB
+
+Per the Pagespeed v6 changes: LCP, TBT, CLS
 
 ## 2. Percentiles
 
-50, 75, 90 and 95
+The buckets are nice and we get one percentile per metric, currently p75 for FCP and p95 for FID.
+`sample PSI API response code`
+
+I want, for each metric: 50, 75, 90 and 95
 
 
 ## 3. Granularity: Geo, Network connection
