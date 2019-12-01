@@ -12,9 +12,9 @@ date: 2019-11-19
 
 ---
 
-<img class="profile-pic" src="/static/img/aaron-peters-profile-400x400.jpg" width="200" height="200" alt="Aaron Peters profile photo">
-
 # Your Website, Blazing Fast 🔥 🚀
+
+<img class="profile-pic" src="/static/img/aaron-peters-profile-400x400.jpg" width="200" height="200" alt="Aaron Peters profile photo">
 
 I'd love to help you improve speed and performance of your website  - if you are serious about this. 
 Achieving high-performance for your site, short-term and long-term, requires investing time and money and putting in the effort.
