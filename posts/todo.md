@@ -9,9 +9,12 @@ date: 2019-01-01
 
 ## Top Prio
 
+- Sitemap.xml contains /blog/tags/navAscending/ and this should not be there
+
 ### Blog
 
 - Add articles: ...
+- Webmentions: implement Sia's #2 blog post + remove Tweet button
 - Responsive images: 11ty plugin
 - Auto generate images: convert ...
 
