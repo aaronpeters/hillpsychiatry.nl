@@ -116,13 +116,13 @@ header {
 }
 
 main {
-	padding-top: 3em;
+	padding-top: 2em;
 	padding-bottom: 2em;
 }
 
 main :first-child,
 main > article :first-child {
-	margin-top: 0;
+	old_margin-top: 0;
 }
 
 pre {
@@ -726,6 +726,20 @@ pre[class*="language-"] {
   margin-top: 8px;
   font-size: 0.9em;
   color: var(--graymedium);
+}
+
+.share-well {
+	display: grid;
+	grid-template-columns: 24px 1fr;
+	gap: 1em;
+	margin-top: 3em;
+	padding: 1em;
+	background-color: var(--graylighter);
+	font-size: 0.9em;
+}
+
+.share-well svg {
+	margin: auto;
 }
 
 
