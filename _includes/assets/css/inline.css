@@ -291,19 +291,19 @@ main > section > article > * {
 a[rel="tag"],
 a[rel="tag"]:visited {
 	display: inline-block;
-  height: 2em;
-  margin: 0 .5em .5em 0;
-  padding: 0 .5em;
+	height: 2em;
+	margin: 0 .5em .5em 0;
+	padding: 0 .5em;
 	border: 1px solid var(--white);
 	border-radius: .25em;
-  background-color: var(--bluelightest);
+	background-color: var(--bluelightest);
 	background-image: none;
 	color: var(--blue);
-  vertical-align: text-top;
-  text-transform: uppercase;
+	vertical-align: text-top;
+	text-transform: uppercase;
 	letter-spacing: .1em;
-  font-size: .625em;
-  line-height: 2em;
+	font-size: .625em;
+	line-height: 1.8em;
 	text-decoration: none;
 }
 
