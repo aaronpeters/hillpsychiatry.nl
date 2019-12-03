@@ -32,8 +32,9 @@ The Firebase [Get started with Performance Monitoring for web](https://firebase.
 
 Here's that snippet:
 
-<pre>
-<code class="language-html">&lt;script&gt;</code><code class="language-javascript">
+
+``` js
+<script>
 (function(sa, fbc) {
   function load(f, c) {
     var a = document.createElement('script');
@@ -47,8 +48,8 @@ Here's that snippet:
     firebase.initializeApp(fbc).performance()
   });
 })(performance_standalone, firebaseConfig);
-</code><code class="language-html">&lt;/script&gt;</code>
-</pre>
+</script>
+```
 
 where 
 * performance_standalone is the URL of the standalone SDK (the JS file), currently `https://www.gstatic.com/firebasejs/7.5.0/firebase-performance-standalone.js`
@@ -95,8 +96,8 @@ The optimized snippet below fixes all the problems mentioned above:
 - ensure the snippet works in case it executes not just before but also after the page has finished loading
 - pass `window` and `document` into the function (a micro optimization for just a tiny bit faster parsing)
 
-<pre>
-<code class="language-html">&lt;script&gt;</code><code class="language-javascript">
+``` js
+<script>
 (function(win, doc, sa, fbc) {
 
   if(!win.fetch){ // do nothing if browser does not support the Fetch API
@@ -123,8 +124,8 @@ The optimized snippet below fixes all the problems mentioned above:
   }
 
 })(window, document, performance_standalone, firebaseConfig)
-</code><code class="language-html">&lt;/script&gt;</code>
-</pre>
+</script>
+```
 
 where 
 * performance_standalone is `https://www.gstatic.com/firebasejs/7.5.0/firebase-performance-standalone.js`

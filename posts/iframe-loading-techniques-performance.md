@@ -37,12 +37,10 @@ Oh, and as a bonus, I throw in the [Friendly Iframe technique](#fif). It doesn't
 
 You all know this one. It's the default way to load an iframe and works in all browsers:
 
-<pre>
-<code class="language-html">
-&lt;iframe src="/path/to/file" frameborder="0" width="728" height="90" scrolling="auto"&gt;
-&lt;/iframe&gt;
-</code>
-</pre>
+``` html
+<iframe src="/path/to/file" frameborder="0" width="728" height="90" scrolling="auto">
+</iframe>
+```
 
 Using the Normal Iframe technique will result in the following behaviour in all browsers:
 
@@ -70,28 +68,27 @@ Imagine you want to load something in an iframe, but it's not really important f
 Or the content of the iframe is not immediately visible to the user because it's way down below the fold or hidden behind a link/tab. 
 Consider deferring the loading of the iframe until after the main page is done.
 
-<pre>
-<code class="language-javascript">
-&lt;script&gt;
-//doesn't block the load event
-function createIframe(){
-  var i = document.createElement("iframe");
-  i.src = "path/to/file";
-  i.scrolling = "auto";
-  i.frameborder = "0";
-  i.width = "200px";
-  i.height = "100px";
-  document.getElementById("div-that-holds-the-iframe").appendChild(i);
-};
-	
-// Check for browser support of event handling capability
-if (window.addEventListener)
-window.addEventListener("load", createIframe, false);
-else if (window.attachEvent)
-window.attachEvent("onload", createIframe);
-else window.onload = createIframe;
-&lt;/script&gt;</code>
-</pre>
+``` js
+<script>
+  //doesn't block the load event
+  function createIframe(){
+    var i = document.createElement("iframe");
+    i.src = "path/to/file";
+    i.scrolling = "auto";
+    i.frameborder = "0";
+    i.width = "200px";
+    i.height = "100px";
+    document.getElementById("div-that-holds-the-iframe").appendChild(i);
+  };
+    
+  // Check for browser support of event handling capability
+  if (window.addEventListener)
+  window.addEventListener("load", createIframe, false);
+  else if (window.attachEvent)
+  window.attachEvent("onload", createIframe);
+  else window.onload = createIframe;
+</script>
+```
 
 The Iframe After Onload technique will consistently show the following behaviour in all browsers:
 
@@ -126,22 +123,24 @@ _"the SRC is set dynamically in a function called via setTimeout. This technique
 
 And that is not 100% true. I did several tests with his demo page in many browsers and found out that <a href="http://www.webpagetest.org/result/100915_50EA/">in IE8</a> - but <a href="http://www.webpagetest.org/result/101217_NJ_3955cfb454bdbc99d1128aedb68bd0b6/">not in IE7</a> (!?) - the main page onload *is* blocked on first visit (empty cache), but not on subsequent visits (primed cache). I saw the same results on my own little test page. Conclusion: this technique will often _not_ have the desired effect in IE8, a popular browser. Too bad!
 
-<pre>
-<code class="language-html">&lt;iframe id="iframe1" src="" width="200" height="100" border="2"&gt;&lt;/iframe&gt;</code>
-<code class="language-javascript">&lt;script&gt;
-function setIframeSrc() {
-  var s = "path/to/file";
-  var iframe1 = document.getElementById('iframe1');
-  if ( -1 == navigator.userAgent.indexOf("MSIE") ) {
-    iframe1.src = s;
+``` js
+<iframe id="iframe1" src="" width="200" height="100" border="2"></iframe>
+```
+``` js
+<script>
+  function setIframeSrc() {
+    var s = "path/to/file";
+    var iframe1 = document.getElementById('iframe1');
+    if ( -1 == navigator.userAgent.indexOf("MSIE") ) {
+      iframe1.src = s;
+    }
+    else {
+      iframe1.location = s;
+    }
   }
-  else {
-    iframe1.location = s;
-  }
-}
-setTimeout(setIframeSrc, 5);
-&lt;/script&gt;</code>
-</pre>
+  setTimeout(setIframeSrc, 5);
+</script>
+``` 
 
 In all browsers but IE8, the Iframe setTimeout() technique will consistently show the following behaviour:
 
@@ -172,27 +171,25 @@ Because of the IE8 issue I believe this technique is not usable in production fo
 
 When I was at the [Velocity 2010 web performance conference](https://conferences.oreilly.com/velocity/velocity2010), two Meebo engineers [@marcuswestin](http://twitter.com/marcuswestin) and [Martin Hunt](http://www.linkedin.com/pub/martin-hunt/4/542/472)) gave a [presentation](https://conferences.oreilly.com/velocity/velocity2010/public/schedule/detail/13070) about the new Meebo Bar and how they improved this widget's performance. They came up with a truly non-blocking, instantly loading technique for including their widget in a page, using an iframe. For many web developers, their 'dynamic asynch iframe' approach was new. And it's awesome. Double awesome. For some reason, this technique has not gotten the attention it deserves. I hope this blog post can help spread the word.
 
-<pre>
-<code class="language-javascript">
-&lt;script&gt;
-(function(d){
-  var iframe = d.body.appendChild(d.createElement('iframe')),
-  doc = iframe.contentWindow.document;
 
-  // style the iframe with some CSS
-  iframe.style.cssText = "position:absolute;width:200px;height:100px;left:0px;";
-  
-  doc.open().write('&lt;body onload="' + 
-  'var d = document;d.getElementsByTagName(\'head\')[0].' + 
-  'appendChild(d.createElement(\'script\')).src' + 
-  '=\'\/path\/to\/file\'"&gt;');
-  
-  doc.close(); //iframe onload event happens
+``` js
+<script>
+  (function(d){
+    var iframe = d.body.appendChild(d.createElement('iframe')),
+    doc = iframe.contentWindow.document;
 
+    // style the iframe with some CSS
+    iframe.style.cssText = "position:absolute;width:200px;height:100px;left:0px;";
+    
+    doc.open().write('&lt;body onload="' + 
+    'var d = document;d.getElementsByTagName(\'head\')[0].' + 
+    'appendChild(d.createElement(\'script\')).src' + 
+    '=\'\/path\/to\/file\'"&gt;');
+    
+    doc.close(); //iframe onload event happens
   })(document);
-&lt;/script&gt;
-</code>
-</pre>
+</script>
+```
 
 The magic is in the <code>&lt;body onload=""&gt;</code>: the iframe has no content initially, so onload of the iframe fires instantly. Then, you create a new script element, set its source to the JS file that loads the content/ad/widget, append the script to the HEAD and voila: the iframe content loads without blocking the main page onload!
 

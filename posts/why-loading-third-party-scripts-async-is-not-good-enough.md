@@ -68,20 +68,20 @@ On all pages on CDN Planet, the following third party scripts are loaded:
 
 The Tweet Box always started loading after onload, so that is out of scope in this article. Google Analytics is loaded using the asynchronous tracker and placed high up in the HEAD section of the HTML. The GA script does not load other files and therefore has minimal risk of delaying onload. For optimal performance, the other 3 scripts are loaded using Stoyan Stefanov's hyper-optimized <a href="http://www.phpied.com/social-button-bffs/">Social button BFFs</a> code, placed at the bottom of the BODY of the HTML:
 
-<pre>
-<code class="language-html">&lt;script&gt;</code><code class="language-javascript">
-(function(d, s) {
-  var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.src = url; js.id = id;
-    fjs.parentNode.insertBefore(js, fjs);
-  };
-  load('//connect.facebook.net/en_US/all.js#appId=272697932759946&xfbml=1', 'fbjssdk');
-  load('https://apis.google.com/js/plusone.js', 'gplus1js');
-  load('//platform.twitter.com/widgets.js', 'tweetjs');
-}(document, 'script'));
-</code><code class="language-html">&lt;/script&gt;</code>
-</pre>
+``` js
+<script>
+  (function(d, s) {
+    var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.src = url; js.id = id;
+      fjs.parentNode.insertBefore(js, fjs);
+    };
+    load('//connect.facebook.net/en_US/all.js#appId=272697932759946&xfbml=1', 'fbjssdk');
+    load('https://apis.google.com/js/plusone.js', 'gplus1js');
+    load('//platform.twitter.com/widgets.js', 'tweetjs');
+  }(document, 'script'));
+</script>
+```
 
 On CDN Planet blog post pages an extra third party script is loaded, asynchronously,  to enable reading and posting comments, powered by Disqus.
 
@@ -99,24 +99,24 @@ The page finished loading at 3.6 seconds, as indicated by the vertical blue bar.
 
 We changed Stoyan's code a bit to make the social sharing buttons start loading after onload:
 
-<pre>
-<code class="language-html">&lt;script&gt;</code><code class="language-javascript">
-(function(w, d, s) {
-  function go(){
-    var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
-	  if (d.getElementById(id)) {return;}
-	  js = d.createElement(s); js.src = url; js.id = id;
-	  fjs.parentNode.insertBefore(js, fjs);
-	};
-    load('//connect.facebook.net/en_US/all.js#appId=272697932759946&xfbml=1', 'fbjssdk');
-    load('https://apis.google.com/js/plusone.js', 'gplus1js');
-    load('//platform.twitter.com/widgets.js', 'tweetjs');
-  }
-  if (w.addEventListener) { w.addEventListener("load", go, false); }
-  else if (w.attachEvent) { w.attachEvent("onload",go); }
-}(window, document, 'script'));
-</code><code class="language-html">&lt;/script&gt;</code>
-</pre>
+``` js
+<script>
+  (function(w, d, s) {
+    function go(){
+      var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.src = url; js.id = id;
+      fjs.parentNode.insertBefore(js, fjs);
+    };
+      load('//connect.facebook.net/en_US/all.js#appId=272697932759946&xfbml=1', 'fbjssdk');
+      load('https://apis.google.com/js/plusone.js', 'gplus1js');
+      load('//platform.twitter.com/widgets.js', 'tweetjs');
+    }
+    if (w.addEventListener) { w.addEventListener("load", go, false); }
+    else if (w.attachEvent) { w.attachEvent("onload",go); }
+  }(window, document, 'script'));
+</script>
+```
 
 Here's the new waterfall chart for the CDN Planet homepage, again using IE9 from New York on a DSL connection and empty browser cache:
 
