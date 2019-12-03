@@ -47,14 +47,6 @@ section: post
 
 </article>
 
-<a hidden class="twitter-share-button"
-  href="https://twitter.com/intent/tweet"
-  data-size="large"
-  data-text="{{ title }}"
-  data-url="{{ url }}"
->
-Tweet</a>
-
 <section id="webmentions-container">
   <h3>Webmentions</h3>
   {% set webmentionUrl %}{{ page.url | url | absoluteUrl(site.url) }}{% endset %}
@@ -65,22 +57,3 @@ Tweet</a>
 <nav class="bottom-body-nav">
   ← go back to the <a href="{{ '/blog/' | url }}">Web Performance Blog</a>
 </nav>
-
-<script>
-  window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-      t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function(f) {
-      t._e.push(f);
-    };
-
-    return t;
-  }(document, "script", "twitter-wjs"));
-</script>
