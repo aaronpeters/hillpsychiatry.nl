@@ -55,7 +55,7 @@ I created a simple test page and ran it through Webpagetest.org (IE7 and IE8).
 The waterfall chart below clearly shows how the Normal Iframe blocks the main page onload.
 
 <a class="no-styling" href="/static/img/waterfalls-charts/normal-iframe-IE8-waterfall-big.png">
-	<img class="responsive-ugh" src="/static/img/waterfalls-charts/normal-iframe-IE8-waterfall-small.png" width="660" height="121" alt="Normal Iframe - Performance - IE8 waterfall chart" title="Normal Iframe - Performance - IE8 waterfall chart">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/normal-iframe-IE8-waterfall-small.png" width="660" height="121" alt="Normal Iframe - Performance - IE8 waterfall chart" title="Normal Iframe - Performance - IE8 waterfall chart">
 </a>
 
 <small>Click image for a bigger version</small>
@@ -102,7 +102,7 @@ The Iframe After Onload technique will consistently show the following behaviour
 I ran some tests with my Iframe After Onload test page on Webpagetest.org (IE7 and IE8): as expected, onload is not blocked:
 
 <a class="no-styling" href="/static/img/waterfalls-charts/iframe-after-onload-IE8-waterfall-big.png">
-	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-after-onload-IE8-waterfall-small.png" width="660" height="121" alt="Iframe After Onload - Performance - IE8 waterfall chart">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-after-onload-IE8-waterfall-small.png" width="660" height="121" alt="Iframe After Onload - Performance - IE8 waterfall chart">
 </a>
 
 <small>Click image for a bigger version</small>
@@ -155,13 +155,13 @@ main page onload (note: except in IE8 with empty cache)
 I ran tests on Webpagetest.org (IE7 and IE8) with [Iframe After Onload test page A](/static/testpages/iframe-settimeout.htm) and [Iframe After Onload test page B](/static/testpages/iframe-non-blocking.htm): all is fine in IE7, onload is blocked on first view in IE8.
 
 <a class="no-styling" href="/static/img/waterfalls-charts/iframe-settimeout-IE8-waterfall-big.png">
-	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-settimeout-IE8-waterfall-small.png" width="660" height="257" alt="Iframe setTimeout - Performance - IE8 waterfall chart" title="Iframe setTimeout - Performance - IE8 waterfall chart">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-settimeout-IE8-waterfall-small.png" width="660" height="257" alt="Iframe setTimeout - Performance - IE8 waterfall chart" title="Iframe setTimeout - Performance - IE8 waterfall chart">
 </a>
 
 <small>IE8 first view. Click image for a bigger version</small>
 
 <a class="no-styling" href="/static/img/waterfalls-charts/iframe-settimeout-IE8-repeat-waterfall-big.png">
-	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-settimeout-IE8-repeat-waterfall-small.png" width="660" height="70" alt="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart" title="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-settimeout-IE8-repeat-waterfall-small.png" width="660" height="70" alt="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart" title="Iframe setTimeout - Performance - IE8 Repeat View waterfall chart">
 </a>
 
 <small>IE8 repeat view (note: my HTML is cached for 10 minutes, so only iframe content is reloaded). Click image for a bigger version</small>
@@ -207,7 +207,7 @@ You should see the following behaviour of the Dynamic Asynch Iframe technique co
 My [Dynamic Asynch Iframe test page](http://www.aaronpeters.nl/blog/testpages/iframe-dynamic-asynch.htm) gave this result on Webpagetest.org (IE8):
 
 <a class="no-styling" href="/static/img/waterfalls-charts/iframe-dynamic-asynch-IE8-waterfall-big.png">
-	<img class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-dynamic-asynch-IE8-waterfall-small.png" width="660" height="121" alt="Iframe Dynamic Asynch - Performance - IE8 waterfall chart" title="Iframe Dynamic Asynch - Performance - IE8 waterfall chart">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/iframe-dynamic-asynch-IE8-waterfall-small.png" width="660" height="121" alt="Iframe Dynamic Asynch - Performance - IE8 waterfall chart" title="Iframe Dynamic Asynch - Performance - IE8 waterfall chart">
 </a>
 
 <small>Click image for a bigger version</small>

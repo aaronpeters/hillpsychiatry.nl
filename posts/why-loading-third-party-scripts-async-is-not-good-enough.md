@@ -36,19 +36,19 @@ To get a grip on CDN Planet performance, we recently started using New Relic, a 
 We got a free, 14 day Pro account and set up the monitoring: Application, End-User and Server monitoring. We were immediately happy campers: the average response time for our web server was ~20ms. Yeah!<br>
 But then the first weekly report came in via email and I saw this:
 
-<img class="responsive-ugh" src="/static/img/new-relic-cdnplanet-weekly-report.png" width="247" height="148" alt="New Relic weekly report screenshot">
+<img loading="lazy" class="responsive-ugh" src="/static/img/new-relic-cdnplanet-weekly-report.png" width="247" height="148" alt="New Relic weekly report screenshot">
 
 3.8 seconds average page load time? 11.5% of page views took between 7 and 28 seconds to load and 1.8% was slower than 28 seconds? For us, this is Code Red.
 
 I logged in to the online reports and looked at lots of data in New Relic.
 What caught my eye was the data in the new Browser traces reports, which give insight in individual page views.
 
-<img class="responsive-ugh" src="/static/img/new-relic-cdnplanet-browser-traces.png" width="559" height="370" alt="New Relic browser traces">
+<img loading="lazy" class="responsive-ugh" src="/static/img/new-relic-cdnplanet-browser-traces.png" width="559" height="370" alt="New Relic browser traces">
 
 Obviously, this data shocked me. An occassional 10 second page load time is to be expected, but 100 seconds is ridiculous. How is this possible?<br>
 The CDN Planet server runs on EC2 (US East region) and CDN Planet uses NetDNA now as a CDN for static assets, which are very few per page. We believe it is unlikely the requests to EC2 or NetDNA are causing these extremely high load times. And so, we digged deeper by looking at individual browser traces, for example:
 
-<img class="responsive-ugh" src="/static/img/new-relic-cdnplanet-browser-trace-blogpost.png" width="562" height="243" alt="New Relic browser trace">
+<img loading="lazy" class="responsive-ugh" src="/static/img/new-relic-cdnplanet-browser-trace-blogpost.png" width="562" height="243" alt="New Relic browser trace">
 
 Uhh ... 90 seconds for Page Rendering? The HTML is small and the CSS file too. Rendering time should be quite low. All JS in the page is third party and loads async. Can that cause the high rendering time as measured by New Relic? Yes, it can. While the browser is executing the JavaScript and this happens before onload, this time is too counted as Page Rendering.
 
@@ -90,7 +90,7 @@ Now, let's take a look at how these scripts impact page load times.
 We ran several tests for the <a href="https://www.cdnplanet.com/">CDN Planet homepage</a> on Webpagetest.org: IE9, New York, DSL, empty cache. 
 The waterfall chart below is the median of 10 runs. Requests 10 - 43 are not shown to keep the chart image small.
 
-<img class="responsive-ugh" src="/static/img/waterfalls-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-before-onload.png" width="660" height="308" alt="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart" title="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart"><br>
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-before-onload.png" width="660" height="308" alt="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart" title="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart"><br>
 <a href="https://www.webpagetest.org/result/111121_RP_b8b9a13ca2b55f3abf5f7dc252e3dfe2/5/details/">View full test results on Webpagetest.org</a>
 
 The page finished loading at 3.6 seconds, as indicated by the vertical blue bar. Either the sprite.png (Google Plus) or xd_proxy.php object (FB Like button) needed to finish first before the load event fired. That may surprise you, because the initial JS files are loaded async, right!? Yes, but script-inserted scripts that are inserted into the DOM by <code class="language-javascript">appendChild</code> or <code class="language-javascript">insertBefore</code> do delay <code class="language-javascript">window.onload</code>. And that is not all. If that initial script-inserted, async loaded script loads another file then that other file delays onload too. The FB Like button needs 8 files, the Google Plus button needs 7 files and the Twitter Share &amp; Follow buttons need 6 files (all when the visitor is not signed in to the social network). Yes, some of these files load in parallel, but definitely not all. As you will find out in the next section, <strong>these async buttons delay onload a lot</strong>.
@@ -120,7 +120,7 @@ We changed Stoyan's code a bit to make the social sharing buttons start loading 
 
 Here's the new waterfall chart for the CDN Planet homepage, again using IE9 from New York on a DSL connection and empty browser cache:
 
-<img class="responsive-ugh" src="/static/img/waterfalls-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-after-onload.png" width="660" height="274" alt="Third party scripts async after onload - IE8 empty cache - waterfall chart" title="Third party scripts async after onload - IE8 empty cache - waterfall chart"><br>
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-after-onload.png" width="660" height="274" alt="Third party scripts async after onload - IE8 empty cache - waterfall chart" title="Third party scripts async after onload - IE8 empty cache - waterfall chart"><br>
 <a href="https://www.webpagetest.org/result/111121_1V_7b77cefeaf978767b2aed6de20590145/10/details/">View full test results on Webpagetest.org</a>
 
 Time to First Byte and Start Render are of course not impacted, but the total page load time sure is: <strong>Doc Complete dropped from 3.63 seconds to 1.14 seconds (-68%)</strong>.<br>
