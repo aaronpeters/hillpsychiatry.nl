@@ -42,7 +42,7 @@ I look forward to connecting with you.
 		<img loading="lazy" src="/static/img/logo-hollandsnieuwe.png" width="147" height="55" alt="hollandsnieuwe logo">
 	</div>
 	<div class="customer c6">
-		<img loading="lazy" src="/static/img/Logo-Kruidvat-2019-Rood-SVG-RGB-zonder-outline.png" width="853" height="223" alt="Kruidvat logo">
+		<img loading="lazy" src="/static/img/logo-kruidvat.png" width="300" height="78" alt="Kruidvat logo">
 	</div>
 	<div class="customer c7">
 		<img loading="lazy" src="/static/img/logo-snsbank.png" width="171" height="60" alt="SNS Bank logo">
