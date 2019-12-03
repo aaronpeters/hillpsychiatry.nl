@@ -9,6 +9,8 @@ date: 2019-01-01
 
 ## Top Prio
 
+- Text on /nl/ must be more friendly: Want to get serious with making your website fast? I can help !
+- 404 on the /favicon.ico (do what Sia does?)
 - Sitemap.xml contains /blog/tags/navAscending/ and this should not be there
 
 ### Blog
@@ -36,9 +38,7 @@ date: 2019-01-01
 ## SEO
 
 - Structured Data
-- Sitemap.xml
---- 11ty github issue for why only one /tags/.../ is in https://www.aaronpeters.nl/sitemap.xml
---- add properties in XML? https://www.sitemaps.org/protocol.html#xmlTagDefinitions
+- add properties in sitemap.xml? https://www.sitemaps.org/protocol.html#xmlTagDefinitions
 - robots.txt 
 - link rel nofollow: https://github.com/11ty/eleventy/issues/563
 
