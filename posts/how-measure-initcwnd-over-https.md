@@ -50,6 +50,15 @@ TL;DR
 ### Test results
 
 - Tested a few domains, on different CDNs ... show in a table 
+- 160 KB - hn/Cloudflare - https://www.hollandsnieuwe.nl/assets/img/phones/samsung_galaxy_a70_zwart/samsung_galaxy_a70_zwart_front_medium.png , https://webpagetest.org/result/191204_C7_b5241e4cb86790ac6a3db8a5932458cf/
+- 242 KB - Tele2 - https://www.tele2.nl/wp-content/themes/t2responsive/js/dist/dsl-flow-2018.js , https://webpagetest.org/result/191204_0K_50e8e08ce5589b47f40e5294d8e484a7/
+- 271 KB - T-Mobile - https://www.t-mobile.nl/Consumer/media/images/_thuis/home/header-2019.png
+- 212 KB - Vodafone - https://www.vodafone.nl/_packages/fonts/helvetica-neue/HelveticaNeue.woff
+- 121 KB - KPN - https://www.kpn.com/public/css/screen.css
+
+- 67 KB - Google Tag Manager - https://www.googletagmanager.com/gtm.js?id=GTM-NJS4DQZ
+- 85 KB - FB - https://connect.facebook.net/signals/config/509467595869597?v=2.9.14&r=stable
+- 
 
 ## Further reading
 
