@@ -16,7 +16,7 @@ date: 2019-01-01
 ### Blog
 
 - Add articles: ...
-- Webmentions: implement Sia's #2 blog post + remove Tweet button
+- Update articles: iframe performance (testpages, run in modern browser, new techniques)
 - Responsive images: 11ty plugin
 - Auto generate images: convert ...
 
@@ -32,7 +32,7 @@ date: 2019-01-01
 
 ## Legal
 
-- Cookie consent & privacy policy 
+- Cookie consent & privacy policy or ... remove GA ?
 
 
 ## SEO

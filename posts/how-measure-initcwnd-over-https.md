@@ -41,7 +41,15 @@ TL;DR
 
 ## Using WebPageTest to measure initcwnd over HTTPS, sortof
 
+### How do it
 
+- URL for a single, large object (100 KB)
+- Connection is high latency, high bandwidth
+- bonus points if you also capture a tcpdump
+
+### Test results
+
+- Tested a few domains, on different CDNs ... show in a table 
 
 ## Further reading
 
