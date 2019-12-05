@@ -15,15 +15,21 @@ keyword: EV Certificate Performance
 - Better security? No. Good security comes from strong cipher suites, etc. EV adds nothing.
 - Browser must check revoke status _every time_ : blocking request to the CA
 - CA server sloooow or down? User experience is crap, brand damaged, revenue missed out
-- Troy Hunt article
+- Troy Hunt article has lots of info, if you want to learn more
 
-## Examples
+## What is an EV Certificate?
 
+## Why EV Certificates are Bad for Performance
+
+## Examples of Websites/Third Party Scripts with EV Certificates
+
+### KPN
 - https://www.kpn.com/
+
+### Relay42
 - Relay42
 
 
-## Take aways
 
+## Take-aways
 
-https://web.dev/fixing-layout-instability/
