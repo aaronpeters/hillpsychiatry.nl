@@ -22,33 +22,33 @@ TL;DR
 In this article I focus on the performance aspect of EV certificates.
 If you want to learn more about the security aspect and when/why browsers have changed their UI for EV certificates, read [Extended Validation Certificates are (Really, Really) Dead](https://www.troyhunt.com/extended-validation-certificates-are-really-really-dead/) and its predecessor [Extended Validation Certificates are Dead](https://www.troyhunt.com/extended-validation-certificates-are-dead/) by Troy Hunt.
 
-## HTTPS and Certificates
-The HTTP Archive shows a [steady adoption of HTTPS](https://almanac.httparchive.org/en/2019/security) in the past years.
-Per today, more than 80% of all requests are prefixed with `https`.
+## HTTPS and (EV) Certificates
+The HTTP Archive shows a [steady adoption of HTTPS](https://almanac.httparchive.org/en/2019/security) in the past years. Per today, more than 80% of all requests are prefixed with `https`.
 
-Websites on HTTPS need a certificate and these are obtained from Certificate Authorities.
+Websites on HTTPS need a certificate and certificates are obtained from Certificate Authorities.
+- what is a cert
+- certs used to be expensive, but costs have gone down since LE (YYYY). Not so much though for EV certs 
 
+### What is an EV Certificate?
 
-- Browsers don't show green bar anymore, so why pay way more for EV cert?
-- Better security? No. Good security comes from strong cipher suites, etc. EV adds nothing.
-- Browser must check revoke status _every time_ : blocking request to the CA
-- CA server sloooow or down? User experience is crap, brand damaged, revenue missed out
-- Troy Hunt article has lots of info, if you want to learn more
-
-## What is an EV Certificate?
+Extended Validation
+You can't get an EV cert unless ...
 
 ## Why EV Certificates are Bad for Performance
 
-## Examples of Websites/Third Party Scripts with EV Certificates
+Chrome behaviour.
+Other browsers.
 
-### KPN
-- https://www.kpn.com/
-- de banken
+### EV Certificates Cause Slowness
 
-### Relay42
 - Relay42
+
+### EV Certificates are a Reliability Risk
+
+- https://www.kpn.com/
 
 
 
 ## Take-aways
 
+**EV certificates hurt web performance**, provide no added value and are more expensive than regular certificates. Don't use EV certificates if you care about how reliable and fast your website is!
