@@ -11,6 +11,21 @@ xtags:
 keyword: EV Certificate Performance
 ---
 
+SEO optimized intro.
+
+TL;DR
+- EV certificates are much more expensive than 'regular' certificates, but don't provide better security
+- Browsers don't show the 'green bar' anymore for sites with EV certificates, so there no longer is that proclaimed benefit of an enhanced perception of trust by site visitors
+- EV certificates force browsers to check the revocation status of the certificate _every time_ a connection is established, and this is a blocking request to the Certificate Authority's server
+- In case the Certificate Authority's server is sloooow or down, your user's experience is bad, your brand is damaged and you missed out on revenue/sign ups/etc.
+
+
+The HTTP Archive shows a [steady adoption of HTTPS](https://almanac.httparchive.org/en/2019/security) in the past years.
+Per today, more than 80% of all requests are prefixed with `https`.
+
+Websites on HTTPS need a certificate and these are obtained from Certificate Authorities.
+
+
 - Browsers don't show green bar anymore, so why pay way more for EV cert?
 - Better security? No. Good security comes from strong cipher suites, etc. EV adds nothing.
 - Browser must check revoke status _every time_ : blocking request to the CA
@@ -25,6 +40,7 @@ keyword: EV Certificate Performance
 
 ### KPN
 - https://www.kpn.com/
+- de banken
 
 ### Relay42
 - Relay42
