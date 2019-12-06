@@ -54,7 +54,7 @@ Dean is a author, blogger, and software developer and regularly writes about Pro
 
 ### A Faster Web
 
-Shawn Maust publishes well-written [web performance articles]((https://www.afasterweb.com/)) at a high frequency.
+Shawn Maust publishes well-written [web performance articles](https://www.afasterweb.com/) at a high frequency.
 Recommended recent reads include [Choosing Project Performance Goals](https://www.afasterweb.com/2018/03/28/choosing-project-performance-goals/) and [Responding to Jank in Real Time](https://www.afasterweb.com/2018/06/29/responding-to-jank-in-real-time/).
 
 
