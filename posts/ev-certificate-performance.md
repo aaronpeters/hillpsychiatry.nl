@@ -100,14 +100,26 @@ Ok, works, but Pat, what is that http://www.gstatic.com/generate_204 ?
 
 What if we blackhole just one of the two cert check domains?
 https://webpagetest.org/result/191206_3P_04903e028f2a522232ee4fdb1fbcd0f6/
+Win !!!
+`<screenshot>`
 
+And blackhole only the other cert check domain `crl.globalsign.com` ?
+https://webpagetest.org/result/191206_YC_e1641899c29740dfbb0ae4ac20942cb9/
+Does not do anything.
 
-Can also do the blackhole thing with a script:
+BTW, you can also do the blackhole thing with a script:
 ``` js
 setDns	ocsp2.globalsign.com	71.114.67.58
 setDns	crl.globalsign.com	71.114.67.58
 navigate	https://www.kpn.com/
 ```
+
+So, in conclusion:
+- from the first normal test in Chrome you can see it's all about `ocsp2.globalsign.com`
+- if `ocsp2.globalsign.com` is unreachable, your site is completely broken 
+- easy to see that in action with WPT, using the SPOF tab
+- ignore all I said about the `crl.globalsign.com` hostname ... and the blockDomains scripts
+
 
 
 - Relay42
