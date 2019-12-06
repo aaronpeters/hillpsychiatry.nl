@@ -1,6 +1,6 @@
 ---
 draft: true
-title: Faster Webfonts bye bye FOUC
+title: Goodbye FOUC, Hello Fast Webfonts
 description: TODO
 summary: TODO
 date: 2019-01-01
@@ -9,6 +9,7 @@ xtags:
   - webfonts
   - casestudy
   - hollandsnieuwe
+keyword: fast webfonts
 ---
 
 TODO: first paragraph, like a TL;DR / Summary and super important for SEO

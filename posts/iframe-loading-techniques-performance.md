@@ -6,6 +6,8 @@ date: 2010-12-20
 tags:
   - iframe
   - tips
+keyword: iframe performance
+future: resource hints, lazy, jaffacake trick
 ---
 
 <div class="notice-msg warning">
