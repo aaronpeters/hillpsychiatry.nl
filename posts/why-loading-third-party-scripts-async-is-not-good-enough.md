@@ -90,7 +90,7 @@ Now, let's take a look at how these scripts impact page load times.
 We ran several tests for the <a href="https://www.cdnplanet.com/">CDN Planet homepage</a> on Webpagetest.org: IE9, New York, DSL, empty cache. 
 The waterfall chart below is the median of 10 runs. Requests 10 - 43 are not shown to keep the chart image small.
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-before-onload.png" width="660" height="308" alt="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart" title="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart"><br>
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-before-onload.png" width="660" height="308" alt="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart" title="Third party scripts async NOT after onload - IE8 empty cache - waterfall chart"><br>
 <a href="https://www.webpagetest.org/result/111121_RP_b8b9a13ca2b55f3abf5f7dc252e3dfe2/5/details/">View full test results on Webpagetest.org</a>
 
 The page finished loading at 3.6 seconds, as indicated by the vertical blue bar. Either the sprite.png (Google Plus) or xd_proxy.php object (FB Like button) needed to finish first before the load event fired. That may surprise you, because the initial JS files are loaded async, right!? Yes, but script-inserted scripts that are inserted into the DOM by <code class="language-javascript">appendChild</code> or <code class="language-javascript">insertBefore</code> do delay <code class="language-javascript">window.onload</code>. And that is not all. If that initial script-inserted, async loaded script loads another file then that other file delays onload too. The FB Like button needs 8 files, the Google Plus button needs 7 files and the Twitter Share &amp; Follow buttons need 6 files (all when the visitor is not signed in to the social network). Yes, some of these files load in parallel, but definitely not all. As you will find out in the next section, <strong>these async buttons delay onload a lot</strong>.
@@ -120,7 +120,7 @@ We changed Stoyan's code a bit to make the social sharing buttons start loading 
 
 Here's the new waterfall chart for the CDN Planet homepage, again using IE9 from New York on a DSL connection and empty browser cache:
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfalls-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-after-onload.png" width="660" height="274" alt="Third party scripts async after onload - IE8 empty cache - waterfall chart" title="Third party scripts async after onload - IE8 empty cache - waterfall chart"><br>
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/waterfall-IE8-cdnplanet-3rdparty-scripts-async-after-onload.png" width="660" height="274" alt="Third party scripts async after onload - IE8 empty cache - waterfall chart" title="Third party scripts async after onload - IE8 empty cache - waterfall chart"><br>
 <a href="https://www.webpagetest.org/result/111121_1V_7b77cefeaf978767b2aed6de20590145/10/details/">View full test results on Webpagetest.org</a>
 
 Time to First Byte and Start Render are of course not impacted, but the total page load time sure is: <strong>Doc Complete dropped from 3.63 seconds to 1.14 seconds (-68%)</strong>.<br>

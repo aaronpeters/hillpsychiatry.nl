@@ -63,63 +63,42 @@ WPT tests, incl. Repeat View
 
 ### EV Certificates are a Reliability Risk
 
-Using the "Block Domains (full host names)..." field in the Block tab in the WPT.org ui does not work.
-https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/
+What happens when the CA's server is down?
 
-Does the "Block Requests Containing (URL substrings)..." field there work? Nope.
-https://webpagetest.org/result/191206_YW_ad8b2b620857cf02ac2ff2969857b25b/
+WebPageTest makes it very easy to test this.
+Simply enter the hostname you want to fail in the SPOF tab:
 
-Script to the rescue!
+<img loading="lazy" class="responsive-ugh" src="/static/img/webpagetest-spof-example.png" width="540" height="241" alt="WebPageTest SPOF Example">
 
-``` js
-blockDomains	ocsp2.globalsign.com
-navigate	https://www.kpn.com/
-```
+WebPageTest will run a normal test and a test with those hostname(s) blackholed with a max run time of 30 seconds, to then show a video comparison.
+Of course, you can also see the waterfall charts etc for the each test.
 
-https://webpagetest.org/result/191206_NR_01c89b8ecc15fe51dbd59f4871dc21a8/
-Hmm, yes, requests to, but the browser now sends requests to `crl.globalsign.com`.
-Did the browser detect the requests to `ocsp2.globalsign.com` failed?
+I'm not showing the comparison videos here, because those are boring and the waterfall charts of the SPOF tests alone make it very clear how much of performance killer EV certificates are in case the CA's server is down:
 
-Add that other domain to the script:
+**Chrome** 
 
-``` js
-blockDomains	ocsp2.globalsign.com crl.globalsign.com
-navigate	https://www.kpn.com/
-```
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-fail-chrome-waterfall-small.png" width="550" height="97" alt="EV Certificate Fail Chrome - Waterfall Chart">
 
-https://webpagetest.org/result/191206_4K_9e57a652dfb2266bb77c8e6254cd5d8a/1/
+Surprisingly, this 'waterfall' chart does _not_ show the DNS lookup, TCP connect and start of the TLS handshake for `www.kpn.com` but surely Chrome took those steps. Next, Chrome started the EV certificate check and so it did the DNS lookup for `ocsp2.globalsign.com`, initiated the TCP connect and then patiently waited for the server to respond. Chrome is _very_ patient and will easily have waited a full minute, but WPT terminated the test after 30 seconds.
 
-Hmm, wait a minute. Do these tests (WPT blocking the requests in the browser) make any sense?
-Well, yes, we see the browser 'simply' continuing even though the cert check did not happen.
-But that does not show what happens when the CA's server is down.
+I have no idea why WPT shows the `http://www.gstatic.com/generate_204` and neither does the creator of WebPageTest, [Pat Meenan](https://twitter.com/patmeenan) ;-)
 
-Blackhole, FTW!
-Simply enter the hostnames in the SPOF tab
-https://webpagetest.org/result/191206_CW_4a1a6997d7032c14bd0f0bf2e83812fb/
-Ok, works, but Pat, what is that http://www.gstatic.com/generate_204 ?
+[WPT test results page](https://webpagetest.org/result/191206_3P_04903e028f2a522232ee4fdb1fbcd0f6/).
 
-What if we blackhole just one of the two cert check domains?
-https://webpagetest.org/result/191206_3P_04903e028f2a522232ee4fdb1fbcd0f6/
-Win !!!
-`<screenshot>`
+**Firefox**
 
-And blackhole only the other cert check domain `crl.globalsign.com` ?
-https://webpagetest.org/result/191206_YC_e1641899c29740dfbb0ae4ac20942cb9/
-Does not do anything.
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-fail-firefox-waterfall-small.png" width="550" height="199" alt="EV Certificate Fail Firefox - Waterfall Chart">
 
-BTW, you can also do the blackhole thing with a script:
-``` js
-setDns	ocsp2.globalsign.com	71.114.67.58
-setDns	crl.globalsign.com	71.114.67.58
-navigate	https://www.kpn.com/
-```
+Firefox is less patient than Chrome: after waiting for ~ 12 seconds for the CA's server to respond, Firefox moved on and loaded the page. 
+This means Firefox is more forgiving than Chrome and does _not_ abort a HTTPS request if the EV certificate check times out.
+
+[WPT test results page](https://webpagetest.org/result/191206_1E_bad633b761679334fb8a2a27c428e5ad/).
+
 
 So, in conclusion:
 - from the first normal test in Chrome you can see it's all about `ocsp2.globalsign.com`
 - if `ocsp2.globalsign.com` is unreachable, your site is completely broken 
 - easy to see that in action with WPT, using the SPOF tab
-- ignore all I said about the `crl.globalsign.com` hostname ... and the blockDomains scripts
-
 
 
 - Relay42
