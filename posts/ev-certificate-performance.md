@@ -11,9 +11,9 @@ xtags:
 keyword: EV Certificate Performance
 ---
 
-EV certificates make your website slower and less robust for Chrome users: the time to secure the connection is increased and - more importantly - the reliability of your web site/app depends on the quality of service of your Certificate Authority. 
+EV certificates make your website slower and less robust: they delay the time to secure the connection and, more importantly, the reliability of your web site/app depends on the quality of service of your Certificate Authority. 
 
-TL;DR
+**TL;DR**
 - EV certificates are much more expensive than 'regular' certificates, but don't provide better security
 - Browsers don't show the 'green bar' anymore for sites with EV certificates, so there no longer is that proclaimed benefit of an enhanced perception of trust by site visitors
 - EV certificates force Chrome to check the revocation status of the certificate _every time_ (a connection is established), and this is a blocking request to the Certificate Authority's server
@@ -26,7 +26,10 @@ Globalsign sells EV certs today at $599/yr and still states "ExtendedSSL activat
 
 
 ## HTTPS and (EV) Certificates
-The HTTP Archive shows a [steady adoption of HTTPS](https://almanac.httparchive.org/en/2019/security) in the past years. Per today, more than 80% of all requests are prefixed with `https`.
+The HTTP Archive shows a [steady adoption of HTTPS](https://httparchive.org/reports/state-of-the-web#pctHttps) in the past years. Per today, more than 80% of all requests are prefixed with `https`.
+
+<img loading="lazy" class="responsive-ugh" src="/static/img/https-adoption-2017-2019.png" width="550" height="365" alt="HTTPS Adoption 2017-2019">
+
 
 Websites on HTTPS need a certificate and certificates are obtained from Certificate Authorities.
 - what is a cert
