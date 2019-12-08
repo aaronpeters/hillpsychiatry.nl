@@ -15,15 +15,15 @@ date: 2019-01-01
 
 ### Blog
 
-- Add articles: ...
+- Add articles: CRuX API, EV Certs, Chrome image lazy load native, 
 - Update articles: iframe performance (testpages, run in modern browser, new techniques)
 - Responsive images: 11ty plugin
-- Auto generate images: convert ...
+- Auto create images: convert ...
 
 
 ## Performance
 
-- Lazy load images (native)
+- Lazy load images (JS based)
 - Static assets
 --- Versioning
 --- Caching, max-age=365d (/.jpg|png|css|js|woff2)

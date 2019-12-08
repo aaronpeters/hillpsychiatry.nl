@@ -14,11 +14,14 @@ xtags:
 keyword: CRuX API
 ---
 
-TL;DR
-- Chrome Dev Summit, Paul Irish and X talked about Lighthouse, PageSpeed and CruX
-- I followed up with Paul on Twitter and he mentioned they are thinking about a CRuX API (vs CRuX data via PSI API)
-- Hey Paul, want my input? Yes, please
-- Here it is, with key items: more metrics, percentiles, granularity, stable version and API reliability
+Google's CRuX is ... [Chrome User Experience Report](https://developers.google.com/web/tools/chrome-user-experience-report/).
+Google CRuX is awesome: free insights into how fast your web pages loaded for the actual visitors of your site.
+Now also visible in Google Search Console [link](#).
+
+At the 2019 Chrome Dev Summit, Paul Irish and Elizabeth Sweeny gave a talk about Lighthouse, PageSpeed and CruX ([Speed tooling evolutions: 2019 and beyond](https://www.youtube.com/watch?v=iaWLXf1FgI0)).
+The next day, [Paul and I had a conversation on Twitter](https://twitter.com/aaronpeters/status/1193984213432836101) and he mentioned **Google is thinking about a dedicated CRuX API**. That gets me excited and I promised Paul to provide my ideas. I've been pulling in CRuX data via the PSI API for 50+ domains for 6 months now, all automated using Google Apps Script + Google Sheets. Based on my experiences with this ...
+
+My wishlist for the CRuX API includes more metrics, more percentiles, improved granularity, stable versions and API reliability.
 
 
 ## 1. More Metrics
@@ -97,5 +100,11 @@ Response header or - better - a meta element ( name="google-crux" content="disab
 
 
 
+## Start Using CRuX Today !
 
+Don't wait for the CRuX API to launch ...
+
+- Recipes for extracting insights from CRuX: [CrUX Cookbook](https://github.com/GoogleChrome/CrUX/blob/master/sql)
+- [CRuX on Github](https://github.com/GoogleChrome/CrUX), the place to share queries, ideas, or issues and managed by [Rick Viscomi](https://twitter.com/rick_viscomi)
+- [Using the CrUX Dashboard on Data Studio](https://web.dev/chrome-ux-report-data-studio-dashboard/)
 
