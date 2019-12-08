@@ -6,6 +6,8 @@ Check links before push to master:
 
 `hyperlink /Users/aaronpeters/Work/aaronpeters.nl/_site/index.html --canonicalroot https://www.aaronpeters.nl -r --internal /Users/aaronpeters/Work/aaronpeters.nl/_site/index.html`
 
+See: https://github.com/Munter/hyperlink
+
 
 # OLD
 ## What is it?
