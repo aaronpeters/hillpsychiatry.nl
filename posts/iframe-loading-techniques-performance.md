@@ -6,6 +6,8 @@ date: 2010-12-20
 tags:
   - iframe
   - tips
+keyword: iframe performance
+future: resource hints, lazy, jaffacake trick
 ---
 
 <div class="notice-msg warning">
@@ -33,7 +35,7 @@ This article shows 4 ways to load an iframe in a web page: [Normal Iframe](#norm
 I recommend to look closely at the Dynamic Asynch Iframe technique because this one is great for performance.
 Oh, and as a bonus, I throw in the [Friendly Iframe technique](#fif). It doesn't really qualify as an iframe <i>loading</i> technique, but it has to do with iframes, ads and (non)-blocking.
 
-## <a name="normal"></a>Normal Iframe
+## <a id="normal"></a>Normal Iframe
 
 You all know this one. It's the default way to load an iframe and works in all browsers:
 
@@ -62,7 +64,7 @@ My advice: be aware of the onload blocking. It's not a big problem if the iframe
 But if it takes long for the iframe to finish, the user experience is damaged.
 Test it on your page(s) and run it through Webpagetest.org a few times, look at the impact on onload (Doc Complete time) and decide if you need a better technique.
 
-## <a name="onload"></a> Iframe After Onload
+## <a id="onload"></a> Iframe After Onload
 
 Imagine you want to load something in an iframe, but it's not really important for the page. 
 Or the content of the iframe is not immediately visible to the user because it's way down below the fold or hidden behind a link/tab. 
@@ -113,7 +115,7 @@ The load event of the main page fires sooner, and this has 2 benefits:
 Unfortunately, your site visitors will still see browser busy indicator(s) while the iframe is loading and that means that they will see those indicators for a longer period of time (versus Normal Iframe). 
 Another downside of loading the iframe after onload is that there is a bigger chance the user leaves the page before the iframe has finished loading. In some cases this may be a real problem, e.g. you have a deal with a ad/widget provider that is based on # impressions.
 
-## <a name="settimeout"></a> Iframe setTimeout()
+## <a id="settimeout"></a> Iframe setTimeout()
 
 The objective is to load the iframe without blocking onload. 
 Steve Souders (him again) published a <a href="http://stevesouders.com/efws/iframe-onload-nonblocking.php">demo page</a> for this 'trick' some time ago.
@@ -167,7 +169,7 @@ I ran tests on Webpagetest.org (IE7 and IE8) with [Iframe After Onload test page
 
 Because of the IE8 issue I believe this technique is not usable in production for many sites. If more than 10% of your visitors have IE8, 1 in 10 will get a lesser experience. You could argue that it's only worse compared to the Normal Iframe technique which isn't a really bad for performance anyway. And onload firing later for 10% of your users ... ah well. You decide, but not after you read below about the ultra awesome Dynamic Asynch Iframe-technique. 
 
-## <a name="dynamic"></a> Dynamic Asynch Iframe
+## <a id="dynamic"></a> Dynamic Asynch Iframe
 
 When I was at the [Velocity 2010 web performance conference](https://conferences.oreilly.com/velocity/velocity2010), two Meebo engineers [@marcuswestin](http://twitter.com/marcuswestin) and [Martin Hunt](http://www.linkedin.com/pub/martin-hunt/4/542/472)) gave a [presentation](https://conferences.oreilly.com/velocity/velocity2010/public/schedule/detail/13070) about the new Meebo Bar and how they improved this widget's performance. They came up with a truly non-blocking, instantly loading technique for including their widget in a page, using an iframe. For many web developers, their 'dynamic asynch iframe' approach was new. And it's awesome. Double awesome. For some reason, this technique has not gotten the attention it deserves. I hope this blog post can help spread the word.
 
@@ -212,7 +214,7 @@ My [Dynamic Asynch Iframe test page](http://www.aaronpeters.nl/blog/testpages/if
 Espacing characters makes it more difficult to read and error prone, but in my opinion these are minor cons.
 Do give this technique a try and post a comment if it works, or doesn't.
 
-## <a name="fif"></a> Friendly Iframe
+## <a id="fif"></a> Friendly Iframe
 
 This technique is for ads. It's not really an iframe loading technique, but more of a way to use an iframe to hold ads. The magic is not in how the iframe is loaded, but in how the main page, the iframe and ad codes work together. It works like this:
 

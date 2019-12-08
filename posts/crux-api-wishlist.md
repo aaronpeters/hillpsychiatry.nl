@@ -1,7 +1,6 @@
 ---
 draft: true
 title: Google CRuX API - 10 Ingredients for Awesome
-title1: Google CRuX API - 10 Must-Have Ingredients
 title2: My Wishlist for the Google CRuX API
 description: TODO
 summary: TODO
@@ -12,9 +11,8 @@ xtags:
   - google
   - crux
   - rum
+keyword: CRuX API
 ---
-
-Keyword = CRuX API
 
 TL;DR
 - Chrome Dev Summit, Paul Irish and X talked about Lighthouse, PageSpeed and CruX
