@@ -11,12 +11,12 @@ xtags:
 keyword: EV Certificate Performance
 ---
 
-EV certificates make your website slower and less robust: they delay the time to secure the connection and, more importantly, the reliability of your web site/app depends on the quality of service of your Certificate Authority. 
+Extended Validation (EV) certificates make websites slower and less robust. The EV certificate delays the time to secure the connection and more importantly: the reliability of your website depends on speed and availability your Certificate Authority's infrastructure.
 
 **TL;DR**
 - EV certificates are much more expensive than 'regular' certificates, but don't provide better security
 - Browsers don't show the 'green bar' anymore for sites with EV certificates, so there no longer is that proclaimed benefit of an enhanced perception of trust by site visitors
-- EV certificates force Chrome to check the revocation status of the certificate _every time_ (a connection is established), and this is a blocking request to the Certificate Authority's server
+- EV certificates force Chrome and Firefox to check the revocation status of the certificate _every time_ (a connection is established), and this is a blocking request to the Certificate Authority's server
 - In case the Certificate Authority's server is very slow or down, your user's experience is bad, your brand is damaged and you missed out on revenue/sign ups/etc
 
 In this article I focus on the performance aspect of EV certificates.
@@ -83,11 +83,12 @@ I'm not showing the comparison videos here, because those are boring and the wat
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-fail-chrome-waterfall-small.png" width="550" height="97" alt="EV Certificate Fail Chrome - Waterfall Chart">
 
-Surprisingly, this 'waterfall' chart does _not_ show the DNS lookup, TCP connect and start of the TLS handshake for `www.kpn.com` but surely Chrome took those steps. Next, Chrome started the EV certificate check and so it did the DNS lookup for `ocsp2.globalsign.com`, initiated the TCP connect and then patiently waited for the server to respond. Chrome is _very_ patient and will easily have waited a full minute, but WPT terminated the test after 30 seconds.
+Surprisingly, this 'waterfall' chart does _not_ show the DNS lookup, TCP connect and start of the TLS handshake for `www.kpn.com` but surely Chrome took those steps. Next, Chrome started the EV certificate check and so it did the DNS lookup for `ocsp2.globalsign.com`, initiated the TCP connect and then patiently waited for the server to respond. Chrome is _very_ patient and waits 30 seconds.
 
 I have no idea why WPT shows the `http://www.gstatic.com/generate_204` and neither does the creator of WebPageTest, [Pat Meenan](https://twitter.com/patmeenan) ;-)
 
 [WPT test results page](https://webpagetest.org/result/191206_3P_04903e028f2a522232ee4fdb1fbcd0f6/).
+[Chrome Canary v80 is same](https://webpagetest.org/result/191209_9Z_833ebd3d6db53af3502dd8582607d859/).
 
 But wait.
 This is actually surprising behaviour by Chrome, because [Chrome does not use OCSP at all since 2012](https://www.computerworld.com/article/2501274/google-chrome-will-no-longer-check-for-revoked-ssl-certificates-online.html).
@@ -96,7 +97,7 @@ Chrome uses its own [CRLsets](https://dev.chromium.org/Home/chromium-security/cr
 
 "Online (i.e. OCSP and CRL) checks are not, generally, performed by Chrome. They can be enabled by policy and, in some cases, the underlying system certificate library always performs these checks no matter what Chromium does."
 
-Can it be that Chrome _will_ do OCSP for EV certificates but not for 'regular certificates'? And do that in a hard-fail way?
+Can it be that Chrome _will_ do OCSP for EV certificates (Pat: yes) but not for 'regular certificates'? And do that in a hard-fail way?
 Yoav Weiss:
 - What is Chrome's current behaviour as to cert revocation status checking? Is this still correct: https://dev.chromium.org/Home/chromium-security/crlsets ?
 - How often is the CRLsets updated by the browser? Or: what is max time the revoked cert is not considered revoked?
@@ -108,6 +109,9 @@ Yoav Weiss:
 So, does Chrome on WPT have a specific policy enabled? Does Chrome on WPT not use CRLSets?
 I asked Pat about this: ...
 
+[Regular cert - why gap between HTML and next requests?](https://webpagetest.org/result/191209_W7_ddbb59d9fc6f481b121206ad33bd01b8/)
+[Regular cert T-mobile.nl](https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/)
+[Regular cert T-mobile.nl - both](https://webpagetest.org/result/191209_DW_f16726be9370d0843dac5411381d6ef3/)
 
 **Firefox**
 
@@ -117,6 +121,13 @@ Firefox is less patient than Chrome: after waiting for ~ 12 seconds for the CA's
 This means Firefox is more forgiving than Chrome and does _not_ abort a HTTPS request if the EV certificate check times out.
 
 [WPT test results page](https://webpagetest.org/result/191206_1E_bad633b761679334fb8a2a27c428e5ad/).
+[Regular cert](https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/)
+
+**Other Browsers**
+
+[Safari on iPad 2017 iOS 12 - not sure setDnsName works ](https://webpagetest.org/result/191209_A7_735cbe9c631cdcaacffa63f4802b7003/1/details/#waterfall_view_step1)
+[Edge Dev (Chromium) - not sure setDnsName works ](https://webpagetest.org/result/191209_GM_0a2fa5f68112b88777540dd7cd33bd9e/)
+[IE11 - not sure setDnsName works ](https://webpagetest.org/result/191209_7X_5c8afa72bc43bb36b4a38394292a9325/)
 
 ### OCSP Stapling 
 
