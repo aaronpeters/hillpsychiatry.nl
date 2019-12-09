@@ -43,7 +43,8 @@ You can't get an EV cert unless ...
 ## Why EV Certificates are Bad for Performance
 
 Chrome behaviour.
-Other browsers.
+Firefox behaviour.
+
 
 ### EV Certificates Cause Slowness
 
@@ -88,6 +89,26 @@ I have no idea why WPT shows the `http://www.gstatic.com/generate_204` and neith
 
 [WPT test results page](https://webpagetest.org/result/191206_3P_04903e028f2a522232ee4fdb1fbcd0f6/).
 
+But wait.
+This is actually surprising behaviour by Chrome, because [Chrome does not use OCSP at all since 2012](https://www.computerworld.com/article/2501274/google-chrome-will-no-longer-check-for-revoked-ssl-certificates-online.html).
+
+Chrome uses its own [CRLsets](https://dev.chromium.org/Home/chromium-security/crlsets), which is a list of revoked intermediate certs and the browser will 'frequently' pull in a fresh list.
+
+"Online (i.e. OCSP and CRL) checks are not, generally, performed by Chrome. They can be enabled by policy and, in some cases, the underlying system certificate library always performs these checks no matter what Chromium does."
+
+Can it be that Chrome _will_ do OCSP for EV certificates but not for 'regular certificates'? And do that in a hard-fail way?
+Yoav Weiss:
+- What is Chrome's current behaviour as to cert revocation status checking? Is this still correct: https://dev.chromium.org/Home/chromium-security/crlsets ?
+- How often is the CRLsets updated by the browser? Or: what is max time the revoked cert is not considered revoked?
+- Are EV certs in CRLsets?
+- Does Chrome do OCSP for EV cert?
+- Can haz a 'updated date' in chrome://components/ please?
+- What is 'Certificate Error Assistant' in chrome://components/
+
+So, does Chrome on WPT have a specific policy enabled? Does Chrome on WPT not use CRLSets?
+I asked Pat about this: ...
+
+
 **Firefox**
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-fail-firefox-waterfall-small.png" width="550" height="199" alt="EV Certificate Fail Firefox - Waterfall Chart">
@@ -96,6 +117,13 @@ Firefox is less patient than Chrome: after waiting for ~ 12 seconds for the CA's
 This means Firefox is more forgiving than Chrome and does _not_ abort a HTTPS request if the EV certificate check times out.
 
 [WPT test results page](https://webpagetest.org/result/191206_1E_bad633b761679334fb8a2a27c428e5ad/).
+
+### OCSP Stapling 
+
+If OCSP Stapling is 'active' and the website has recently been visited in the browser (~ in the past 7 days), the browser does not need to check revocation status with the CA because the cert is sent with a staple.
+
+KPN's EV certificate does not have the staple: KPN's server does not do OCSP Stapling.
+https://www.ssllabs.com/ssltest/analyze.html?d=www.kpn.com&hideResults=on
 
 
 So, in conclusion:
@@ -111,3 +139,8 @@ So, in conclusion:
 ## Take-aways
 
 **EV certificates hurt web performance**, provide no added value and are more expensive than regular certificates. Don't use EV certificates if you care about how reliable and fast your website is!
+
+
+## Reading
+
+- https://blog.cloudflare.com/high-reliability-ocsp-stapling/

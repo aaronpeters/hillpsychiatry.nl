@@ -28,6 +28,7 @@ date: 2019-01-01
 --- Versioning
 --- Caching, max-age=365d (/.jpg|png|css|js|woff2)
 - DNS: use Netlify?
+- https://instant.page/ ?
 
 
 ## Legal
