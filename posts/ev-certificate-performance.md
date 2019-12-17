@@ -11,29 +11,24 @@ xtags:
 keyword: EV Certificate Performance
 ---
 
-Extended Validation (EV) certificates make websites slower and less robust. The EV certificate delays the time to secure the connection and more importantly: the reliability of your website now depends on speed and availability your Certificate Authority's infrastructure.
+Remember when browsers showed a green bar with the name of the company that owns the website, to the left of the address bar?
+
+
+Extended Validation certificates make websites slower and less robust. 
+The EV certificate delays the time to secure the connection and more importantly: the reliability of your website now depends on speed and availability your Certificate Authority's infrastructure.
 
 **TL;DR**
-- EV certificates are much more expensive than 'regular' DV certificates, but don't provide better security
+- EV certificates are much more expensive than DV certificates, but don't provide better security
 - Browsers don't show the 'green bar' anymore for sites with EV certificates, so there no longer is that proclaimed benefit of an enhanced perception of trust by site visitors
 - EV certificates force Chrome and Firefox to check the revocation status of the certificate _every time_ a new connection is established (IS THIS TRUE? CHECK EMAILS SLEEVI AND WPT TEST RESULTS), and this is a blocking request to the Certificate Authority's server
 - In case the Certificate Authority's server is very slow or down, your website visitors suffer, your brand is damaged and you missed out on revenue/sign ups/etc.
 
-In this article I focus on the performance aspect of EV certificates.
+In this article I focus on the performance aspect of EV certificates. 
 If you want to learn more about the security aspect and when/why browsers changed the 'green bar' for EV certificates, read [Extended Validation Certificates are (Really, Really) Dead](https://www.troyhunt.com/extended-validation-certificates-are-really-really-dead/) and its predecessor [Extended Validation Certificates are Dead](https://www.troyhunt.com/extended-validation-certificates-are-dead/) by Troy Hunt.
-
-**Interesting, but very much nice to have info**
-- Globalsign sells EV certs today at $599/yr and still states "ExtendedSSL activates the green address bar and displays your organization name in the browser interface"
-- The HTTP Archive shows a [steady adoption of HTTPS](https://httparchive.org/reports/state-of-the-web#pctHttps) in the past years. Per today, more than 80% of all requests are prefixed with `https`. 
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/https-adoption-2017-2019.png" width="550" height="365" alt="HTTPS Adoption 2017-2019">
 
 ---
 
 ### What is an EV Certificate?
-
-Extended Validation
-You can't get an EV cert unless you own the domain. Hassle to proof you own the domain.
 
 
 ## Why EV Certificates are Bad for Performance
@@ -45,23 +40,51 @@ Firefox behaviour.
 ### EV Certificates Cause Slowness
 
 [https://www.kpn.com/](https://www.kpn.com/)
-EV cert on www, api and omsc
+EV cert, no OSCP response stapled in the certificate.
 
-WPT tests, incl. Repeat View
+In short: the longer the EV cert check takes, the longer your site visitors stare at a blank screen.
 
-- [WPT - Chrome - LTE - S7](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/)
-- why Chrome no show request to digicert for omsc, while FF does show this request
+#### Chrome
 
-- [WPT - Firefox - Cable - Desktop (FF on mobile = nonsense)](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/)
+[First view](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/#waterfall_view_step1)
+
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-chrome-waterfall-small.png" width="550" height="199" alt="EV Certificate Chrome OK - Waterfall Chart">
+
+Chrome first checks the revocation status of the intermediate certificate. 
+This is the request to `http://ocsp2.globalsig...BgkrBgEFBQcwAQE%3D`
+Next, Chrome performs a check with the same purpose for the EV cert: see the request to `http://ocsp2.globalsig...0wCwYJKwYBBQUHMAEB`
+
+These two requests add a whopping ~ 300 ms to the time it takes to secure the connection for `www.kpn.com` !
+
+What happens when Chrome visits the same site again, after a short period of time?
+Does the browser re-use the revocation check responses from cache? 
+No.
+
+[Repeat View](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/cached/#waterfall_view_step1)
+
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-chrome-repeatview-waterfall-small.png" width="550" height="199" alt="EV Certificate Chrome OK Repeat View - Waterfall Chart">
+
+
+
+#### Firefox
+
+[First View)](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/#waterfall_view_step1)
+
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-firefox-waterfall-small.png" width="550" height="199" alt="EV Certificate Firefox OK - Waterfall Chart">
+
+[Repeat View](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
+
+<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-firefox-repeatview-waterfall-small.png" width="550" height="199" alt="EV Certificate Firefox OK Repeat View - Waterfall Chart">
+
 - see the requests for http://ocsp2.globalsign.com/gsextendvalsha2g3r3
+
+#### Other browsers
 
 - [WPT iPhone 8+](https://webpagetest.org/result/191206_KR_7de3efd6f4d72d27b0a910ed323e2f98/)
 - WPT don't show the cert validation requests ... because SLEEVI SAYS: ... 
 
 - [WPT - IE11](https://webpagetest.org/result/191206_KW_2f83d93760db081d6bf140259da65c70/)
 - WPT don't show the cert validation requests: THIS IS A WPT THING?
-
-So, in short, the longer the EV cert check takes, the longer your site visitors stare at a blank screen.
 
 
 ### EV Certificates are a Reliability Risk
