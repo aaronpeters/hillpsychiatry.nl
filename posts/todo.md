@@ -15,7 +15,7 @@ date: 2019-01-01
 
 ### Blog
 
-- Add articles: CRuX API, EV Certs, Chrome image lazy load native, 
+- Add articles: CRuX API, EV Certs, Chrome image lazy load native, Hero Image Optimization at hollandsnieuwe, 
 - Update articles: iframe performance (testpages, run in modern browser, new techniques)
 - Responsive images: 11ty plugin
 - Auto create images: convert ...
