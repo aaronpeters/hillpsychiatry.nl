@@ -51,6 +51,13 @@ date: 2019-01-01
 --- Variable fonts (Sia's or Inter), but https://bugs.chromium.org/p/chromium/issues/list?can=2&q=variable+component%3ABlink%3EFonts
 - Links: cool underline
 
+## CSS
+
+- BEM or a variant
+- font-size in rem or em, not px
+- A11y ?
+- 
+
 
 ## Security
 
