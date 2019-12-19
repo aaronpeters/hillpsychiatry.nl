@@ -11,13 +11,17 @@ xtags:
 keyword: EV Certificate Performance
 ---
 
-Extended Validation certificates make websites slower and less robust. 
+Extended Validation certificates make websites slower and less robust, much more so than 'normal' DV certificates.
 The EV certificate delays the time to secure the connection and more importantly: the reliability of your website now depends on the speed and availability of your Certificate Authority's infrastructure.
 
 
 **TL;DR**
 
-Want just one waterfall chart to know you must not use EV certs?
+- Don't use an EV certificate if you care about the speed and reliability of your site
+- OCSP stapling to the rescue? No, that does not help at all
+- OCSP stapling with EV certs is useless || No, OCSP stapling doesn't help with EV certs
+
+Simply take a look at this WPT waterfall chart:
 Chrome - `www.vodafone.nl` - has OCSP staple - CA is down
 
 
@@ -27,8 +31,10 @@ So matrix is:
 
 ## DV certs
 
+Summary:
+
 - some browsers don't even check revocation status (Chrome) 
-- other browser do (Safari, Firefox), and although they use a soft-fail strategy, the revocation check does increase page load time; OCSP stapling gets rid of that extra time
+- other browser do (Safari, Firefox) and although they use a soft-fail strategy, the revocation check does increase Start Render time; OCSP stapling gets rid of that extra time, so there is a solution
 
 ---
 
@@ -38,9 +44,9 @@ Most sites have this.
 
 #### Chrome 
 
-[normal](#)
+[normal](https://webpagetest.org/result/191219_HW_db9ae2f9ad244e74a5aa0dbd5d49f272/)
 [normal - repeat view](#)
-[OCSP blocked](#)
+[OCSP blocked](https://webpagetest.org/result/191219_AW_a5ff3267dfe0deb1a969204f74f976f1/)
 [OCSP blocked - repeat view](#)
 
 Expected: no OCSP check requests to see
@@ -64,9 +70,13 @@ All sites should have this, but few do.
 
 #### Chrome
 
+setDnsName	ocsp.comodoca.com	blackhole.webpagetest.org
+setTimeout	240
+navigate	https://www.klm.com/
+
 [normal](https://webpagetest.org/result/191219_71_d23633b48674c26903fdd11d319905aa/1/details/#waterfall_view_step1)
 [normal - repeat view](https://webpagetest.org/result/191219_71_d23633b48674c26903fdd11d319905aa/1/details/cached/#waterfall_view_step1)
-[OCSP blocked](#)
+[OCSP blocked](https://webpagetest.org/result/191219_HN_313cba153200351001cc416b22b70549/)
 [OCSP blocked - repeat view](#)
 
 Expected: no OCSP check requests to see ... yes, repeat view has one at top of waterfall but that is for the cert for `tdn.r42tag.com`
@@ -77,46 +87,53 @@ Observed: same!
 
 [normal](https://webpagetest.org/result/191219_BQ_103ebb11682b469806f8c19d171ad6b6/1/details/#waterfall_view_step1)
 [normal - repeat view](https://webpagetest.org/result/191219_BQ_103ebb11682b469806f8c19d171ad6b6/1/details/cached/#waterfall_view_step1)
-[OCSP blocked](#)
-[OCSP blocked - repeat view](#)
+[OCSP blocked](https://webpagetest.org/result/191219_QN_a67245fd3081ae7c18624325c1d1be43/1/details/#waterfall_view_step1)
+[OCSP blocked - repeat view](https://webpagetest.org/result/191219_QN_a67245fd3081ae7c18624325c1d1be43/1/details/cached/#waterfall_view_step1)
 
 Expected: no OCSP check requests to see
 Observed: same!
 
-Note: Firefox ... first view ... up until request 71, `www.klm.com` is on H/1.1 and from request 69 onwards it is H/2 (huh?)
-And yes, KLM needs some webperf help, especially if they want to service Firefox users better.
+Side note: in Firefox, browser and server (Akamai) at first do HTTP/1.1 and later on, at request ~ 70, they switch to H/2. Huh?
+And yes, KLM needs some webperf help, especially if they want to service Firefox users better (caching not working, wtf)
 
 
 ## EV certs
 
-Do Chrome and Firefox behave differently with EV vs DV certs?
+Do Chrome and Firefox behave differently when processing EV vs DV certs?
 For example, will Chrome do the revocation status check?
 How long will the browser wait for the CA to respond and if no response comes arrives on time, what happens?
 Let's find out.
 
+Summary
 
 - Chrome and FF always check revocation status (every new connection) with the CA ... OCSP stapling does not prevent this
-- Chrome is more patient than FF: 30 sec vs 10 sec.
-- Chrome is less forgiving than FF: hard-fail vs soft-fail
+- Chrome patiently waits for the CA's response for up to 30 sec, while Firefox stops waiting after 10 seconds
+- Firefox has the same soft-fail policy as for DV certificates, while Chrome is less forgiving and applies a hard-fail policy and presents the user an error page
 
 
 ### KPN - OSCP staple = No
 
 The worst you can have.
 
-Chrome 
-- [First view](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/#waterfall_view_step1)
-- [Repeat View](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
+#### Chrome 
 
-Check the revocation status of the intermediate certificate, then status of domain cert ... these add 300 ms to start render time
-Repeat view ... Chrome does not re-use the revocation check responses from cache
+[normal](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/#waterfall_view_step1)
+[normal - repeat view](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
+[OCSP blocked](#)
+[OCSP blocked - repeat view](#)
+
+Normal, check the revocation status of the intermediate certificate, then status of domain cert ... these add 300 ms to start render time
+Normal, Repeat view ... Chrome does not re-use the revocation check responses from cache
 
 Firefox
-- [First View)](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/#waterfall_view_step1)
-- [Repeat View](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
 
-First view ... same as Chrome
-Repeat view ... same as Chrome, no re-use from cache, but why 3x the requests? Browser knows from previous visit to establish multiple connections to `www.kpn.com` ?
+[normal](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/#waterfall_view_step1)
+[normal - repeat view](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
+[OCSP blocked]()
+[OCSP blocked - repeat view](#)
+
+Normal, First view ... same as Chrome
+Normal, Repeat view ... same as Chrome, no re-use from cache, but why 3x the requests? Browser knows from previous visit to establish multiple connections to `www.kpn.com` ?
 
 
 ### Vodafone - OSCP staple = Yes
