@@ -12,21 +12,38 @@ keyword: EV Certificate Performance
 ---
 
 Extended Validation certificates make websites slower and less robust, much more so than 'normal' DV certificates.
-The EV certificate delays the time to secure the connection and more importantly: the reliability of your website now depends on the speed and availability of your Certificate Authority's infrastructure.
+The EV certificate easily delays the time to secure the connection by 100 ms, and often much longer, and this adds up to the time users stare at blank screen.
+More importantly, with EV certs the reliability of your website depends on the speed and availability of your Certificate Authority's infrastructure.
+Oh, and OCSP stapling does not help at all with EV certs.
 
-
-**TL;DR**
-
-- Don't use an EV certificate if you care about the speed and reliability of your site
-- OCSP stapling to the rescue? No, that does not help at all
-- OCSP stapling with EV certs is useless || No, OCSP stapling doesn't help with EV certs
-
-Simply take a look at this WPT waterfall chart:
+Want to see one WPT waterfall chart to know EV certs are performance killers?
 Chrome - `www.vodafone.nl` - has OCSP staple - CA is down
 
+Want to know more about DV/EV certs and how browsers behave in wide range of cases? Read on.
 
-Let's look at Chrome and Firefox behaviour, for DV and EV certs that have OCSP staple or not, in case the CA is up or down.
-So matrix is:
+If you're interested in understanding better how browsers behave when they receive a DV cert or EV cert, with or without an OCSP staple and in case the CA's server responds quickly or not at all ... grab a coffee and read on.
+
+Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
+
+| Browser | Cert type | OCSP staple | CA's server |
+| --------| --------- | ----------- | --- |
+| Chrome 	| DV | No | Fast response | 
+| Chrome 	| DV | No | No response | 
+| Chrome 	| DV | Yes | Fast response | 
+| Chrome 	| DV | Yes | No response | 
+| Chrome 	| EV | No | Fast response | 
+| Chrome 	| EV | No | No response | 
+| Chrome 	| EV | Yes | Fast response | 
+| Chrome 	| EV | Yes | No response | 
+
+| Firefox 	| DV | No | Fast response | 
+| Firefox	| DV | No | No response | 
+| Firefox	| DV | Yes | Fast response | 
+| Firefox	| DV | Yes | No response | 
+| Firefox	| EV | No | Fast response | 
+| Firefox	| EV | No | No response | 
+| Firefox	| EV | Yes | Fast response | 
+| Firefox	| EV | Yes | No response | 
 
 
 ## DV certs
@@ -386,3 +403,9 @@ For EV certs, not for DV certs :
 ## Reading
 
 - https://blog.cloudflare.com/high-reliability-ocsp-stapling/
+
+
+**TL;DR**
+
+- Don't use an EV certificate if you care about the speed and reliability of your site
+- OCSP stapling to the rescue? No, that does not help at all with EV certs
