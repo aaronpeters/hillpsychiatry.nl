@@ -1,6 +1,8 @@
 ---
 draft: true
-title: EV Certificates are a Performance Killer
+title: EV Certificates Make The Web Slow and Unreliable
+title1: EV Certificates are Performance Killers
+title2: The Performance Impact of EV Certificates
 description: TODO
 summary: TODO
 date: 2019-01-01
@@ -13,21 +15,30 @@ keyword: EV Certificate Performance
 
 TODO:
 - link to good primer on OCSP stapling, maybe Cloudflare's blog?
+- write separate article about Testing SPOFs With WPT (all your 3PCs, test OCSP responders too!)
 
 
-Extended Validation certificates make websites slower and less robust, much more so than 'normal' DV certificates.
-The EV certificate easily delays the time to secure the connection by 100 ms, and often much longer, and this adds up to the time users stare at blank screen.
-More importantly, with EV certs the reliability of your website depends on the speed and availability of your Certificate Authority's infrastructure.
-Oh, and [OCSP stapling](#) does not help at all with EV certs.
+---
 
-Want to see one WPT waterfall chart to know EV certs are performance killers?
-Chrome - `www.vodafone.nl` - has OCSP staple - CA is down
+Extended Validation (EV) certificates make websites slower and less robust, much more so than the more common Domain Validated (DV) certificates.
+The EV certificate significantly increases TLS handshake time and therefore extends how long users stare at a blank screen.
+Perhaps more importantly, using an EV cert means the reliability of your website depends on the speed and availability of your Certificate Authority's infrastructure.
+Oh, and [OCSP stapling](https://en.wikipedia.org/wiki/OCSP_stapling) does not help at all with EV certs.
 
-Want to know more about DV/EV certs and how browsers behave in wide range of cases? Read on.
+Want to see just one image to know EV certs are a bad choice from a performance perspective?
 
-If you're interested in understanding better how browsers behave when they receive a DV cert or EV cert, with or without an OCSP staple and in case the CA's server responds quickly or not at all ... grab a coffee and read on.
+<img loading="lazy" class="responsive-ugh" src="/static/img/ev-cert-oscp-stapled-chrome-fail.jpg" width="423" height="600" alt="EV Certificate with OCSP Staple - Recovation Check Fail in Chrome">
 
-Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
+That is what Chrome users see when visiting a website with an OCSP stapled EV certificate in case the CA's server is unavailable.
+
+Does this happen in Firefox too? 
+Does Chrome also hard-fail for a DV cert when the revocation status check fails?
+
+Let's dive into the world of certificates and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds to the revocation status check quickly or not at all. 
+
+<!-- If you're interested in understanding better how browsers behave when they receive a DV cert or EV cert, with or without an OCSP staple and in case the CA's server responds quickly or not at all ... grab a coffee and read on. -->
+
+<!-- Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
 
 - Chrome or Firefox
 - DV or EV certificate
@@ -52,19 +63,78 @@ Let me take you on a journey filled with waterfall charts to help you understand
 | Firefox	| EV | No | Fast response | 
 | Firefox	| EV | No | No response | 
 | Firefox	| EV | Yes | Fast response | 
-| Firefox	| EV | Yes | No response | 
+| Firefox	| EV | Yes | No response |  -->
+
+## Testing Performance of Revocation Checks in WebPageTest
+
+Get hostname of your cert's OCSP responder (lock icon > Certificate > Details ... scroll down ... )
+SPOF tab
 
 
-## DV certs
+## DV Certificates and Performance
 
-Summary:
+[Domain Validated](https://en.wikipedia.org/wiki/Domain-validated_certificate) certificates are most common on the web.
+The 2019 Web Almanac shows the [top ten Certificate Authorities](https://almanac.httparchive.org/en/2019/security#certificate-authorities) and all of these are issuers for DV certificates.
 
-- Chrome doesn't bother to check the revocation status of the certificate
-- Firefox checks revocation status and this slows down the loading of the page; OCSP stapling effectively gets rid of that extra time
+How do Chrome and Firefox behave for DV certificates?
 
+<!-- This is easy to test with WebPageTest, using the easy and awesome SPOF feature.
+Simply enter the hostname you want to fail in the SPOF tab:
+
+<img loading="lazy" class="responsive-ugh" src="/static/img/webpagetest-spof-example.png" width="540" height="241" alt="WebPageTest SPOF Example">
+
+WebPageTest will run a normal test and a test with those hostname(s) blackholed and then show a video comparison.
+Of course, you can also see the waterfall charts and all details for each test.
+
+But, what is the hostname to blackhole?
+ -->
+<!-- The short story is:
+
+- Chrome never checks the revocation status of a DV certificate
+- Firefox always checks a DV certificate's revocation status and this slows down the loading of the page; OCSP stapling effectively gets rid of that extra time
+ -->
+
+### Chrome 
+
+T-mobile.nl has a DV cert without an OCSP staple, so Chrome can't know just from the certificate whether or not the cert has been revoked.
+
+Does Chrome check the revocation status?
+
+Below are two (truncated) WebPageTest waterfall charts
+
+If so, the first request in the WebPageTest waterfall chart will be for `ocsp2.globalsign.com`.
+
+<!-- No. 
+Chrome never checks the revocation status of a DV certificate, even if the cert does not contain an OCSP staple. -->
+
+<a href="https://webpagetest.org/result/191219_AW_a5ff3267dfe0deb1a969204f74f976f1/2/details/#waterfall_view_step1">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-chrome-waterfall-small.png" width="550" height="199" alt="DV Certificate Without OCSP Staple - Chrome - Waterfall Chart">
+</a>
+
+[DV cert without OCSP staple](https://webpagetest.org/result/191219_AW_a5ff3267dfe0deb1a969204f74f976f1/)
+
+
+So if Chrome doesn't check revocation status
+The DV cert of KLM contains an OCSP staple:
+[OCSP blocked](https://webpagetest.org/result/191219_HN_313cba153200351001cc416b22b70549/)
+
+
+It's clear Chrome never checks the revocation status of a DV certificate, even if the cert does not contain an OCSP staple.
+Chrome simply assumes the certificate has not been revoked, which is an excellent choice from a performance perspective.
+
+
+### Firefox
+
+Firefox checks revocation status of DV certificates and this slows down the loading of the page.
+OCSP stapling is an effective solution to get rid of that extra time.
+
+No OCSP staple in the DV cert:
+[T-mobile.nl](https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/#waterfall_view_step1)
+
+KLM's OCSP stapled cert
 ---
 
-### No OSCP staple
+### No OCSP staple
 
 Most sites have a DV cert and OCSP stapling not enabled.
 Example: https://www-t-mobile.nl/
@@ -91,7 +161,7 @@ OCSP check happens on first view (not on repeat view?) and if CA is down FF will
 
 ---
 
-### OSCP staple in the DV cert
+### OCSP staple in the DV cert
 
 This is the best option from a performance perspective.
 All sites should use a DV cert and do OCSP stapling, but few do.
@@ -137,7 +207,7 @@ Summary
 - Firefox has the same soft-fail policy as for DV certificates, while Chrome is less forgiving and applies a hard-fail policy and presents the user an error page
 
 
-### KPN - OSCP staple = No
+### KPN - OCSP staple = No
 
 The worst setup you can have.
 
@@ -162,16 +232,15 @@ Normal, First view ... same as Chrome
 Normal, Repeat view ... same as Chrome, no re-use from cache, but why 3x the requests? Browser knows from previous visit to establish multiple connections to `www.kpn.com` ?
 
 
-### Vodafone - OSCP staple = Yes
+### Vodafone - OCSP staple = Yes
+
+`echo QUIT | openssl s_client -connect www.vodafone.nl:443 -status 2> /dev/null | grep -A 17 'OCSP response:' | grep -B 17 'Next Update'`
 
 OCSP stapling helps you not at all.
 
 setDnsName	ocsp.digicert.com	blackhole.webpagetest.org
 setTimeout	240
 navigate	https://www.vodafone.nl/
-
-
-
 
 #### Chrome
 
@@ -185,9 +254,12 @@ navigate	https://www.vodafone.nl/
 
 [normal](https://webpagetest.org/result/191221_Y6_c0ec54f331942e07eb7fedee1cad9dca/)
 [normal - repeat view]()
-[OCSP blocked](https://webpagetest.org/result/191221_2F_f2b20f71fc722a1ca75003638775a4a4/)
-[OCSP blocked - repeat view](#)
+[OCSP blocked](https://webpagetest.org/result/191221_2F_f2b20f71fc722a1ca75003638775a4a4/2/details/#waterfall_view_step1)
+[OCSP blocked - repeat view](https://webpagetest.org/result/191221_2F_f2b20f71fc722a1ca75003638775a4a4/2/details/cached/#waterfall_view_step1)
 
+
+
+---
 
 | Browser | Cert type | OCSP staple | Revocation status check? | What if CA's server is down? |
 | --------| --------- | ----------- | --- | --- |
@@ -273,7 +345,7 @@ Firefox behaviour.
 ### EV Certificates Cause Slowness
 
 [https://www.kpn.com/](https://www.kpn.com/)
-EV cert, no OSCP response stapled in the certificate.
+EV cert, no OCSP response stapled in the certificate.
 
 In short: the longer the EV cert check takes, the longer your site visitors stare at a blank screen.
 
