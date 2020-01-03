@@ -16,6 +16,7 @@ date: 2019-01-01
 ### Blog
 
 - Add articles: CRuX API, EV Certs, Chrome image lazy load native, Hero Image Optimization at hollandsnieuwe, 
+- New article ideas: MS Edge Perf Checklist
 - Update articles: iframe performance (testpages, run in modern browser, new techniques)
 - Responsive images: 11ty plugin
 - Auto create images: convert ...

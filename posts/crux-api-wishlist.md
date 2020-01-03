@@ -5,6 +5,7 @@ title2: My Wishlist for the Google CRuX API
 description: TODO
 summary: TODO
 date: 2019-01-01
+duration: 3
 xtags:
   - webperf
   - monitoring

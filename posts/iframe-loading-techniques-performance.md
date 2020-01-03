@@ -3,6 +3,7 @@ title: Iframe Loading Techniques and Performance
 description: Overview of different ways to use an iframe for loading content, ads & widgets. How does each technique affect performance?
 summary: Overview of different ways to use an iframe for loading content, ads & widgets. Which technique is best for performance?
 date: 2010-12-20
+duration: 10
 tags:
   - iframe
   - tips

@@ -12,6 +12,9 @@ xtags:
 keyword: chrome image lazyloading
 ---
 
+TODO:
+- re-post the article ... nah, doing just that is lame
+- do a follow-up article - using other people's opinions and feedback, maybe some new data (Addy: we will test with less eager thresholds)
 
 I recently redesigned [my personal site](https://www.aaronpeters.nl/) and the first version was very lean.
 As I started adding content to pages and writing new blog posts, it made sense to implement image lazy-loading to improve performance.

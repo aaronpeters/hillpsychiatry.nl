@@ -6,6 +6,11 @@ section: post
 <article>
   <h1>{{ title }}</h1>
   <ul class="list-horizontal">
+    {% if duration %}
+    <li>
+      <small>{{ duration }} min read</small>
+    </li>
+    {% endif %}
     <li>
       <small><time datetime="{{ date | machineDate }}">First published on {{ date | readableDate }}</time></small>
     </li>
