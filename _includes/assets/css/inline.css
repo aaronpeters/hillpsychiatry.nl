@@ -73,20 +73,30 @@ code {
 }
 
 a[href] {
+	color: var(--black);
 	text-decoration: none;
 	background-repeat: no-repeat;
-	old_background-image: linear-gradient(to right, #1d252d, #1d252d);
-	background-image: linear-gradient(to right,#e64a19,#e64a19,#e64a19);
-	background-size: 100% 1px;
-	/*background-position: 0 1.05em;*/
+	background-image: linear-gradient(to right,#FFAB91,#FFAB91,#FFAB91);
+	background-size: 100% 2px;
 	background-position: center bottom;
+	padding-bottom: 0.1em;
 }
+/* https://codepen.io/iam_aspencer/pen/qvNPBv */
+
+/* a[href]{
+	background-image: url("data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB3aWR0aD0iMTE5IiBoZWlnaHQ9IjYiIHZpZXdCb3g9IjAgMCAxMTkgNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTE3LjQzNCAzLjg1M0M1OS4wMjcgNS45MzMgODQuNzg0LTIuNDYgMS41NjYgMy40MzYiIHN0cm9rZT0iI2U2NGExOSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=");
+	background-position-x: left;
+    background-position-y: bottom;
+    background-size: 100% 0.25rem;
+    background-repeat: no-repeat;
+	padding-bottom: 0.1rem;
+} */
+
 a[href],
 a[href]:visited {
 	color: var(--black);
 }
 a[href]:hover {
-	/*color: var(--orange);*/
 	cursor: pointer;
 }
 a[href]:focus, a[href]:active {
