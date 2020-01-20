@@ -20,8 +20,8 @@ TODO:
 
 ---
 
-Extended Validation (EV) certificates make websites slower and less robust, much more so than the more common Domain Validated (DV) certificates.
-The EV certificate significantly increases TLS handshake time and therefore extends how long users stare at a blank screen.
+Extended Validation (EV) certificates make websites slower and less robust, much more so than the more common Domain Validated (DV) and Organization Validated (OV) certificates.
+The EV certificate significantly increases TLS handshake time and therefore extends how long users stare at a blank screen, waiting for the page to start rendering.
 Perhaps more importantly, using an EV cert means the reliability of your website depends on the speed and availability of your Certificate Authority's infrastructure.
 Oh, and [OCSP stapling](https://en.wikipedia.org/wiki/OCSP_stapling) does not help at all with EV certs.
 
@@ -29,12 +29,12 @@ Want to see just one image to know EV certs are a bad choice from a performance 
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/ev-cert-oscp-stapled-chrome-fail.jpg" width="423" height="600" alt="EV Certificate with OCSP Staple - Recovation Check Fail in Chrome">
 
-That is what Chrome users see when visiting a website with an OCSP stapled EV certificate in case the CA's server is unavailable.
+That is what Chrome users see when visiting a website with an OCSP stapled EV certificate in case the CA's server is unreachable.
 
-Does this happen in Firefox too? 
-Does Chrome also hard-fail for a DV cert when the revocation status check fails?
+Does this happen in Firefox too? Nope, soft fail after 10s.
+Does Chrome also hard-fail for a DV cert when the revocation status check fails? No, Chrome soft fails.
 
-Let's dive into the world of certificates and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds to the revocation status check quickly or not at all. 
+Let's dive into the world of certificates and OCSP stapling and find out how Chrome and Firefox behave when the CA's server responds to the revocation status check quickly, or not at all. 
 
 <!-- If you're interested in understanding better how browsers behave when they receive a DV cert or EV cert, with or without an OCSP staple and in case the CA's server responds quickly or not at all ... grab a coffee and read on. -->
 
@@ -71,7 +71,9 @@ Get hostname of your cert's OCSP responder (lock icon > Certificate > Details ..
 SPOF tab
 
 
-## DV Certificates and Performance
+## DV/OV Certificates and Performance
+
+TODO: simply say DV/OV everywhere, or differentiate?
 
 [Domain Validated](https://en.wikipedia.org/wiki/Domain-validated_certificate) certificates are most common on the web.
 The 2019 Web Almanac shows the [top ten Certificate Authorities](https://almanac.httparchive.org/en/2019/security#certificate-authorities) and all of these are issuers for DV certificates.
@@ -120,8 +122,7 @@ The DV cert of KLM contains an OCSP staple:
 
 
 It's clear Chrome never checks the revocation status of a DV certificate, even if the cert does not contain an OCSP staple.
-Chrome simply assumes the certificate has not been revoked, which is an excellent choice from a performance perspective.
-
+Chrome simply assumes the certificate has not been revoked, which is an excellent choice from a performance perspective, but not so great from a security point of view.
 
 ### Firefox
 
@@ -131,7 +132,7 @@ OCSP stapling is an effective solution to get rid of that extra time.
 No OCSP staple in the DV cert:
 [T-mobile.nl](https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/#waterfall_view_step1)
 
-KLM's OCSP stapled cert
+KLM's OCSP stapled cert:
 ---
 
 ### No OCSP staple
@@ -195,16 +196,16 @@ And yes, KLM needs some webperf help, especially if they want to service Firefox
 
 ## EV certs
 
-Do Chrome and Firefox behave differently when processing EV vs DV certs?
+Do Chrome and Firefox behave differently when processing EV vs DV/OV certs?
 For example, will Chrome do the revocation status check?
-How long will the browser wait for the CA to respond and if no response comes arrives on time, what happens?
+How long will the browser wait for the CA to respond and if no response arrives in time, what happens?
 Let's find out.
 
 Summary
 
 - Chrome and FF always check revocation status with the CA ... OCSP stapling does not prevent this
 - Chrome patiently waits for the CA's response for up to 30 sec, while Firefox stops waiting after 10 seconds
-- Firefox has the same soft-fail policy as for DV certificates, while Chrome is less forgiving and applies a hard-fail policy and presents the user an error page
+- Firefox has the same soft-fail policy as for DV/OV certificates, while Chrome is less forgiving and applies a hard-fail policy and presents the user an error page
 
 
 ### KPN - OCSP staple = No
