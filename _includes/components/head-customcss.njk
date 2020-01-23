@@ -1,0 +1,30 @@
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="{{ renderData.description or description }}">
+  
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="robots" content="index,follow">
+
+  <title>{{ renderData.title or title or metadata.title }}</title>
+
+  <link rel="alternate" type="application/rss+xml" title="Aaron Peters Web Performance Blog" href="{{ metadata.url + "/rss/feed.xml" }}" />
+  <link rel="me" href="https://github.com/aaronpeters">
+  <link rel="me" href="https://twitter.com/aaronpeters">
+  <link rel="webmention" href="https://webmention.io/www.aaronpeters.nl/webmention" />
+  <link rel="pingback" href="https://webmention.io/www.aaronpeters.nl/xmlrpc" />
+  <link rel="icon" href="/favicon.ico">
+
+  {% include "components/seo.njk" %}
+  
+  {# <script>{{ js | jsmin | safe }}</script> #}
+
+  {% set css %}
+    {% include "assets/css/inline-customcss.css" %}
+  {% endset %}
+	
+  <style>{{ css | cssmin | safe }}</style>
+  
+</head>
