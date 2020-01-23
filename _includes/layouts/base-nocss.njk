@@ -1,0 +1,64 @@
+<!doctype html>
+<html {% if section %} data-current="{{ section }}"{% endif %} {% if lang %} lang="{{ lang }}" {% else %} lang="en" {% endif %}>
+
+	{% include "components/head-nocss.njk" %}
+
+	<body>
+
+		<div class="wrapper header">
+			<header>
+				<em>
+					<a href="{{ '/' | url }}">{{ metadata.title }}</a>
+				</em>
+        <div class="lang-switch">
+          <a href="/nl/">Nederlands</a>
+        </div>
+			</header>
+		</div>
+
+    <div class="wrapper nav scroll">
+      {% include "components/nav-new.njk" %}
+    </div>
+
+
+
+		<div class="wrapper">
+			<main>
+				{{ layoutContent | safe }}
+			</main>
+
+			{% include "components/footer.njk" %}
+
+		</div>
+
+	<script>
+		window.addEventListener('load', () => {
+     setTimeout(() => {
+      const t = window.performance && performance.timing
+      function round2(num) { 
+      	return Math.round(num * 100) / 100 
+      }
+      if (t) {
+        const loadTime = (t.loadEventEnd - t.navigationStart) / 1000
+        const performanceEntries = performance.getEntriesByType('paint')
+        let timingStats = document.querySelector('.timing-stats')
+        let timingStatsHTML = ''
+
+        performanceEntries.forEach(function(performanceEntry, i, entries) {
+          let name = performanceEntry.name
+          if (name === 'first-contentful-paint') {
+            name = 'First Contentful Paint'
+            timingStatsHTML += 'FCP = ' + round2(performanceEntry.startTime / 1000) + ' seconds.<br>'
+            timingStatsHTML += 'PLT = ' + round2(loadTime) + ' seconds.'
+          }
+        })
+        // timingStatsHTML += '<a href="https://jmperezperez.com/page-load-footer/">More info</a>.'
+        timingStats.innerHTML = timingStatsHTML
+      }
+    }, 0)
+  })
+	</script>
+
+	</body>
+
+</html>
