@@ -61,17 +61,8 @@ body {
 	padding: 0;
 }
 
-main {
-	max-width: 50em;
-}
-
 h1 { line-height: 140%; }
 h2 { line-height: 120%; }
-p,
-pre,
-code {
-	line-height: 1.58;
-}
 
 a[href] {
 	color: var(--black);
@@ -114,24 +105,6 @@ h2 a[href]:not(:hover) {
 a[href].no-styling {
 	background-image: none
 }
-
-
-header,
-main,
-footer {
-	padding: 1em 0em;
-}
-
-header {
-	padding: 0
-}
-
-main {
-	padding-top: 2em;
-	padding-bottom: 2em;
-}
-
-main :first-child,
 
 pre {
 	position: relative;
@@ -181,30 +154,30 @@ header {
 	display: grid;
 	grid-template-columns: 50% 50%;
 	align-items: center;
+	padding: 0
 }
 
 header > em {
 	display: block;
-  font-size: 1.4em;
-  margin: 0;
-  font-weight: 400;
-  font-style: normal;
+	font-size: 1.4em;
+	margin: 0;
+	font-weight: 400;
+	font-style: normal;
 }
 
 .lang-switch {
 	justify-self: self-end;
-  font-size: 0.9em;
-  margin-right: 1em;
-  /*position: absolute;
-  right: 2%;
-  top: 0.5em;*/
+	font-size: 0.9em;
+	margin-right: 1em;
+	/*position: absolute;
+	right: 2%;
+	top: 0.5em;*/
 }
 .lang-switch a {
 	color: var(--graymedium) !important;
 }
 
 /* Header Nav */
-
 /* https://iamsteve.me/blog/entry/horizontal-scrolling-responsive-menu */
 .scroll {
   white-space: nowrap; /* [1] */
@@ -215,7 +188,7 @@ header > em {
 
 /* [5] */
 .scroll::-webkit-scrollbar {
-  display: none; 
+	display: none; 
 }
 
 .wrapper.nav {
@@ -226,10 +199,10 @@ header > em {
 
 .nav a {
 	display: inline-block;
-  margin: 0 1.2em 0 0;
-  padding: 0 0 0.1em 0;
-  letter-spacing: .015em;
-  font-size: 0.9em;
+	margin: 0 1.2em 0 0;
+	padding: 0 0 0.1em 0;
+	letter-spacing: .015em;
+	font-size: 0.9em;
 }
 
 .nav a[href], .nav a[href]:hover {
@@ -237,26 +210,37 @@ header > em {
 }
 
 .nav a[data-current="current item"] {
-	/*padding-bottom: 2px;*/
-  border-bottom: 4px solid var(--orange);
+	border-bottom: 4px solid var(--orange);
 }
 
 .nav a:not([data-current="current item"]) {
-	/*padding-bottom: 2px;*/
-  border-bottom: 4px solid var(--white);
+	border-bottom: 4px solid var(--white);
 }
 
 .nav a.secondary {
 	display: none;
 }
 
-/* Footer */
-footer {
-	border-top: 1px solid var(--graylighter);
-	text-align: center;
+/* Main */
+main {
+	max-width: 50em;
+	padding: 2em 0;
 }
 
-footer, footer a[href], footer a[href]:visited {
+section {
+	margin-top: 2em;
+}
+
+section > article > * {
+	margin-top: 0;
+	margin-bottom: .5em;
+}
+
+/* Footer */
+footer {
+	padding: 1em 0;
+	border-top: 1px solid var(--graylighter);
+	text-align: center;
 	color: var(--graymedium);
 }
 
@@ -265,8 +249,6 @@ footer, footer a[href], footer a[href]:visited {
 article {
 	margin-bottom: 1em;
 	padding-bottom: 1em;
-	border-bottom: 1px solid #eee;
-	border-bottom: 1px solid var(--white);
 }
 
 .postlist {
@@ -274,20 +256,9 @@ article {
 	gap: 1em 2em;
 }
 
-.postlist-title {}
-
 .postlist-date {
 	font-size: 80%;
 	color: var(--graymedium);
-}
-
-main > section {
-	margin-top: 2em;
-}
-
-main > section > article > * {
-	margin-top: 0;
-	margin-bottom: .5em;
 }
 
 /* Post Tags */
@@ -319,30 +290,24 @@ a[rel="tag"]:hover {
 a[rel="tag"]:last-child {
 	margin-right: 0;
 }
-/*a[href][rel=tag] {
-	background-image: none;
-	background-color: var(--bluelightest)
-}*/
 
-.publish-dates {
-	display: block;
-}
+
 /* Contact Form */
 form {
-  display: grid;
+	display: grid;
 	padding: 1em 0;
 }
 
 form label {
-  display: none;
+	display: none;
 }
 
 input,
 textarea,
 button {
-  width: 100%;
-  padding: 1em;
-  margin-bottom: 1em;
+	width: 100%;
+	padding: 1em;
+	margin-bottom: 1em;
 	font-size: 1rem;
 	font-family: "Roboto", sans-serif;
 }
@@ -385,26 +350,24 @@ button:active {
 	display: none;
 	position: absolute;
 	top: 2em;
-  right: 1.4em;
-  width: 120px;
-  height: auto;
+	right: 1.4em;
+	width: 120px;
+	height: auto;
 	border-radius: 50%;
 	border: 1px solid var(--graylighter);
 }
 
 
 /* Helpers */
-.margin-left-medium {
-	margin-left: 2em;
-}
+
 
 /* Customers */
 .trusted-by {
 	margin-top: 2em;
 	text-align: center;
 	font-size: 140%;
-  font-weight: 300;
-  font-style: italic;
+	font-weight: 300;
+	font-style: italic;
 	color: var(--graydark);	
 }
 .customers {
@@ -479,11 +442,6 @@ button:active {
   background-position: 0.49em 0.78125em;
   background-size: 24px 24px;
 }
-.notice-msg svg, .notice-msg img { 
-  display: inline-block;
-  float: left;
-  margin-right: 0.3em;
-}
 
 .notice-msg.danger  { background-image: url(/static/img/close-circle.svg); background-color: var(--redlighter); }
 .notice-msg.warning { background-image: url(/static/img/alert-warning.svg); background-color: var(--yellowlighter); }
@@ -517,15 +475,6 @@ button:active {
 	margin-top: 2em;
 }
 
-code {
-	background-color: var(--graylightest);
-  color: var(--graydark);
-  /* margin-right: 0.33em; */
-  /* margin-left: 0.33em; */
-  padding: 0.15em 0.3em;
-  word-wrap: break-word;
-  word-break: break-all;
-}
 /* PrismJS 1.16.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+http */
 /**
@@ -540,7 +489,7 @@ pre[class*="language-"] {
 	background: none;
 	text-shadow: 0 1px white;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 1em;
+	font-size: 0.94em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
