@@ -475,6 +475,15 @@ button:active {
 	margin-top: 2em;
 }
 
+code {
+	background-color: var(--graylightest);
+	color: var(--graydark);
+	/* margin-right: 0.33em; */
+	/* margin-left: 0.33em; */
+	padding: 0.15em 0.3em;
+	word-wrap: break-word;
+	word-break: break-all;
+}
 /* PrismJS 1.16.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+http */
 /**
