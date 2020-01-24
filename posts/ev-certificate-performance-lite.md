@@ -3,6 +3,7 @@ draft: true
 title: EV Certificates Make The Web Slow and Unreliable
 title1: EV Certificates are Performance Killers
 title2: The Performance Impact of EV Certificates
+title3: HTTPS Certificates, OCSP Stapling 
 description: TODO
 summary: TODO
 date: 2019-01-01
@@ -13,72 +14,34 @@ xtags:
 keyword: EV Certificate Performance
 ---
 
-TODO:
-- link to good primer on OCSP stapling, maybe Cloudflare's blog?
-- write separate article about Testing SPOFs With WPT (all your 3PCs, test OCSP responders too!)
-
-
----
-
-Extended Validation (EV) certificates make websites slower and less robust, much more so than the more common Domain Validated (DV) and Organization Validated (OV) certificates.
+Extended Validation (EV) certificates make websites slower and less robust, much more so than Domain Validation (DV) and Organization Validation (OV) certificates.
 The EV certificate significantly increases TLS handshake time and therefore extends how long users stare at a blank screen, waiting for the page to start rendering.
-Perhaps more importantly, using an EV cert means the reliability of your website depends on the speed and availability of your Certificate Authority's infrastructure.
-Oh, and [OCSP stapling](https://en.wikipedia.org/wiki/OCSP_stapling) does not help at all with EV certs.
+Perhaps more importantly, using an EV cert means the reliability of your website depends on your Certificate Authority's infrastructure: if the CA's server is down, your site is down.
 
-Want to see just one image to know EV certs are a bad choice from a performance perspective?
+Want to see just one image to know EV certs are bad for performance?
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/ev-cert-oscp-stapled-chrome-fail.jpg" width="423" height="600" alt="EV Certificate with OCSP Staple - Recovation Check Fail in Chrome">
 
-That is what Chrome users see when visiting a website with an OCSP stapled EV certificate in case the CA's server is unreachable.
+That is what Chrome users see when visiting a website that uses an OCSP stapled EV certificate in case the Certificate Authority's server (the OCSP responder) is down. That's right, [OCSP stapling](https://en.wikipedia.org/wiki/OCSP_stapling) does not help at all with EV certs.
 
-Does this happen in Firefox too? Nope, soft fail after 10s.
-Does Chrome also hard-fail for a DV cert when the revocation status check fails? No, Chrome soft fails.
+Let's dive into the world of certificates, revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all.
 
-Let's dive into the world of certificates and OCSP stapling and find out how Chrome and Firefox behave when the CA's server responds to the revocation status check quickly, or not at all. 
+<!-- This article aims to provide you with a better understanding of how browsers behave when they receive a DV/OV cert or an EV cert, in case the CA's server responds quickly or not at all. -->
 
-<!-- If you're interested in understanding better how browsers behave when they receive a DV cert or EV cert, with or without an OCSP staple and in case the CA's server responds quickly or not at all ... grab a coffee and read on. -->
+<!-- Does Chrome also hard-fail for DV and OV certificates when the revocation status check fails?
+Does Firefox behave the same as Chrome?
 
-<!-- Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
+Let's dive into the world of certificates and OCSP stapling and find out how Chrome and Firefox behave when the CA's server responds to the revocation status check quickly, or not at all.  
 
-- Chrome or Firefox
-- DV or EV certificate
-- OCSP staple or not
-- CA's server responds quickly, or not at all
-
-| Browser | Cert type | OCSP staple | CA's server |
-| --------| --------- | ----------- | --- |
-| Chrome 	| DV | No | Fast response | 
-| Chrome 	| DV | No | No response | 
-| Chrome 	| DV | Yes | Fast response | 
-| Chrome 	| DV | Yes | No response | 
-| Chrome 	| EV | No | Fast response | 
-| Chrome 	| EV | No | No response | 
-| Chrome 	| EV | Yes | Fast response | 
-| Chrome 	| EV | Yes | No response | 
-
-| Firefox 	| DV | No | Fast response | 
-| Firefox	| DV | No | No response | 
-| Firefox	| DV | Yes | Fast response | 
-| Firefox	| DV | Yes | No response | 
-| Firefox	| EV | No | Fast response | 
-| Firefox	| EV | No | No response | 
-| Firefox	| EV | Yes | Fast response | 
-| Firefox	| EV | Yes | No response |  -->
-
-## Testing Performance of Revocation Checks in WebPageTest
-
-Get hostname of your cert's OCSP responder (lock icon > Certificate > Details ... scroll down ... )
-SPOF tab
-
+Let's dive into the world of certificates, revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds fast or not at all  -->
 
 ## DV/OV Certificates and Performance
 
-TODO: simply say DV/OV everywhere, or differentiate?
-
-[Domain Validated](https://en.wikipedia.org/wiki/Domain-validated_certificate) certificates are most common on the web.
+[Domain Validation](https://en.wikipedia.org/wiki/Domain-validated_certificate) certificates are most common on the web.
 The 2019 Web Almanac shows the [top ten Certificate Authorities](https://almanac.httparchive.org/en/2019/security#certificate-authorities) and all of these are issuers for DV certificates.
 
-How do Chrome and Firefox behave for DV certificates?
+Do Chrome and Firefox check revocation status when receiving a DV certificate?
+Does it matter if the certificate is stapled with an OCSP response?
 
 <!-- This is easy to test with WebPageTest, using the easy and awesome SPOF feature.
 Simply enter the hostname you want to fail in the SPOF tab:
@@ -109,7 +72,7 @@ If so, the first request in the WebPageTest waterfall chart will be for `ocsp2.g
 <!-- No. 
 Chrome never checks the revocation status of a DV certificate, even if the cert does not contain an OCSP staple. -->
 
-<a href="https://webpagetest.org/result/191219_AW_a5ff3267dfe0deb1a969204f74f976f1/2/details/#waterfall_view_step1">
+<a href="https://webpagetest.org/result/191219_AW_a5ff3267dfe0deb1a969204f74f976f1/2/details/#waterfall_view_step1" class="no-styling">
 	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-chrome-waterfall-small.png" width="550" height="199" alt="DV Certificate Without OCSP Staple - Chrome - Waterfall Chart">
 </a>
 
@@ -517,3 +480,45 @@ Please don't, especially if you serving content that is very important to the bu
 
 - Don't use an EV certificate if you care about the speed and reliability of your site
 - OCSP stapling to the rescue? No, that does not help at all with EV certs
+
+
+<!-- Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
+
+- Chrome or Firefox
+- DV or EV certificate
+- OCSP staple or not
+- CA's server responds quickly, or not at all
+
+| Browser | Cert type | OCSP staple | CA's server |
+| --------| --------- | ----------- | --- |
+| Chrome 	| DV | No | Fast response | 
+| Chrome 	| DV | No | No response | 
+| Chrome 	| DV | Yes | Fast response | 
+| Chrome 	| DV | Yes | No response | 
+| Chrome 	| EV | No | Fast response | 
+| Chrome 	| EV | No | No response | 
+| Chrome 	| EV | Yes | Fast response | 
+| Chrome 	| EV | Yes | No response | 
+
+| Firefox 	| DV | No | Fast response | 
+| Firefox	| DV | No | No response | 
+| Firefox	| DV | Yes | Fast response | 
+| Firefox	| DV | Yes | No response | 
+| Firefox	| EV | No | Fast response | 
+| Firefox	| EV | No | No response | 
+| Firefox	| EV | Yes | Fast response | 
+| Firefox	| EV | Yes | No response |  -->
+
+<!-- 
+## Testing Performance of Revocation Checks in WebPageTest
+
+Get hostname of your cert's OCSP responder (lock icon > Certificate > Details ... scroll down ... )
+SPOF tab 
+setDnsName	ocsp.digicert.com	blackhole.webpagetest.org
+setTimeout	240
+navigate  https://www.cloudflare.com/
+
+
+echo QUIT | openssl s_client -servername www.cloudflare.com -connect www.cloudflare.com:443 -status 2> /dev/null | grep -A 17 'OCSP response:' | grep -B 17 'Next Update'
+
+ -->
