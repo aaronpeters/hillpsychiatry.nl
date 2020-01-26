@@ -25,14 +25,17 @@ Want to see just one image to know EV certs are bad for performance?
 That is what Chrome users see when visiting a website that uses an OCSP stapled EV certificate and the Certificate Authority's server (the OCSP responder) is down. That's right, **[OCSP stapling](https://en.wikipedia.org/wiki/OCSP_stapling) does not help at all with EV certs**.
 
 <div class="notice-msg info">
-  OCSP stapling means the <i>server</i> checks with the CA if the certificate has been revoked and then adds ("staples") this information to the certificate, so the browser can skip the revocation status check.<br>
+  OCSP stapling allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser can simply skip the revocation status check.<br>
 </div>
 
 Let's dive into the world of DV/OV and EV certificates, revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all.
 
-Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Performance](#dv-cert-perf).
+But first: WebPageTest.
 
 ## Testing Certificate Revocation Checks in WebPageTest
+
+Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Performance](#dv-cert-perf).
+
 
 WebPageTest makes it easy to see how the loading of a webpage is impacted by a failing (third party) domain.
 Here, that failing domain is the CA's OCSP responder, so let's get this first.
@@ -95,7 +98,7 @@ With the TL;DR out of the way, let's take a closer look at Chrome and Firefox be
 
 ### No OCSP staple
 
-[T-mobile.nl](https://www-t-mobile.nl/) uses a non-OCSP stapled DV cert, so browsers can't know just from the certificate whether or not the cert has been revoked.
+[T-mobile.nl](https://www-t-mobile.nl/) uses a non-OCSP stapled DV cert, so browsers can't know _just_ from the certificate whether or not the cert has been revoked.
 
 #### Chrome 
 
@@ -122,8 +125,7 @@ To confirm Chrome's behaviour, I ran tests that blackhole the OCSP responder dom
 
 Again, no request to `ocsp2.globalsign.com`.
 
-<!-- It's clear Chrome never checks the revocation status of a DV certificate, even if the cert does not contain an OCSP staple.
-Chrome simply assumes the certificate has not been revoked, which is an excellent choice from a performance perspective, but not so great from a security point of view. -->
+Apparently, when Chrome is presented a DV certificate without an OCSP staple, it simply assumes the certificate has not been revoked and does not check online with the CA. This is great for performance but not so great from a security point of view.
 
 ### Firefox
 
