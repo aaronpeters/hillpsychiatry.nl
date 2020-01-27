@@ -4,15 +4,17 @@ title: EV Certificates Make The Web Slow and Unreliable
 title1: EV Certificates are Performance Killers
 title2: The Performance Impact of EV Certificates
 title3: HTTPS Certificates, OCSP Stapling
-description: TODO
-summary: TODO
+description: Learn about the problems with the JS code snippet for Firebase Performance Monitoring for Web and grab your copy of the optimized version.
+summary: Find out why the default code snippet for Firebase Performance Monitoring for Web is suboptimal for performance, and grab your copy of the optimized snippet.
 twitterImage: "/static/img/s/"
-date: 2019-01-01
+date: 2019-01-26
 duration: 20
 xtags:
   - webperf
   - tls
   - certificates
+  - ocsp
+  - research
 keyword: EV Certificate Performance
 ---
 
@@ -33,17 +35,25 @@ That is what Chrome users see when visiting a website that uses an OCSP stapled 
 
 Let's dive deep into the world of DV/OV and EV certificates, online revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all. 
 
-I present the test [results and insight for DV certificates](#dv-cert-perf) first because that provides good context for the data showing [EV certificates are very bad for web performance](#ev-cert-perf).
+Table of contents:
 
-Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the online revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Web Performance](#dv-cert-perf).
+- [Testing Online Revocation Status Checks in WebPageTest](#wpt)
+- [DV Certificates and Web Performance](#dv-cert-perf)
+- [EV Certificates and Web Performance](#ev-cert-perf)
+- [Key Take-Aways](#take-aways)
+- [Closing Remarks](#closing)
 
-In a hurry and just want to grab the key take-aways? [Click here](#take-aways).
+I present the test [results and insight for DV certificates](#dv-cert-perf) first because that provides good context for the data showing [EV certificates are very bad for web performance](#ev-cert-perf). 
+
+In a hurry? Skip all and fast forward to [key take-aways](#take-aways).
 
 <!-- <div class="notice-msg info">
   Throughout this article, when I use the word 'certificate' I refer to the server/leaf certificate. This certificate has the website owners' domain(s) listed in the certificate.
 </div> -->
 
-## Testing Revocation Status Checks in WebPageTest
+## <a name="wpt"></a>Testing Online Revocation Status Checks in WebPageTest
+
+Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the online revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Web Performance](#dv-cert-perf).
 
 WebPageTest makes it easy to see how the loading of a webpage is impacted by a failing (third party) domain.
 Here, that failing domain is the CA's OCSP responder, so let's get this first.
@@ -454,7 +464,7 @@ For optimal web performance, serve an OCSP stapled DV certificate.
 When your Certificate Authority's server is very slow or down, your website visitors suffer, your brand is damaged and you missed out on revenue/sign ups/etc. -->
 
 
-## Closing Remarkts
+## <a name="closing"></a>Closing Remarkts
 
 - Other browsers 
 - TLS session resumption
@@ -465,79 +475,11 @@ When your Certificate Authority's server is very slow or down, your website visi
 - Thank you Ryan Sleevi!
 - Read that other article by the BBC guy
 
+You can also experience it self on local machine by adding an entry to the hosts file: <blackhole IP>	ocsp2.globalsign.com
+
+- https://blog.cloudflare.com/high-reliability-ocsp-stapling/
 
 ---
-
-
-## Why EV Certificates are Bad for Performance
-
-
-0. Check local cache: cert is present, not expired?
-1. Check OCSP staple: is it present and not expired?
-2. Check CRL: 
-3. Check with OCSP responder: wait a bit ... if response arrives, use it, if not just continue (= soft-fail strategy) *and store in local cache*
-
-If the browser has a cert in cache and not expired
-1. Check OCSP staple: if present: if not expired, continue; if expired, check with OCSP responder
-2. Check CRL
-
-
-
-- Check in CRL: Browsers have a built-in, frequently updated list of revoked certs (OneCRL by Firefox and CRLSets by Chrome), but only high-impact certificates are included in this list, so not your cert
-- Certs can contain an OCSP staple (= digitally signed stamp the web server received from the CA and put in the cert) and if present and not expired, browsers don't do revocation status check !
-- Browsers cache certificates and if the cert has an OCSP staple, the revocation status check does not occur again until the staple has expired
-- Browsers have a soft-fail strategy for revocation status checks: "If the revocation information is available, they rely on it, and otherwise they assume the certificate is not revoked and display the page without any errors" .. not great for security and the check does delay page load
-
-
-Chrome behaviour.
-Firefox behaviour.
-
-
-
-### EV Certificates Cause Slowness
-
-[https://www.kpn.com/](https://www.kpn.com/)
-EV cert, no OCSP response stapled in the certificate.
-
-In short: the longer the EV cert check takes, the longer your site visitors stare at a blank screen.
-
-#### Chrome
-
-[First view](https://www.webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/#waterfall_view_step1)
-[First view - Edge](https://www.webpagetest.org/result/200127_H9_cf8fc6a2d7553d19aba6a09c8609396b/)
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-chrome-waterfall-small.png" width="550" height="199" alt="EV Certificate Chrome OK - Waterfall Chart">
-
-Chrome first checks the revocation status of the intermediate certificate. 
-This is the request to `http://ocsp2.globalsig...BgkrBgEFBQcwAQE%3D`
-Next, Chrome performs a check with the same purpose for the EV cert: see the request to `http://ocsp2.globalsig...0wCwYJKwYBBQUHMAEB`
-
-These two requests add a whopping ~ 300 ms to the time it takes to secure the connection for `www.kpn.com` !
-
-What happens when Chrome visits the same site again, after a short period of time?
-Does the browser re-use the revocation check responses from cache? 
-No.
-
-[Repeat View](https://www.webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/cached/#waterfall_view_step1)
-[Repeat view - Edge](https://www.webpagetest.org/result/200127_H9_cf8fc6a2d7553d19aba6a09c8609396b/)
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-chrome-repeatview-waterfall-small.png" width="550" height="199" alt="EV Certificate Chrome OK Repeat View - Waterfall Chart">
-
-
-
-#### Firefox
-
-[First View)](https://www.webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/#waterfall_view_step1)
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-firefox-waterfall-small.png" width="550" height="199" alt="EV Certificate Firefox OK - Waterfall Chart">
-
-[Repeat View](https://www.webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-firefox-repeatview-waterfall-small.png" width="550" height="199" alt="EV Certificate Firefox OK Repeat View - Waterfall Chart">
-
-- see the requests for http://ocsp2.globalsign.com/gsextendvalsha2g3r3
-
-#### Other browsers
 
 - [WPT iPhone 8+](https://www.webpagetest.org/result/191206_KR_7de3efd6f4d72d27b0a910ed323e2f98/)
 - WPT don't show the cert validation requests ... because SLEEVI SAYS: ... 
@@ -545,103 +487,11 @@ No.
 - [WPT - IE11](https://www.webpagetest.org/result/191206_KW_2f83d93760db081d6bf140259da65c70/)
 - WPT don't show the cert validation requests: THIS IS A WPT THING?
 
----
-
-**Chrome** 
-
-Let's first see what happens in Chrome when the browser loads `https://www.kpn.com/` :
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-chrome-waterfall-small.png" width="550" height="97" alt="EV Certificate Chrome - Waterfall Chart">
-
-... bla bla ... actually two requests to the CA ...
-[WPT](https://www.webpagetest.org/result/191206_M1_80fc6dc849d68e3b112bfd043cfb7d0b/)
-
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-fail-chrome-waterfall-small.png" width="550" height="97" alt="EV Certificate Fail Chrome - Waterfall Chart">
-
-The waterfall chart shows Chrome did the DNS lookup and TCP connect for `www.kpn.com` and then it's 'nothing' until ~ 30 seconds later.
-Surely, like we saw before in the normal test, Chrome here also initiated the EV certificate check and after patiently waiting for ~ 30 seconds, the browser aborted the page load.
-
-
-and so it did the DNS lookup for `ocsp2.globalsign.com`, initiated the TCP connect and then patiently waited for the server to respond. Chrome is _very_ patient and waits 30 seconds.
-
-I have no idea why WPT shows the `http://www.gstatic.com/generate_204` and neither does the creator of WebPageTest, [Pat Meenan](https://twitter.com/patmeenan) ;-)
-
-[WPT test results page](https://www.webpagetest.org/result/191206_3P_04903e028f2a522232ee4fdb1fbcd0f6/2/details/#waterfall_view_step1).
-[Chrome Canary v80 is same](https://www.webpagetest.org/result/191209_9Z_833ebd3d6db53af3502dd8582607d859/).
-
-But wait.
-This is actually surprising behaviour by Chrome, because [Chrome does not use OCSP at all since 2012](https://www.computerworld.com/article/2501274/google-chrome-will-no-longer-check-for-revoked-ssl-certificates-online.html).
-
-Chrome uses its own [CRLsets](https://dev.chromium.org/Home/chromium-security/crlsets), which is a list of revoked intermediate certs and the browser will 'frequently' pull in a fresh list.
-
-"Online (i.e. OCSP and CRL) checks are not, generally, performed by Chrome. They can be enabled by policy and, in some cases, the underlying system certificate library always performs these checks no matter what Chromium does."
-
-Can it be that Chrome _will_ do OCSP for EV certificates (Pat: yes) but not for 'regular certificates'? And do that in a hard-fail way?
-Yoav Weiss:
-- What is Chrome's current behaviour as to cert revocation status checking? Is this still correct: https://dev.chromium.org/Home/chromium-security/crlsets ? Yes, but ...
-- How often is the CRLsets updated by the browser? Or: what is max time the revoked cert is not considered revoked?
-- Are EV certs in CRLsets? No
-- Does Chrome do OCSP for EV cert? Yes
-
-So, does Chrome on WPT have a specific policy enabled? Does Chrome on WPT not use CRLSets?
-I asked Pat about this: ...
-
-[Regular cert](#)
-[Regular cert T-mobile.nl - OCSP blocked](#)
-[Regular cert T-mobile.nl - both blocked](#)
-
-**Firefox**
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-fail-firefox-waterfall-small.png" width="550" height="199" alt="EV Certificate Fail Firefox - Waterfall Chart">
-
-Firefox is less patient than Chrome: after waiting for ~ 12 seconds for the CA's server to respond, Firefox moved on and loaded the page. 
-This means Firefox is more forgiving than Chrome and does _not_ abort a HTTPS request if the EV certificate check times out.
-
-[WPT test results page](https://www.webpagetest.org/result/191206_1E_bad633b761679334fb8a2a27c428e5ad/).
-
-[Regular cert](https://www.webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/)
-[Regular cert T-mobile.nl - OCSP blocked](https://www.webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/)
-[Regular cert T-mobile.nl - OCSP and Root blocked](https://www.webpagetest.org/result/191209_DW_f16726be9370d0843dac5411381d6ef3/)
-
-**Other Browsers**
-
 [Safari on iPad 2017 iOS 12 - not sure setDnsName works ](https://www.webpagetest.org/result/191209_A7_735cbe9c631cdcaacffa63f4802b7003/1/details/#waterfall_view_step1)
 [Edge Dev (Chromium) - not sure setDnsName works ](https://www.webpagetest.org/result/191209_GM_0a2fa5f68112b88777540dd7cd33bd9e/)
 [IE11 - not sure setDnsName works ](https://www.webpagetest.org/result/191209_7X_5c8afa72bc43bb36b4a38394292a9325/)
 
 
-### OCSP Stapling 
-
-If OCSP Stapling is in play and the website has recently been visited in the browser (~ in the past 7 days), the browser does not need to check revocation status with the CA because the cert is sent with a staple and that staple has been cached by system (at OS level???) NOT SURE ABOUT THIS !
-
-KPN's EV certificate does not have the staple: KPN's server does not do OCSP Stapling.
-https://www.ssllabs.com/ssltest/analyze.html?d=www.kpn.com&hideResults=on
-
-
-So, in conclusion:
-- from the first normal test in Chrome you can see it's all about `ocsp2.globalsign.com`
-- if `ocsp2.globalsign.com` is unreachable, your site is completely broken 
-- easy to see that in action with WPT, using the SPOF tab
-- can also experience it self on local machine by adding an entry to the hosts file: <blackhole IP>	ocsp2.globalsign.com
-
-
-# TL;DR
-
-Behaviour for revocation status (when does it happen, is it blocking, soft/hard fail ...) depends on browser/OS.
-
-For EV certs, not for DV certs :
-
-- Browsers check the revocation status of the cert _every time a new connection is established_
-- Cert has a valid, non-expired OCSP staple? Browser will still check with the CA's OCSP responder
-- The request to the CA blocks page load
-- Chrome is very patient and has hard-fail strategy for EV (not for DV)
-- Firefox waits ~ 10 seconds and then continues, so soft-fail
-
-
-## Reading
-
-- https://blog.cloudflare.com/high-reliability-ocsp-stapling/
 
 
 <!-- Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
