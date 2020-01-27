@@ -7,6 +7,7 @@ title3: HTTPS Certificates, OCSP Stapling
 description: TODO
 summary: TODO
 date: 2019-01-01
+duration: 20
 xtags:
   - webperf
   - tls
@@ -16,17 +17,17 @@ keyword: EV Certificate Performance
 
 Extended Validation (EV) certificates are a bad choice for web performance. 
 They have a much bigger negative impact on website speed and reliability than Domain Validation (DV) and Organization Validation (OV) certificates.
-The EV certificate significantly increases the time it takes to secure the connection between browser and server therefore extends how long users stare at a blank screen, waiting for the page to start rendering.
+The EV certificate significantly increases the time it takes to secure the connection between browser and server and therefore extends how long users stare at a blank screen, waiting for the page to start rendering.
 Perhaps more importantly, using an EV certificate means the reliability of your website depends on your Certificate Authority's infrastructure: if the CA's server is down, your site is down.
 
 Want to see just one image to know EV certificates are bad for performance?
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/ev-cert-oscp-stapled-chrome-fail.jpg" width="423" height="600" alt="EV Certificate with OCSP Staple - Recovation Check Fail in Chrome">
 
-That is what Chrome users see when visiting a website that uses an OCSP stapled EV certificate and the Certificate Authority's server (the OCSP responder) is down. That's right, **OCSP stapling does not help at all with EV certs**.
+That is what Chrome users see when visiting a website that uses an OCSP stapled EV certificate and the Certificate Authority's server (the OCSP responder) is down. That's right, **OCSP stapling is pretty much useless with EV certificates**.
 
 <div class="notice-msg info">
-  <a href="https://en.wikipedia.org/wiki/OCSP_stapling">OCSP stapling</a> allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser can skip the revocation status check.
+  <a href="https://en.wikipedia.org/wiki/OCSP_stapling">OCSP stapling</a> allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser may skip the revocation status check.
 </div>
 
 Let's dive into the world of DV/OV and EV certificates, online revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all. 
@@ -238,19 +239,20 @@ _If someone at Akamai or KLM is reading this: do take a close look at the full W
 
 ## <a name="ev-cert-perf"></a>EV Certificates and Web Performance
 
-Read all of the above? Then you have a good view on how browsers behave when being presented with a DV certificate, but what about EV certificates? 
+Read all of the above? OK, you now have a good view on how browsers behave when being presented with a DV certificate, but what about EV certificates? 
 
-Do Chrome and Firefox behave differently when processing EV vs DV/OV certs?
-For example, will Chrome do the revocation status check?
-How long will the browser wait for the CA to respond and if no response arrives in time, what happens?
+Do Chrome and Firefox behave differently when processing EV vs DV/OV certificates?
+For example, will Chrome check revocation status online?
+How long will these browsers wait for the CA to respond and if no response arrives in time, what happens?
 
 Let's find out.
 
 TL;DR
 
-- Chrome and Firefox _always_ check revocation status with the CA regardless of the certificate being OCSP stapled or not
-- Chrome patiently waits for the CA's response until the request times out (30+ seconds), while Firefox stops waiting after 10 seconds
-- Firefox has the same soft-fail policy as for DV/OV certificates, while Chrome is less forgiving and applies a hard-fail policy: the user is presented an error page
+- Chrome _always_ checks revocation status with the CA regardless of the EV certificate being OCSP stapled or not and regardless of Chrome having the certificate and/or a "not revoked" OCSP response in its local cache
+- Firefox also performs the online status check for EV certificates even if it has the staple, _with one exception_: Firefox will re-use a "not revoked" OCSP response from its local cache, but only if the certificate contains a "not revoked" OCSP response (weird!)
+- Chrome patiently waits for the CA's response until the request times out (30+ seconds) but unless it receives a "not revoked" response, Chrome will hard-fail and present the user an error page
+- Firefox is less patient but more forgiving: the browser only aborts securing the connection and loading the page if it received an explicit "revoked" response from the CA within 10 seconds
 
 
 ### EV Certificate - No OCSP Staple
