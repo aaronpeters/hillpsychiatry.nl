@@ -359,7 +359,9 @@ button:active {
 
 
 /* Helpers */
-
+.graymedium {
+	color: var(--graymedium);
+}
 
 /* Customers */
 .trusted-by {
