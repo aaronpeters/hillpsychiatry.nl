@@ -18,7 +18,15 @@
   <link rel="icon" href="/favicon.ico">
 
   {% include "components/seo.njk" %}
-  
+
+  {% if twitterImage %}
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@aaronpeters" />
+  <meta name="twitter:title" content="{{ renderData.title or title or metadata.title }}" />
+  <meta name="twitter:description" content="{{ renderData.description or description }}" />
+  <meta name="twitter:image" content="{{ metadata.url + twitterImage + page.fileSlug + ".png" }}" />
+  {% endif %}
+
   {# <script>{{ js | jsmin | safe }}</script> #}
 
   {% set css %}
