@@ -149,7 +149,7 @@ X-Cache-Hits: 0, 4
 
 Amsterdam &lt;=&gt; Singapore is probably ~100 ms, so let's hope Fastly has a very high cache hit rate at the edge for OCSP responses.
 
-Now, what will happen in Firefox after re-opening the browser _without_ emptying the cache? 
+Now, what will happen in Firefox after re-opening the browser _without_ emptying the cache and then loading the same page? 
 
 <a href="https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/cached/#waterfall_view_step1" class="no-styling">
 	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-firefox-repeatview-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Firefox - Repeat View - Waterfall Chart">
@@ -175,12 +175,19 @@ Two things stand out in this Firefox waterfall chart:
 1. there is no request to `ocsp2.globalsign.com` 🤔
 2. the first request to `https://www-t-mobile.nl/` has a TLS handshake time of 2 seconds 😦
 
-HERE 
+I don't know why WebPageTest does not show the request to `ocsp2.globalsign.com`, but I'm 100% sure the request did go out because of the big increase in TLS handshake time for `https://www-t-mobile.nl/` and the awesome [Ryan Sleevi](https://twitter.com/sleevi_) confirming to me Firefox has a soft-fail-after-2-seconds policy for online revocation status checks for non-EV certificates.
 
-1 this is a WPT thing and 2 shows Firefox' soft-fail-after-2-seconds policy.
+Knowing did not receive anything from the CA's OCSP responder, will the browser behave the same when re-visiting the page after a short time?
 
-Repeat view: ???
+<a href="https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/1/details/cached/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-blocked-firefox-repeatview-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Responder blocked - Firefox - Repeat View - Waterfall Chart">
+</a>
 
+<small>Click the image to navigate to the full WebPageTest results</small>
+
+How about that? TLS handshake time is low and no request to `ocsp2.globalsign.com`.
+
+Ryan Sleevi explained to me Firefox will store the certificate in local cache even if the revocation status check was aborted after 2 seconds _and_ Firefox will then use that cached certificate until expired _without_ checking again with the CA.
 
 ### DV Certificate With OCSP Staple
 
@@ -324,6 +331,8 @@ When your Certificate Authority's server is very slow or down, your website visi
 - CRL is just for intermediate certs
 - Certificate size and initcwnd
 
+- Thank you Ryan Sleevi!
+- Read that other article by the BBC guy
 
 
 ---
@@ -513,24 +522,9 @@ For EV certs, not for DV certs :
 - Firefox waits ~ 10 seconds and then continues, so soft-fail
 
 
-
-## Take-aways
-
-**EV certificates hurt web performance**, provide no added value and are more expensive than regular certificates. Don't use EV certificates if you care about how reliable and fast your website is!
-
-Are you a 3PC and using an EV cert? 
-Please don't, especially if you serving content that is very important to the business (e.g. tag manager).
-
-
 ## Reading
 
 - https://blog.cloudflare.com/high-reliability-ocsp-stapling/
-
-
-**TL;DR**
-
-- Don't use an EV certificate if you care about the speed and reliability of your site
-- OCSP stapling to the rescue? No, that does not help at all with EV certs
 
 
 <!-- Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
