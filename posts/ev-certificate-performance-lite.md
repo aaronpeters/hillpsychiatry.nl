@@ -22,20 +22,19 @@ Want to see just one image to know EV certificates are bad for performance?
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/ev-cert-oscp-stapled-chrome-fail.jpg" width="423" height="600" alt="EV Certificate with OCSP Staple - Recovation Check Fail in Chrome">
 
-That is what Chrome users see when visiting a website that uses an OCSP stapled EV certificate and the Certificate Authority's server (the OCSP responder) is down. That's right, **[OCSP stapling](https://en.wikipedia.org/wiki/OCSP_stapling) does not help at all with EV certs**.
+That is what Chrome users see when visiting a website that uses an OCSP stapled EV certificate and the Certificate Authority's server (the OCSP responder) is down. That's right, **OCSP stapling does not help at all with EV certs**.
 
 <div class="notice-msg info">
-  OCSP stapling allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser can skip the revocation status check.<br>
+  <a href="https://en.wikipedia.org/wiki/OCSP_stapling">OCSP stapling</a> allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser can skip the revocation status check.<br>
 </div>
 
-Let's dive into the world of DV/OV and EV certificates, online revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all.
+Let's dive into the world of DV/OV and EV certificates, online revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all. 
 
-But first: WebPageTest.
-
-## Testing Revocation Status Checks in WebPageTest
+I present the test [results and insight for DV certificates](#dv-cert-perf) first because that provides good context for the data showing [EV certificates are very bad for web performance](#ev-cert-perf).
 
 Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Web Performance](#dv-cert-perf).
 
+## Testing Revocation Status Checks in WebPageTest
 
 WebPageTest makes it easy to see how the loading of a webpage is impacted by a failing (third party) domain.
 Here, that failing domain is the CA's OCSP responder, so let's get this first.
@@ -189,46 +188,46 @@ How about that? TLS handshake time is low and no request to `ocsp2.globalsign.co
 
 Ryan Sleevi explained to me Firefox will store the certificate in local cache even if the revocation status check was aborted after 2 seconds _and_ Firefox will then use that cached certificate until expired _without_ checking again with the CA.
 
+
 ### DV Certificate With OCSP Staple
 
-We already know that Chrome doesn't bother checking the revocation status online for DV certificates that do _not_ have an OCSP staple. Surely the browser does also _not_ do that check for DV certs _with_ the staple, right? That would make no sense at all.
+We already know that Chrome doesn't bother checking the revocation status online for DV certificates that do _not_ have an OCSP staple. Surely the browser does also _not_ do that check for DV certs _with_ the staple, right? That would make no sense at all, but always good to verify.
 
-And Firefox ... does stapling the certificate effectively get rid of the slowness introduced by the blocking revocation status check?
+And Firefox ... does stapling the certificate effectively get rid of the slowness introduced by that online revocation status check?
 
-KLM
+I tested with the KLM website - `https://www.klm.com/` - and got all the answers.
 
 #### Chrome 
 
 As expected, Chrome doesn't bother to check the revocation status of the OCSP-stapled DV certificate. Below is the waterfall chart for a test run with the OCSP responder blackholed:
 
 <a href="https://webpagetest.org/result/191219_HN_313cba153200351001cc416b22b70549/1/details/#waterfall_view_step1" class="no-styling">
-	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-with-ocsp-staple-blocked-chrome-waterfall-small.png" width="530" height="199" alt="DV Certificate Wth OCSP Staple - Responder Blocked - Chrome - Waterfall Chart">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-with-ocsp-staple-blocked-chrome-waterfall-small.png" width="530" height="199" alt="DV Certificate With OCSP Staple - Responder Blocked - Chrome - Waterfall Chart">
 </a>
 
 <small>Click the image to navigate to the full WebPageTest results</small>
 
 #### Firefox
 
+I'm only showing the waterfall charts for the tests with `ocsp.comodoca.com` blackholed because that's enough to know **Firefox does not check revocation status online for OCSP stapled DV certificates** 😃 !
 
-[normal](https://webpagetest.org/result/191219_BQ_103ebb11682b469806f8c19d171ad6b6/1/details/#waterfall_view_step1)
-[normal - repeat view](https://webpagetest.org/result/191219_BQ_103ebb11682b469806f8c19d171ad6b6/1/details/cached/#waterfall_view_step1)
-[OCSP blocked](https://webpagetest.org/result/191219_QN_a67245fd3081ae7c18624325c1d1be43/1/details/#waterfall_view_step1)
-[OCSP blocked - repeat view](https://webpagetest.org/result/191219_QN_a67245fd3081ae7c18624325c1d1be43/1/details/cached/#waterfall_view_step1)
+<a href="https://webpagetest.org/result/191219_QN_a67245fd3081ae7c18624325c1d1be43/1/details/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-with-ocsp-staple-blocked-firefox-waterfall-small.png" width="530" height="199" alt="DV Certificate With OCSP Staple - Responder Blocked - Firefox - Waterfall Chart">
+</a>
 
-Expected: no OCSP check requests to see
-Observed: same!
+<small>Click the image to navigate to the full WebPageTest results</small>
 
-_Side note: in Firefox, browser and server (Akamai) at first do HTTP/1.1 and later on, at request ~ 70, they switch to H/2. Huh?
-And yes, KLM needs some webperf help, especially if they want to service Firefox users better (caching not working, wtf)_
+Close browser, open browser and load `https://www.klm.com/` again:
 
-Firefox checks revocation status of DV certificates and this slows down the loading of the page.
-OCSP stapling is an effective solution to get rid of that extra time.
+<a href="https://webpagetest.org/result/191219_QN_a67245fd3081ae7c18624325c1d1be43/1/details/cached/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-with-ocsp-staple-blocked-firefox-repeatview-waterfall-small.png" width="530" height="199" alt="DV Certificate With OCSP Staple - Responder Blocked - Firefox - Repeat View - Waterfall Chart">
+</a>
 
+<small>Click the image to navigate to the full WebPageTest results</small>
 
-Something interesting in repeat view? If not, leave it out.
-OCSP check happens on first view (not on repeat view?) and if CA is down FF will soft-fail after 2 seconds.
+Again no OCSP request goes out for KLM's cert and this is expected.
 
----
+_If someone at Akamai or KLM is reading this: do take a close look at the full WebPageTest results because weird things are happening. Browser and server first do HTTP/1.1 and later switch to H/2 (in the first run, first view, the switch happens after request 81). Also, why does Firefox load all those images from network in the repeat view instead of from cache?_
 
 ## <a name="ev-cert-perf"></a>EV Certificates and Web Performance
 
@@ -247,7 +246,7 @@ Summary
 ### EV Certificate - No OCSP Staple
 
 
-#### Chrome/Edge
+#### Chrome
 
 [First view - Edge](https://webpagetest.org/result/200127_H9_cf8fc6a2d7553d19aba6a09c8609396b/)
 
@@ -415,20 +414,6 @@ No.
 - WPT don't show the cert validation requests: THIS IS A WPT THING?
 
 ---
-
-### EV Certificates are a Reliability Risk
-
-What happens when the CA's server is down?
-
-WebPageTest makes it very easy to test this.
-Simply enter the hostname you want to fail in the SPOF tab:
-
-<img loading="lazy" class="responsive-ugh" src="/static/img/webpagetest-spof-example.png" width="540" height="241" alt="WebPageTest SPOF Example">
-
-WebPageTest will run a normal test and a test with those hostname(s) blackholed with a max run time of 30 seconds, to then show a video comparison.
-Of course, you can also see the waterfall charts etc for the each test.
-
-I'm not showing the comparison videos here, because those are boring and the waterfall charts of the SPOF tests alone make it very clear how much of performance killer EV certificates are in case the CA's server is down:
 
 **Chrome** 
 
