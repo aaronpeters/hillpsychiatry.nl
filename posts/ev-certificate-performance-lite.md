@@ -14,11 +14,11 @@ xtags:
 keyword: EV Certificate Performance
 ---
 
-Extended Validation (EV) certificates make websites slower and less robust, much more so than Domain Validation (DV) and Organization Validation (OV) certificates.
-The EV certificate significantly increases TLS handshake time and therefore extends how long users stare at a blank screen, waiting for the page to start rendering.
-Perhaps more importantly, using an EV cert means the reliability of your website depends on your Certificate Authority's infrastructure: if the CA's server is down, your site is down.
+Extended Validation (EV) certificates are a bad choice for web performance. They have a much bigger negative impact on website speed and reliability than Domain Validation (DV) and Organization Validation (OV) certificates.
+The EV certificate significantly increases the time it takes to secure the connection between browser and server therefore extends how long users stare at a blank screen, waiting for the page to start rendering.
+Perhaps more importantly, using an EV certificate means the reliability of your website depends on your Certificate Authority's infrastructure: if the CA's server is down, your site is down.
 
-Want to see just one image to know EV certs are bad for performance?
+Want to see just one image to know EV certificates are bad for performance?
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/ev-cert-oscp-stapled-chrome-fail.jpg" width="423" height="600" alt="EV Certificate with OCSP Staple - Recovation Check Fail in Chrome">
 
@@ -32,7 +32,7 @@ Let's dive into the world of DV/OV and EV certificates, online revocation status
 
 But first: WebPageTest.
 
-## Testing Certificate Revocation Checks in WebPageTest
+## Testing Revocation Status Checks in WebPageTest
 
 Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Web Performance](#dv-cert-perf).
 
@@ -57,12 +57,13 @@ Before you start the test, open the SPOF tab and enter the domain of the OCSP re
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/webpagetest-spof-example.png" width="476" height="240" alt="WebPageTest SPOF Example">
 
-WebPageTest will now run a normal test _and_ a test with the domain(s) blackholed, to then show a video comparison.
-You can also access the waterfall chart and all details for each test.
+WebPageTest will now run a normal test _and_ a test with the domain(s) blackholed, to then show a video comparison. You can also access the waterfall chart and all details for each test.
+
+In WebPageTest, blackholing means the browser tries to connect to an IP address and never gets a response. Browsers are very patient at this stage and will wait ~60 seconds for response from the server.
 
 ### Does the Certificate Have an OCSP Staple?
 
-Before interpreting the WebPageTest results, you will want to know if the website's certificate contains a stapled OCSP response. You can't see this in the browser, but it's trivial with OpenSSL:
+Before interpreting the WebPageTest results, you will want to know if the website's certificate contains a stapled OCSP response. You can't see this in the browser, but it's trivial to spot with OpenSSL:
 
 `echo QUIT | openssl s_client -servername www.cloudflare.com -connect www.cloudflare.com:443 -status 2> /dev/null | grep -A 17 'OCSP response:' | grep -B 17 'Next Update'`
 
@@ -75,22 +76,7 @@ The [2019 Web Almanac](https://almanac.httparchive.org/en/2019/) provides a list
 All of these CAs are issuers for DV certificates, meaning most websites use a [Domain Validation](https://en.wikipedia.org/wiki/Domain-validated_certificate) certificate.
 
 Based on my data, **using an OCSP stapled DV certificate is a great choice for web performance** :
-<!-- : no extra TLS handshake time and no risk of your site not loading in case the CA's server is down. -->
-<!-- 
-Is a DV certificate a good choice from a web performance perspective?
-Yes, if the cert is OCSP stapled.
 
-My short and simple answer is "Yes, if the cert is OCSP stapled". -->
-
-<!-- Do DV certs slow down page loading?
-Does it matter if the cert is OCSP stapled?
-Any significant differences between browsers? -->
-
-<!-- Do Chrome and Firefox send a revocation status check request to the CA when receiving a DV certificate?
-Does that depend on the certificate being OCSP stapled or not?
-What happens in these browsers when the CA's server can't be reached or does not respond? -->
-
-<!-- The story about DV certificates and revocation status checks in browsers boils down to this: -->
 - Chrome _never_ checks the revocation status with the CA for _any_ DV certificate
 - Firefox _always_ checks a DV certificate's revocation status with the CA, unless the certificate is OCSP stapled (then it _never_ checks with the CA)
 
@@ -104,9 +90,9 @@ With the TL;DR out of the way, let's take a closer look at Chrome and Firefox be
 
 Below are two (truncated) WebPageTest waterfall charts. 
 
-If Chrome checks revocation status online, the very first request in the WebPageTest waterfall chart will be for `ocsp2.globalsign.com`.
+If Chrome checks the revocation status of T-mobile's certificate online, the very first request in the WebPageTest waterfall chart will be for `ocsp2.globalsign.com`.
 
-Let's first look at a normal test run:
+Let's first look at a normal test run (load the URL in new browser instance with empty cache):
 
 <a href="https://webpagetest.org/result/191219_HW_db9ae2f9ad244e74a5aa0dbd5d49f272/2/details/#waterfall_view_step1" class="no-styling">
 	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-chrome-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Chrome - Waterfall Chart">
@@ -115,7 +101,7 @@ Let's first look at a normal test run:
 <small>Click the image to navigate to the full WebPageTest results</small>
 
 Chrome did not send a request to the OCSP responder.
-To confirm Chrome's behaviour, I ran tests that blackhole the OCSP responder domain.
+To confirm Chrome's behaviour, I ran tests that blackhole `ocsp2.globalsign.com`.
 
 <a href="https://webpagetest.org/result/191219_AW_a5ff3267dfe0deb1a969204f74f976f1/2/details/#waterfall_view_step1" class="no-styling">
 	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-blocked-chrome-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Responder blocked - Chrome - Waterfall Chart">
@@ -125,7 +111,7 @@ To confirm Chrome's behaviour, I ran tests that blackhole the OCSP responder dom
 
 Again, no request to `ocsp2.globalsign.com`.
 
-Apparently, when Chrome is presented a DV certificate without an OCSP staple, it simply assumes the certificate has not been revoked and does not check online with the CA. This is great for performance but not so great from a security point of view.
+Apparently, when Chrome is presented a DV certificate without an OCSP staple, it simply assumes the certificate has not been revoked and does not check online with the CA. This is great for performance.
 
 #### Firefox
 
@@ -163,9 +149,7 @@ X-Cache-Hits: 0, 4
 
 Amsterdam &lt;=&gt; Singapore is probably ~100 ms, so let's hope Fastly has a very high cache hit rate at the edge for OCSP responses.
 
-HERE
-
-Repeat view:
+Now, what will happen in Firefox after re-opening the browser _without_ emptying the cache? 
 
 <a href="https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/cached/#waterfall_view_step1" class="no-styling">
 	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-firefox-repeatview-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Firefox - Repeat View - Waterfall Chart">
@@ -173,11 +157,12 @@ Repeat view:
 
 <small>Click the image to navigate to the full WebPageTest results</small>
 
-Seems the browser re-uses the cached OCSP response. Cool.
+Hooray! The request to `ocsp2.globalsign.com` did not go out.
+Apparently Firefox cached the OCSP response for T-mobile's certificate and used that.
 
-But, Firefox sends the request for `http://ocsp.pki.goog/gts1o1` again while on the first view run that was served with `Cache-Control: public, max-age=86400`. Same for `http://status.geotrust.com/` which was first served with `Cache-Control: max-age=128876`. I can't explain why Firefox does not re-use these OCSP responses from cache.
+To my surprise, Firefox again sends OCSP requests for `http://ocsp.pki.goog/gts1o1` and  `http://status.geotrust.com/`. This is odd because just earlier Firefox received OCSP responses with explicit 'do cache' headers: `Cache-Control: public, max-age=86400` and `Cache-Control: max-age=128876` respectively. I don't have an explanation for this, so let's move on.
 
-Now, what happens if Fastly does not respond at all?
+The next question to answer is: what happens if GlobalSign's OCSP responder does not respond at all?
 
 <a href="https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/1/details/#waterfall_view_step1" class="no-styling">
 	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-blocked-firefox-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Responder blocked - Firefox - Waterfall Chart">
@@ -185,10 +170,12 @@ Now, what happens if Fastly does not respond at all?
 
 <small>Click the image to navigate to the full WebPageTest results</small>
 
-Two things to spot in this Firefox waterfall chart:
+Two things stand out in this Firefox waterfall chart:
 
 1. there is no request to `ocsp2.globalsign.com` 🤔
 2. the first request to `https://www-t-mobile.nl/` has a TLS handshake time of 2 seconds 😦
+
+HERE 
 
 1 this is a WPT thing and 2 shows Firefox' soft-fail-after-2-seconds policy.
 
