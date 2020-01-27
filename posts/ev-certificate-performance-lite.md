@@ -25,16 +25,16 @@ Want to see just one image to know EV certs are bad for performance?
 That is what Chrome users see when visiting a website that uses an OCSP stapled EV certificate and the Certificate Authority's server (the OCSP responder) is down. That's right, **[OCSP stapling](https://en.wikipedia.org/wiki/OCSP_stapling) does not help at all with EV certs**.
 
 <div class="notice-msg info">
-  OCSP stapling allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser can simply skip the revocation status check.<br>
+  OCSP stapling allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser can skip the revocation status check.<br>
 </div>
 
-Let's dive into the world of DV/OV and EV certificates, revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all.
+Let's dive into the world of DV/OV and EV certificates, online revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all.
 
 But first: WebPageTest.
 
 ## Testing Certificate Revocation Checks in WebPageTest
 
-Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Performance](#dv-cert-perf).
+Most of the data for this 'research' was collected using [WebPageTest](https://www.webpagetest.org/). WebPageTest in general is great for web performance analysis, but an especially good fit here because it exposes the revocation status checks (Firefox/Chome Dev Tools do not!) and you can easily simulate the failure of OCSP responders. Read the next section to learn what I did in WebPageTest, or skip to [DV Certificates and Web Performance](#dv-cert-perf).
 
 
 WebPageTest makes it easy to see how the loading of a webpage is impacted by a failing (third party) domain.
@@ -69,7 +69,7 @@ Before interpreting the WebPageTest results, you will want to know if the websit
 If the certificate is _not_ stapled, the command will show _no_ output.
 
 
-## <a name="dv-cert-perf"></a>DV Certificates and Performance
+## <a name="dv-cert-perf"></a>DV Certificates and Web Performance
 
 The [2019 Web Almanac](https://almanac.httparchive.org/en/2019/) provides a list of the [top ten Certificate Authorities](https://almanac.httparchive.org/en/2019/security#certificate-authorities). 
 All of these CAs are issuers for DV certificates, meaning most websites use a [Domain Validation](https://en.wikipedia.org/wiki/Domain-validated_certificate) certificate.
@@ -127,17 +127,63 @@ Again, no request to `ocsp2.globalsign.com`.
 
 Apparently, when Chrome is presented a DV certificate without an OCSP staple, it simply assumes the certificate has not been revoked and does not check online with the CA. This is great for performance but not so great from a security point of view.
 
-### Firefox
+#### Firefox
 
-Firefox checks revocation status of DV certificates and this slows down the loading of the page.
-OCSP stapling is an effective solution to get rid of that extra time.
+The same tests give very different results in Firefox.
 
-No OCSP staple in the DV cert:
-[T-mobile.nl](https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/#waterfall_view_step1)
+Result for the normal test:
 
-KLM's OCSP stapled certificate:
+<a href="https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-firefox-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Firefox - Waterfall Chart">
+</a>
 
----
+<small>Click the image to navigate to the full WebPageTest results</small>
+
+Aha! Firefox sends a request for `http://ocsp2.globalsign.com/gsorganizationvalsha2g2`.  This is the browser checking revocation status of the certificate with GlobalSign. 
+
+_FYI, WebPageTest renders this as the top request in the waterfall chart but it's actually the second request because - obviously - the browser first needs to receive the certificate from the `www.t-mobile.nl` server_.
+
+The fetch from `ocsp2.globalsign.com` took 106 ms incl. DNS lookup. 
+That's a good, low number but still: this request makes the T-mobile page load 0.1 second slower.
+
+The request to GlobalSign's OCSP responder is handled by Fastly CDN (could also have been Cloudflare, as GlobalSign uses multiple CDNs).
+
+Inspecting the Fastly response headers provides an interesting insight:
+
+``` html
+X-Served-By: cache-sin18045-SIN, cache-ams21035-AMS
+X-Cache: MISS, HIT
+X-Cache-Hits: 0, 4
+```
+
+[Fastly docs](https://docs.fastly.com/en/guides/understanding-cache-hit-and-miss-headers-with-shielded-services) help interpret these headers: 
+
+- the response was a cache hit served from an edge server in Amsterdam
+- if Amsterdam would not have the response in cache, that edge server would first fetch it from the Fastly datacenter in Singapore and then send to the browser
+
+Amsterdam &lt;=&gt; Singapore is probably ~100 ms, so let's hope Fastly has a very high cache hit rate at the edge for OCSP responses.
+
+Now, what happens if Fastly does not respond at all?
+
+<a href="https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/1/details/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-blocked-firefox-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Responder blocked - Firefox - Waterfall Chart">
+</a>
+
+<small>Click the image to navigate to the full WebPageTest results</small>
+
+Two things to spot in this Firefox waterfall chart:
+
+1. there is no request to `ocsp2.globalsign.com` 🤔
+2. the first request to `https://www-t-mobile.nl/` has a TLS handshake time of 2 seconds 😦
+
+1 this is a WPT thing and 2 shows Firefox' soft-fail-after-2-seconds policy.
+
+
+### DV Certificate with OCSP Staple
+
+We already know that Chrome doesn't bother checking the revocation status online for DV certificates that do _not_ have an OCSP staple. Surely the browser does also _not_ do that check for DV certs _with_ the staple, right? That would make no sense at all.
+
+And Firefox ... does stapling the certificate effectively get rid of the slowness introduced by the blocking revocation status check?
 
 #### Chrome 
 
@@ -193,7 +239,7 @@ Side note: in Firefox, browser and server (Akamai) at first do HTTP/1.1 and late
 And yes, KLM needs some webperf help, especially if they want to service Firefox users better (caching not working, wtf)
 
 
-## EV certs
+## <a name="ev-cert-perf"></a>EV Certificates and Web Performance
 
 Do Chrome and Firefox behave differently when processing EV vs DV/OV certs?
 For example, will Chrome do the revocation status check?
@@ -552,7 +598,4 @@ Does Chrome also hard-fail for DV and OV certificates when the revocation status
 Is OCSP stapling effective in improving performance 
 Does Firefox behave the same as Chrome?
 
-Let's dive into the world of certificates and OCSP stapling and find out how Chrome and Firefox behave when the CA's server responds to the revocation status check quickly, or not at all.  
-
-Let's dive into the world of DV/OV and EV certificates, revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds fast or not at all  
 -->
