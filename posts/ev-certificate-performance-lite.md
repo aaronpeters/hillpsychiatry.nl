@@ -96,7 +96,7 @@ What happens in these browsers when the CA's server can't be reached or does not
 
 With the TL;DR out of the way, let's take a closer look at Chrome and Firefox behaviour, starting with websites that serve a certificate that has _not_ been stapled.
 
-### No OCSP staple
+### DV Certificate - No OCSP Staple
 
 [T-mobile.nl](https://www-t-mobile.nl/) uses a non-OCSP stapled DV cert, so browsers can't know _just_ from the certificate whether or not the cert has been revoked.
 
@@ -163,6 +163,20 @@ X-Cache-Hits: 0, 4
 
 Amsterdam &lt;=&gt; Singapore is probably ~100 ms, so let's hope Fastly has a very high cache hit rate at the edge for OCSP responses.
 
+HERE
+
+Repeat view:
+
+<a href="https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/cached/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-firefox-repeatview-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Firefox - Repeat View - Waterfall Chart">
+</a>
+
+<small>Click the image to navigate to the full WebPageTest results</small>
+
+Seems the browser re-uses the cached OCSP response. Cool.
+
+But, Firefox sends the request for `http://ocsp.pki.goog/gts1o1` again while on the first view run that was served with `Cache-Control: public, max-age=86400`. Same for `http://status.geotrust.com/` which was first served with `Cache-Control: max-age=128876`. I can't explain why Firefox does not re-use these OCSP responses from cache.
+
 Now, what happens if Fastly does not respond at all?
 
 <a href="https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/1/details/#waterfall_view_step1" class="no-styling">
@@ -178,54 +192,29 @@ Two things to spot in this Firefox waterfall chart:
 
 1 this is a WPT thing and 2 shows Firefox' soft-fail-after-2-seconds policy.
 
+Repeat view: ???
 
-### DV Certificate with OCSP Staple
+
+### DV Certificate With OCSP Staple
 
 We already know that Chrome doesn't bother checking the revocation status online for DV certificates that do _not_ have an OCSP staple. Surely the browser does also _not_ do that check for DV certs _with_ the staple, right? That would make no sense at all.
 
 And Firefox ... does stapling the certificate effectively get rid of the slowness introduced by the blocking revocation status check?
 
+KLM
+
 #### Chrome 
 
-Chrome doesn't bother to check the revocation status of the DV certificate:
+As expected, Chrome doesn't bother to check the revocation status of the OCSP-stapled DV certificate. Below is the waterfall chart for a test run with the OCSP responder blackholed:
 
-[normal](https://webpagetest.org/result/191219_HW_db9ae2f9ad244e74a5aa0dbd5d49f272/)
-[OCSP blocked](https://webpagetest.org/result/191219_AW_a5ff3267dfe0deb1a969204f74f976f1/)
+<a href="https://webpagetest.org/result/191219_HN_313cba153200351001cc416b22b70549/1/details/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-with-ocsp-staple-blocked-chrome-waterfall-small.png" width="530" height="199" alt="DV Certificate Wth OCSP Staple - Responder Blocked - Chrome - Waterfall Chart">
+</a>
 
-#### Firefox
-
-Firefox checks revocation status of DV certificates and this slows down the loading of the page.
-OCSP stapling is an effective solution to get rid of that extra time.
-
-[normal](https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/#waterfall_view_step1)
-[normal - repeat view](https://webpagetest.org/result/191209_7J_1668a3bd5c0cb854968a58772b2d263c/1/details/cached/#waterfall_view_step1)
-[OCSP blocked](https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/1/details/#waterfall_view_step1)
-[OCSP blocked - repeat view](https://webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/1/details/cached/#waterfall_view_step1)
-
-Something interesting in repeat view? If not, leave it out.
-OCSP check happens on first view (not on repeat view?) and if CA is down FF will soft-fail after 2 seconds.
-
----
-
-### OCSP staple in the DV cert
-
-This is the best option from a performance perspective.
-All sites should use a DV cert and do OCSP stapling, but few do.
-Example: https://www.klm.com/
-
-#### Chrome
-
-setDnsName	ocsp.comodoca.com	blackhole.webpagetest.org
-setTimeout	240
-navigate	https://www.klm.com/
-
-[normal](https://webpagetest.org/result/191219_71_d23633b48674c26903fdd11d319905aa/1/details/#waterfall_view_step1)
-[OCSP blocked](https://webpagetest.org/result/191219_HN_313cba153200351001cc416b22b70549/)
-
-As expected, No OCSP check requests to see, and this is expected because Chrome doesn't check 
-
+<small>Click the image to navigate to the full WebPageTest results</small>
 
 #### Firefox
+
 
 [normal](https://webpagetest.org/result/191219_BQ_103ebb11682b469806f8c19d171ad6b6/1/details/#waterfall_view_step1)
 [normal - repeat view](https://webpagetest.org/result/191219_BQ_103ebb11682b469806f8c19d171ad6b6/1/details/cached/#waterfall_view_step1)
@@ -235,9 +224,17 @@ As expected, No OCSP check requests to see, and this is expected because Chrome 
 Expected: no OCSP check requests to see
 Observed: same!
 
-Side note: in Firefox, browser and server (Akamai) at first do HTTP/1.1 and later on, at request ~ 70, they switch to H/2. Huh?
-And yes, KLM needs some webperf help, especially if they want to service Firefox users better (caching not working, wtf)
+_Side note: in Firefox, browser and server (Akamai) at first do HTTP/1.1 and later on, at request ~ 70, they switch to H/2. Huh?
+And yes, KLM needs some webperf help, especially if they want to service Firefox users better (caching not working, wtf)_
 
+Firefox checks revocation status of DV certificates and this slows down the loading of the page.
+OCSP stapling is an effective solution to get rid of that extra time.
+
+
+Something interesting in repeat view? If not, leave it out.
+OCSP check happens on first view (not on repeat view?) and if CA is down FF will soft-fail after 2 seconds.
+
+---
 
 ## <a name="ev-cert-perf"></a>EV Certificates and Web Performance
 
@@ -250,24 +247,40 @@ Summary
 
 - Chrome and FF always check revocation status with the CA ... OCSP stapling does not prevent this
 - Chrome patiently waits for the CA's response for up to 30 sec, while Firefox stops waiting after 10 seconds
-- Firefox has the same soft-fail policy as for DV/OV certificates, while Chrome is less forgiving and applies a hard-fail policy and presents the user an error page
+- Firefox has the same soft-fail policy as for DV/OV certificates, while Chrome is less forgiving and applies a hard-fail policy: the user is presented an error page
 
 
-### KPN - OCSP staple = No
+### EV Certificate - No OCSP Staple
 
-The worst setup you can have.
 
-#### Chrome 
+#### Chrome/Edge
 
-[normal](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/#waterfall_view_step1)
-[normal - repeat view](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
-[OCSP blocked](#)
-[OCSP blocked - repeat view](#)
+[First view - Edge](https://webpagetest.org/result/200127_H9_cf8fc6a2d7553d19aba6a09c8609396b/)
 
-Normal, check the revocation status of the intermediate certificate, then status of domain cert ... these add 300 ms to start render time
-Normal, Repeat view ... Chrome does not re-use the revocation check responses from cache
+<a href="https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-no-ocsp-staple-chrome-waterfall-small.png" width="530" height="199" alt="EV Certificate Without OCSP Staple - Chrome - Waterfall Chart">
+</a>
 
-Firefox
+<small>Click the image to navigate to the full WebPageTest results</small>
+
+Chrome checks the revocation status of the server/leaf certificate _and_ of the intermediate certificate!
+
+These two requests add a whopping ~300 ms to the time it takes to secure the connection for `www.kpn.com` !
+
+What happens when Chrome visits the same site again, after a short period of time?
+Does the browser re-use the revocation check responses from cache? 
+Nope:
+
+<a href="https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/cached/#waterfall_view_step1" class="no-styling">
+	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-no-ocsp-staple-chrome-repeatview-waterfall-small.png" width="530" height="199" alt="EV Certificate Without OCSP Staple - Chrome - Repeat View - Waterfall Chart">
+</a>
+
+<small>Click the image to navigate to the full WebPageTest results</small>
+
+[Repeat view - Edge](https://webpagetest.org/result/200127_H9_cf8fc6a2d7553d19aba6a09c8609396b/)
+
+
+#### Firefox
 
 [normal](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/#waterfall_view_step1)
 [normal - repeat view](https://webpagetest.org/result/191206_SQ_f15420633de4930f52101d8a717de426/2/details/cached/#waterfall_view_step1)
@@ -278,15 +291,15 @@ Normal, First view ... same as Chrome
 Normal, Repeat view ... same as Chrome, no re-use from cache, but why 3x the requests? Browser knows from previous visit to establish multiple connections to `www.kpn.com` ?
 
 
-### Vodafone - OCSP staple = Yes
+### EV Certificate - With OCSP Staple
 
 `echo QUIT | openssl s_client -connect www.vodafone.nl:443 -status 2> /dev/null | grep -A 17 'OCSP response:' | grep -B 17 'Next Update'`
 
-OCSP stapling helps you not at all.
+OCSP stapling does nothing for performance for EV certs.
 
-setDnsName	ocsp.digicert.com	blackhole.webpagetest.org
+<!-- setDnsName	ocsp.digicert.com	blackhole.webpagetest.org
 setTimeout	240
-navigate	https://www.vodafone.nl/
+navigate	https://www.vodafone.nl/ -->
 
 #### Chrome
 
@@ -295,6 +308,8 @@ navigate	https://www.vodafone.nl/
 [OCSP blocked](https://webpagetest.org/result/191221_5M_eb417fb68f2c4aa428cc6eb06375f2f1/)
 [OCSP blocked - repeat view](#)
 
+[OCSP blocked - Edge](https://webpagetest.org/result/200127_DB_6d8683287b0a955324f69a3438580398/)
+[OCSP blocked - repeat view - Edge](https://webpagetest.org/result/200127_DB_6d8683287b0a955324f69a3438580398/)
 
 #### Firefox
 
@@ -304,57 +319,24 @@ navigate	https://www.vodafone.nl/
 [OCSP blocked - repeat view](https://webpagetest.org/result/191221_2F_f2b20f71fc722a1ca75003638775a4a4/2/details/cached/#waterfall_view_step1)
 
 
+## Key Take-Aways
 
----
+Do you want your website to be fast and reliable? Don't use an EV certificate. 
 
-| Browser | Cert type | OCSP staple | Revocation status check? | What if CA's server is down? |
-| --------| --------- | ----------- | --- | --- |
-| Chrome 	| DV | No | No | n/a |
-| Firefox	| DV | No | Yes | Soft-fail after 2 sec |
-| Chrome 	| DV | Yes | No | n/a |
-| Firefox	| DV | Yes | KLM? | KLM? |
-| Chrome 	| EV | No | Yes | Hard-fail after 30 sec. |
-| Firefox	| EV | No | Yes | Soft-fail after 10 sec. |
-| Chrome 	| EV | Yes | Yes | Hard-fail after 30 sec. |
-| Firefox	| EV | Yes | Yes | Soft-fail after 10 sec. |
+For optimal web performance, serve an OCSP stapled DV certificate.
+
+<!-- Chrome/Edge and Firefox check the revocation status of EV certificates _every time_ a new connection is established, and this is a blocking request to the Certificate Authority's server.
+When your Certificate Authority's server is very slow or down, your website visitors suffer, your brand is damaged and you missed out on revenue/sign ups/etc. -->
 
 
+## Closing Remarkts
 
-Revocation status check
+- Other browsers 
+- TLS session resumption
+- Browser cache for certificates ... we've seen this a bit with Repeat View but I have no details on how large this cache is and how browsers decide when to use a cert from cache or not
+- CRL is just for intermediate certs
+- Certificate size and initcwnd
 
-| Browser | Behaviour | DV | EV |
-| --------| --------- | --- | --- |
-| Chrome 	| Blocking | No | Yes |
-| Chrome 	| Hard fail | No | Yes |
-| Chrome 	| Time-out threshold | ? | 30 sec |
-| Chrome 	| Cached certs too | No | Yes |
-| Firefox | Blocking | No | Yes |
-| Firefox	| Hard fail | No | Yes |
-| Firefox	| Time-out threshold | 2 sec | 10 sec |
-| Firefox | Cached certs too | No | Yes |
-
-
-WPT tests for Chrome and Firefox:
-
-| Browser | View | DV | EV |
-| --------| --------- | --- | --- |
-| Chrome 	| First | No | Yes |
-
-
-
-
-
-- Chrome: does not check revocation status for DV certs
-
-
-- EV certificates are worse for performance than DV certs 
-- Chrome checks revoke status _every time_ for EV, not for DV
-
-- DV certs ... if (OCSP staple) { if not expired: load the page; else: do  } else {  }
-- browsers have a soft-fail strategy for checking recovation status of uncached certs 
-because browser send a blocking revocation status request to the CA's server _every time_ a new connection is established
-- Chrome and Firefox to check the revocation status of the certificate _every time_ a new connection is established, and this is a blocking request to the Certificate Authority's server
-- In case the Certificate Authority's server is very slow or down, your website visitors suffer, your brand is damaged and you missed out on revenue/sign ups/etc.
 
 
 ---
@@ -362,9 +344,6 @@ because browser send a blocking revocation status request to the CA's server _ev
 
 ## Why EV Certificates are Bad for Performance
 
-On the topic of revocation status check ...
-
-Browser gets a new cert ... is it revoked?
 
 0. Check local cache: cert is present, not expired?
 1. Check OCSP staple: is it present and not expired?
@@ -398,6 +377,7 @@ In short: the longer the EV cert check takes, the longer your site visitors star
 #### Chrome
 
 [First view](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/#waterfall_view_step1)
+[First view - Edge](https://webpagetest.org/result/200127_H9_cf8fc6a2d7553d19aba6a09c8609396b/)
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-chrome-waterfall-small.png" width="550" height="199" alt="EV Certificate Chrome OK - Waterfall Chart">
 
@@ -412,6 +392,7 @@ Does the browser re-use the revocation check responses from cache?
 No.
 
 [Repeat View](https://webpagetest.org/result/191206_G5_df7b2dbab22821f12ee60d6b39dc8528/2/details/cached/#waterfall_view_step1)
+[Repeat view - Edge](https://webpagetest.org/result/200127_H9_cf8fc6a2d7553d19aba6a09c8609396b/)
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/ev-cert-ok-chrome-repeatview-waterfall-small.png" width="550" height="199" alt="EV Certificate Chrome OK Repeat View - Waterfall Chart">
 
@@ -437,6 +418,7 @@ No.
 - [WPT - IE11](https://webpagetest.org/result/191206_KW_2f83d93760db081d6bf140259da65c70/)
 - WPT don't show the cert validation requests: THIS IS A WPT THING?
 
+---
 
 ### EV Certificates are a Reliability Risk
 
@@ -599,3 +581,40 @@ Is OCSP stapling effective in improving performance
 Does Firefox behave the same as Chrome?
 
 -->
+
+<!-- ---
+
+| Browser | Cert type | OCSP staple | Revocation status check? | What if CA's server is down? |
+| --------| --------- | ----------- | --- | --- |
+| Chrome 	| DV | No | No | n/a |
+| Firefox	| DV | No | Yes | Soft-fail after 2 sec |
+| Chrome 	| DV | Yes | No | n/a |
+| Firefox	| DV | Yes | KLM? | KLM? |
+| Chrome 	| EV | No | Yes | Hard-fail after 30 sec. |
+| Firefox	| EV | No | Yes | Soft-fail after 10 sec. |
+| Chrome 	| EV | Yes | Yes | Hard-fail after 30 sec. |
+| Firefox	| EV | Yes | Yes | Soft-fail after 10 sec. |
+
+
+
+Revocation status check
+
+| Browser | Behaviour | DV | EV |
+| --------| --------- | --- | --- |
+| Chrome 	| Blocking | No | Yes |
+| Chrome 	| Hard fail | No | Yes |
+| Chrome 	| Time-out threshold | ? | 30 sec |
+| Chrome 	| Cached certs too | No | Yes |
+| Firefox | Blocking | No | Yes |
+| Firefox	| Hard fail | No | Yes |
+| Firefox	| Time-out threshold | 2 sec | 10 sec |
+| Firefox | Cached certs too | No | Yes |
+
+
+WPT tests for Chrome and Firefox:
+
+| Browser | View | DV | EV |
+| --------| --------- | --- | --- |
+| Chrome 	| First | No | Yes |
+
+ -->
