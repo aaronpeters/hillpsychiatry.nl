@@ -8,6 +8,7 @@ summary: Learn why EV certificates are a bad choice for site speed and reliabili
 twitterImage: "/static/img/s/"
 date: 2020-01-28
 duration: 15
+highlight: true
 tags:
   - webperf
   - tls

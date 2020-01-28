@@ -2,7 +2,6 @@
 title: 10 Great Web Performance Blogs
 summary: Want to learn about web performance from the pros? Check out my list of active blogs maintained by web performance experts.
 date: 2019-11-21
-highlight: true
 duration: 3
 tags:
   - webperf
