@@ -1,15 +1,14 @@
 ---
-draft: true
 title: EV Certificates Make The Web Slow and Unreliable
 title1: EV Certificates are Performance Killers
 title2: The Performance Impact of EV Certificates
 title3: HTTPS Certificates, OCSP Stapling
-description: Learn about the problems with the JS code snippet for Firebase Performance Monitoring for Web and grab your copy of the optimized version.
-summary: Find out why the default code snippet for Firebase Performance Monitoring for Web is suboptimal for performance, and grab your copy of the optimized snippet.
+description: Learn why EV certificates are a bad choice for site speed and reliability. Lots of data about browsers, revocation status checks and OCSP stapling.
+summary: Learn why EV certificates are a bad choice for site speed and reliability. Dive into the world of DV and EV certificates, browsers, online revocation status checks, OCSP stapling and performance. Lots of data!
 twitterImage: "/static/img/s/"
-date: 2019-01-26
-duration: 20
-xtags:
+date: 2020-01-28
+duration: 15
+tags:
   - webperf
   - tls
   - certificates
@@ -19,7 +18,7 @@ keyword: EV Certificate Performance
 ---
 
 Extended Validation (EV) certificates are a bad choice for web performance. 
-They have a much bigger negative impact on website speed and reliability than Domain Validation (DV) and Organization Validation (OV) certificates.
+They have a much bigger negative impact on website speed and reliability than Domain Validation (DV) certificates.
 The EV certificate significantly increases the time it takes to secure the connection between browser and server and therefore extends how long users stare at a blank screen, waiting for the page to start rendering.
 Perhaps more importantly, using an EV certificate means the reliability of your website depends on your Certificate Authority's infrastructure: if the CA's server is down, your site is down.
 
@@ -33,7 +32,7 @@ That is what Chrome users see when visiting a website that uses an OCSP stapled 
   <a href="https://en.wikipedia.org/wiki/OCSP_stapling">OCSP stapling</a> allows the presenter of the certificate (the server) to check with the CA if the certificate has been revoked and then add ("staple") this information to the certificate. Consequently, the browser may skip the revocation status check.
 </div>
 
-Let's dive deep into the world of DV/OV and EV certificates, online revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all. 
+Let's dive deep into the world of DV and EV certificates, online revocation status checks and OCSP stapling and find out how Chrome and Firefox behave in case the CA's server responds quickly, or not at all. 
 
 Table of contents:
 
