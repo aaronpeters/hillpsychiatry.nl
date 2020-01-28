@@ -40,12 +40,12 @@ Table of contents:
 - [Testing Online Revocation Status Checks in WebPageTest](#wpt)
 - [DV Certificates and Web Performance](#dv-cert-perf)
 - [EV Certificates and Web Performance](#ev-cert-perf)
-- [Key Take-Aways](#take-aways)
+- [Key Insights](#take-aways)
 - [Closing Remarks](#closing)
 
-I present the test [results and insight for DV certificates](#dv-cert-perf) first because that provides good context for the data showing [EV certificates are very bad for web performance](#ev-cert-perf). 
+<!-- I present the test [results and insight for DV certificates](#dv-cert-perf) first because that provides good context for the data showing [EV certificates are very bad for web performance](#ev-cert-perf). 
 
-In a hurry? Skip all and fast forward to [key take-aways](#take-aways).
+In a hurry? Skip all and fast forward to [key take-aways](#take-aways). -->
 
 <!-- <div class="notice-msg info">
   Throughout this article, when I use the word 'certificate' I refer to the server/leaf certificate. This certificate has the website owners' domain(s) listed in the certificate.
@@ -77,7 +77,7 @@ Before you start the test, open the SPOF tab and enter the domain of the OCSP re
 
 WebPageTest will now run a normal test _and_ a test with the domain(s) blackholed, to then show a video comparison. You can also access the waterfall chart and all details for each test.
 
-In WebPageTest, blackholing means the browser tries to connect to an IP address and never gets a response. Browsers are very patient at this stage and will wait ~60 seconds for response from the server.
+In WebPageTest, blackholing means the browser tries to connect to an IP address and never gets a response. Browsers are very patient at this stage and will typically wait ~60 seconds for response from the server.
 
 ### Does the Certificate Have an OCSP Staple?
 
@@ -195,7 +195,7 @@ Two things stand out in this Firefox waterfall chart:
 
 I don't know why WebPageTest does not show the request to `ocsp2.globalsign.com`, but I'm 100% sure the request did go out because of the big increase in TLS handshake time for `https://www-t-mobile.nl/` and the awesome [Ryan Sleevi](https://twitter.com/sleevi_) confirming to me Firefox has a soft-fail-after-2-seconds policy for online revocation status checks for non-EV certificates.
 
-Knowing did not receive anything from the CA's OCSP responder, will the browser behave the same when re-visiting the page after a short time?
+Knowing Firefox did not receive anything from the CA's OCSP responder, will the browser behave the same when re-visiting the page after a short time?
 
 <a href="https://www.webpagetest.org/result/191209_5J_abe11450c6aa3f8cde10ec3596cc9329/1/details/cached/#waterfall_view_step1" class="no-styling">
 	<img loading="lazy" class="responsive-ugh" src="/static/img/waterfall-charts/dv-cert-no-ocsp-staple-blocked-firefox-repeatview-waterfall-small.png" width="530" height="199" alt="DV Certificate Without OCSP Staple - Responder Blackholed - Firefox - Repeat View - Waterfall Chart">
@@ -454,26 +454,38 @@ Repeat view:
 Here too Firefox behaves the same as for EV certificates _sans_ OCSP staple.
 
 
-## <a name="take-aways"></a>Key Take-Aways
+## <a name="take-aways"></a>Key Insights
 
-Do you want your website to be fast and reliable? Don't use an EV certificate. 
+Do you want your website to be fast and reliable? Don't use an EV certificate.
 
-For optimal web performance, serve an OCSP stapled DV certificate.
+Even if the certificate has an OCSP staple ... Chrome _always_ sends a blocking request to the Certificate Authority's server when connecting to a website that uses an EV certificate and this request can take hundreds of milliseconds. 
+To make things worse, if the CA's server is down, your users see an error page instead of your website.
 
-<!-- Chrome/Edge and Firefox check the revocation status of EV certificates _every time_ a new connection is established, and this is a blocking request to the Certificate Authority's server.
-When your Certificate Authority's server is very slow or down, your website visitors suffer, your brand is damaged and you missed out on revenue/sign ups/etc. -->
+Firefox also sends that blocking request every time the browser is establishing a new connection to your server, except when your EV certificate has a valid OCSP staple _and_ the browser has recently checked the cert's revocation status online with the CA _self_ (this is a bit weird). In other words: some returning visitors will benefit from the OCSP staple in your EV certificate but not new visitors for whom your site is slower and less reliable than it can be.
 
+**For optimal web performance, serve an OCSP stapled DV certificate**: 
+Chrome _never_ checks the revocation status with the CA for any DV certificate and Firefox won't either if the certificate is stapled.
 
-## <a name="closing"></a>Closing Remarkts
+Besides the performance benefits, DV certificates are also much cheaper than EV certificates and less hassle to acquire, so why even consider an EV certificate? 
 
-- Other browsers 
-- TLS session resumption
-- Browser cache for certificates ... we've seen this a bit with Repeat View but I have no details on how large this cache is and how browsers decide when to use a certificate from cache or not
-- CRL is just for intermediate certs
-- Certificate size and initcwnd
+Better security because site visitors have more trust in a website with an EV certificate? That argument is no longer valid as browsers don't show that 'green bar' anymore for EV certificates. 
 
-- Thank you Ryan Sleevi!
-- Read that other article by the BBC guy
+## <a name="closing"></a>Closing Remarks
+
+A big thanks to Ryan Sleevi for taking the time to provide me with a wealth of information about certificates, OCSP and performance. You rock!
+
+For those interested in reading another lengthy article about SSL/TLS, OCSP and performance: [Matt Hobbs](https://twitter.com/TheRealNooshu) published an awesome article yesterday with the title "[The impact of SSL certificate revocation on web performance](https://nooshu.github.io/blog/2020/01/26/the-impact-of-ssl-certificate-revocation-on-web-performance/)". I highly recommend reading it. It's complementary to my article and provides a lot of information about topics like Chain of Trust and Certificate Revocation List.
+
+<!-- "Hey Aaron, what about other browsers?"
+
+Yes, valid question.
+
+- The new Edge behaves the same as Chrome, as expected.
+- There is a lot to say about Safari on iOS and I will add that to this article soon
+- Internet Explorer: did not and will not spend my time on this
+ -->
+
+<!-- - Certificate size and initcwnd
 
 You can also experience it self on local machine by adding an entry to the hosts file: <blackhole IP>	ocsp2.globalsign.com
 
@@ -489,9 +501,7 @@ You can also experience it self on local machine by adding an entry to the hosts
 
 [Safari on iPad 2017 iOS 12 - not sure setDnsName works ](https://www.webpagetest.org/result/191209_A7_735cbe9c631cdcaacffa63f4802b7003/1/details/#waterfall_view_step1)
 [Edge Dev (Chromium) - not sure setDnsName works ](https://www.webpagetest.org/result/191209_GM_0a2fa5f68112b88777540dd7cd33bd9e/)
-[IE11 - not sure setDnsName works ](https://www.webpagetest.org/result/191209_7X_5c8afa72bc43bb36b4a38394292a9325/)
-
-
+[IE11 - not sure setDnsName works ](https://www.webpagetest.org/result/191209_7X_5c8afa72bc43bb36b4a38394292a9325/) -->
 
 
 <!-- Let me take you on a journey filled with waterfall charts to help you understand how browsers behave in a wide range of cases:
