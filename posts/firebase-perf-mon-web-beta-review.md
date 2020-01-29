@@ -8,9 +8,9 @@ xtags:
   - webperf
   - monitoring
   - review
-  - Google
-  - Firebase
-  - 3PC
+  - google
+  - firebase
+  - 3pc
 ---
 
 TODO: first paragraph, like a TL;DR / Summary and super important for SEO
