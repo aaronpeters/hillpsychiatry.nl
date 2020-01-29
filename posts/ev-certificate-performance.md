@@ -17,6 +17,7 @@ tags:
   - ocsp
   - research
 keyword: EV Certificate Performance
+tweetId: '1221963392996577282'
 ---
 
 Extended Validation (EV) certificates are a bad choice for web performance. 
