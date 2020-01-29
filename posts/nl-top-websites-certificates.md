@@ -8,8 +8,8 @@ title2: State of Web Performance in NL - Certificates
 description1: Many high-traffic/premium brand websites in NL deliver a suboptimal user experience because 
 description2: Analysis of 500 high-traffic/premium brand websites in NL. 62% are serving an SSL/TLS certificate that hurts the user experience.
 summary: TODO
-date: 2020-01-01
-duration: 15
+date: 2020-01-29
+duration: 7
 xhighlight: true
 xtags:
   - webperf
@@ -102,10 +102,18 @@ A simple calculation of (119 + 194)/500 shows **62% of the high-traffic/premium 
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/62percent-of-websites-have-a-bad-performance-certificate.svg" width="548" height="339" alt="62 percent of top NL websites have a Bad Performance certificate">
 
+Assuming 25000 new HTTPS connections are established with the servers of those 313 websites on average every day by browsers that send that blocking request to the Certificate Authority, and the request to the CA takes 100 ms, then the total time wasted is 782500 seconds or roughly 9 days. Daily.
+
+<!-- NL devs, we can fix this, right? -->
+<!-- The Web is slow enough even _with_ high-performance SSL/TLS certificates.  -->
+
+<!-- If you believe there _is_ a strong argument in favour of using an EV certificate, or a good reason to _not_ staple your DV/OV certificate ... please grab me on [Twitter](https://twitter.com/aaronpeters).  -->
 <!-- ((313*25000)*0,1)/(60*60*24) -->
 
+<!-- 
 ## Certificate Authorities Used By Top NL Websites
 
+This is a bonus chart and irrelevant to the topic of SSL/TLS certificates and 
 <img loading="lazy" class="responsive-ugh" src="/static/img/71percent-of-ev-certs-authored-by-sectigo-digicert-comodo.svg" width="548" height="339" alt="">
 
-## <a name="closing"></a>Closing Remarks
+## <a name="closing"></a>Closing Remarks -->
