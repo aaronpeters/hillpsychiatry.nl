@@ -1,12 +1,12 @@
 ---
 draft: true
-permalink: /blog/test/index.html
-title: The Sorry State of HTTPS Performance in NL
-description: The speed and reliability of many high-traffic/premium brand websites in NL suffers from their choice for the wrong type of SSL/TLS certiticate or server configuration.
-title0: The Sorry State of SSL/TLS Certificates in NL
+permalink: /blog/state-of-ssl-tls-certificates-in-nl/index.html
+title: The Sorry State of SSL/TLS Certificates in NL
+description: The speed and reliability of most high-traffic/premium brand websites in NL suffers from their choice for the wrong type of SSL/TLS certiticate or server configuration.
+title0: The Sorry State of SSL/TLS Certificates in NL.
 title2: State of Web Performance in NL - Certificates
 description1: Many high-traffic/premium brand websites in NL deliver a suboptimal user experience because 
-description2: Analysis of 500 high-traffic/premium brand websites in NL. How many suffer from a 'bad performance' certiticate?
+description2: Analysis of 500 high-traffic/premium brand websites in NL. 62% are serving an SSL/TLS certificate that hurts the user experience.
 summary: TODO
 twitterImage: "/static/img/s/"
 date: 2020-01-29
@@ -39,12 +39,19 @@ Two days ago, I published my research in the article [EV Certificates Make The W
 
 <!-- Knowing the _type_ of certificate and OCSP stapling are important, I wanted to know what the big websites in NL are serving today. Are EV certificates popular?  -->
 
-In scope of my research I analyzed a few NL websites, but the research left me hungry for more data and insights. I wanted to have a bigger and better view on the state of HTTPS Performance in NL.
-Are EV certificates popular in NL? Do many NL sites serve their DV certificate with a stapled OCSP response?
+Having analyzed only a handful of Dutch websites in scope of my research, I was hungry for a bigger and better view on the state of SSL/TLS certificates in The Netherlands.
 
-I carefully created a list of 500 high-traffic/premium brand NL domains and wrote a simple Bash shell script that stores the results of two OpenSSL commands in a tab-delimited file. Copy & paste into a Google Sheet, filter, sort, create charts ...
+<!-- Still hungry for more data and insights, 
+In scope of my research I analyzed a few NL websites and I was left hungry for more data and insights. I was especially interested in having a good view on the state of SSL/TLS certificates in The Netherlands. -->
+<!-- Are EV certificates popular in NL? Do many NL sites serve their DV certificate with a stapled OCSP response? -->
 
-Let's look at the data!
+I carefully created a list of 500 high-traffic/premium brand NL websites, wrote a script that collects data for each domain and took that data to Google Sheet for analysis and charting.
+
+The spreadsheet made me sad 😢
+
+**62% of the top NL websites serve a SSL/TLS certificate that hurts web performance**
+
+Let's walk through the data.
 
 <!-- ## <a name="a"></a>How collected the data
 
