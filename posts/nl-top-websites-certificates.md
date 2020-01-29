@@ -19,7 +19,7 @@ xtags:
   - ocsp
   - research
   - nl
-keyword: HTTPS Certificates NL Performance
+keyword: SSL/TLS Certificates NL Performance
 ---
 
 During the past three months, I've researched the impact of the  _type_ of SSL/TLS certificate on website speed and reliability and the effectiveness of OCSP stapling. 
@@ -35,7 +35,7 @@ Two days ago, I published my research in the article [EV Certificates Make The W
 - Your best option is a DV certificate, served with a valid OCSP staple -->
 
 - Do not use an EV certificate
-- For optimal performance, serve a DV certificate with a valid OCSP staple
+- For optimal performance, serve a DV or OV certificate with a valid OCSP staple
 
 <!-- Knowing the _type_ of certificate and OCSP stapling are important, I wanted to know what the big websites in NL are serving today. Are EV certificates popular?  -->
 
@@ -68,14 +68,25 @@ If the certificate is _not_ stapled, the command will show _no_ output. -->
 
 ## Sadly, EV Certificates Are Quite Popular
 
-Extended Validation certificates are expensive, a hassle to acquire and provide zero security benefits since browsers stopped showing the 'green bar'.
-However, [EV certs _do_ make your website slower and less robust](/blog/ev-certificates-make-the-web-slow-and-unreliable/#ev-cert-perf).
+Extended Validation certificates are relatively expensive, a hassle to acquire, don't make your site more secure _and_ since all modern browsers stopped showing the 'green bar' they also no longer provide users that 'enhanced perception of trust' (which is a myth anyway).
 
-I expected maybe 10% of the big NL sites to serve an EV certificate, but unfortunately the number is much higher:
+However, [EV certs _do_ make your website slower and less robust](/blog/ev-certificates-make-the-web-slow-and-unreliable/#ev-cert-perf), much more so than DV and OV certificates.
+
+I expected maybe 10% of the big NL sites to serve an EV certificate, but unfortunately the number is much higher: **24% of all top NL websites use an EV certificate**.
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/24percent-of-websites-have-an-ev-certificate.svg" width="548" height="339" alt="">
 
-### 50% of DV/OV Certificates Are Not OCSP Stapled
+## Stapling DV/OV Certificates is Not Very Common
+ <!-- Only Half of DV/OV Certificates Are Not OCSP Stapled -->
+
+The 76% of NL websites that don't use an EV certificate have made the right decision. 
+[DV/OV certificates are the better choice from a web performance perspective](/blog/ev-certificates-make-the-web-slow-and-unreliable/#ev-cert-perf), even if the certificate does not have a stapled "not revoked" OCSP response.
+
+That said, OCSP stapling _does_ add real value because in Firefox this effectively gets rid of a blocking request to the Certificate Authority's server very early in the page load process. This request easily takes 100 ms and for some visitors probably much longer.
+
+Unless you're using a CDN that will do it for you, OCSP stapling doesn't just magically happen.
+Activation/implementation requires time and effort.
+Perhaps this is why **only half of the 381 websites that serve a DV or OV certificate have it stapled**.
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/50percent-of-dv-or-ov-certificates-are-not-ocsp-stapled.svg" width="548" height="339" alt="">
 
