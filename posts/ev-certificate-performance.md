@@ -8,6 +8,7 @@ duration: 15
 highlight: true
 tags:
   - webperf
+  - ssl
   - tls
   - certificates
   - ocsp

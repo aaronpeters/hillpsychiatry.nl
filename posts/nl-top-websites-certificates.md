@@ -13,6 +13,7 @@ duration: 15
 xhighlight: true
 xtags:
   - webperf
+  - ssl
   - tls
   - certificates
   - ocsp
