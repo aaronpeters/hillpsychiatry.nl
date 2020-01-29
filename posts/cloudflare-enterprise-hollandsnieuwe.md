@@ -7,8 +7,8 @@ date: 2019-01-01
 xtags:
   - webperf
   - tips
-  - Cloudflare
-  - CDN
+  - cloudflare
+  - cdn
   - hollandsnieuwe
 ---
 
