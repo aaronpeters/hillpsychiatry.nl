@@ -6,7 +6,7 @@ summary: TODO
 date: 2019-01-01
 xtags:
   - webperf
-  - case study
+  - casestudy
   - hollandsnieuwe
 ---
 
