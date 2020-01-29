@@ -4,13 +4,12 @@ title: TODO
 description: TODO
 summary: TODO
 date: 2019-01-01
-
 ---
 
 ## Top Prio
 
 - Text on /nl/ must be more friendly: Want to get serious with making your website fast? I can help !
-- 404 on the /favicon.ico (do what Sia does?)
+- 404 on the /favicon.ico (Google this ... easy to fix)
 - Sitemap.xml contains /blog/tags/navAscending/ and this should not be there
 
 ### Blog
