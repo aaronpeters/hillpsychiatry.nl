@@ -72,12 +72,14 @@ Extended Validation certificates are relatively expensive, a hassle to acquire, 
 
 However, [EV certs _do_ make your website slower and less robust](/blog/ev-certificates-make-the-web-slow-and-unreliable/#ev-cert-perf), much more so than DV and OV certificates.
 
-I expected maybe 10% of the big NL sites to serve an EV certificate, but unfortunately the number is much higher: **24% of all top NL websites use an EV certificate**.
+I expected maybe 10% of the big NL sites to serve an EV certificate, but unfortunately it's more than 2x that: 
+<!-- **One out of four top NL websites uses an EV certificate**. -->
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/24percent-of-websites-have-an-ev-certificate.svg" width="548" height="339" alt="">
+<img loading="lazy" class="responsive-ugh" src="/static/img/24percent-of-websites-have-an-ev-certificate.svg" width="548" height="339" alt="24 percent of top NL websites have an EV certificate">
+
+Bol.com, Coolblue and HEMA are just a few of the big brands that serve the slow EV certificate.
 
 ## Stapling DV/OV Certificates is Not Very Common
- <!-- Only Half of DV/OV Certificates Are Not OCSP Stapled -->
 
 The 76% of NL websites that don't use an EV certificate have made the right decision. 
 [DV/OV certificates are the better choice from a web performance perspective](/blog/ev-certificates-make-the-web-slow-and-unreliable/#ev-cert-perf), even if the certificate does not have a stapled "not revoked" OCSP response.
@@ -88,13 +90,21 @@ Unless you're using a CDN that will do it for you, OCSP stapling doesn't just ma
 Activation/implementation requires time and effort.
 Perhaps this is why **only half of the 381 websites that serve a DV or OV certificate have it stapled**.
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/50percent-of-dv-or-ov-certificates-are-not-ocsp-stapled.svg" width="548" height="339" alt="">
+<img loading="lazy" class="responsive-ugh" src="/static/img/50percent-of-dv-or-ov-certificates-are-not-ocsp-stapled.svg" width="548" height="339" alt="50% of top NL websites have an DV/OV certificate without OCSP staple">
 
-### 62% of Top NL Websites Have a 'Bad Performance' Certificate
+Example websites that should put OCSP stapling on their to-do list are Wetransfer, Funda and TUI.
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/62percent-of-websites-have-a-bad-performance-certificate.svg" width="548" height="339" alt="">
+## Most of Top NL Websites Should Serve a Better Certificate
 
-## <a name="c"></a>Certificate Authorities Used By Top NL Websites
+EV certificates are bad for web performance and so are non-OCSP stapled DV/OV certificates.
+
+A simple calculation of (119 + 194)/500 shows **62% of the high-traffic/premium brand websites in NL have a 'bad performance' SSL/TLS certificate** !
+
+<img loading="lazy" class="responsive-ugh" src="/static/img/62percent-of-websites-have-a-bad-performance-certificate.svg" width="548" height="339" alt="62 percent of top NL websites have a Bad Performance certificate">
+
+<!-- ((313*25000)*0,1)/(60*60*24) -->
+
+## Certificate Authorities Used By Top NL Websites
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/71percent-of-ev-certs-authored-by-sectigo-digicert-comodo.svg" width="548" height="339" alt="">
 
