@@ -1,6 +1,6 @@
 ---
 draft: true
-permalink: /blog/state-of-ssl-tls-certificates-in-nl/index.html
+xPermalink: /blog/state-of-ssl-tls-certificates-in-nl/index.html
 title: The Sorry State of SSL/TLS Certificates in NL
 description: The speed and reliability of most high-traffic/premium brand websites in NL suffers from their choice for the wrong type of SSL/TLS certiticate or server configuration.
 title0: The Sorry State of SSL/TLS Certificates in NL.
