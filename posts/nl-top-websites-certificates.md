@@ -7,7 +7,6 @@ title0: NL Sites Suffer From Bad Performance Certificates
 title1: The Sorry State of HTTPS Certificates in NL
 title2: Most Top Websites in NL Have a Bad Performance Certificate
 title3: State of Web Performance in NL - Certificates
-title4: Most Top Websites in NL Have a Bad Performance Certificate
 title5: HTTPS Certificates in NL
 description1: Analysis of 500 high traffic/premium brand websites in NL. How many have a 'bad performance' certiticate?
 summary: TODO
@@ -27,7 +26,7 @@ keyword: HTTPS Certificates NL Performance
 
 During the past three months, I've researched the impact of the  _type_ of SSL/TLS certificate on website speed and reliability and the effectiveness of OCSP stapling. 
 
-Two days ago, I published my research in the article [EV Certificates Make The Web Slow and Unreliable](https://www.aaronpeters.nl/blog/ev-certificates-make-the-web-slow-and-unreliable/). The key take-aways are:
+Two days ago, I published my research in the article [EV Certificates Make The Web Slow and Unreliable](https://www.aaronpeters.nl/blog/ev-certificates-make-the-web-slow-and-unreliable/), with the key take-aways being:
 
 <!-- Two days ago, I published [EV Certificates Make The Web Slow and Unreliable](https://www.aaronpeters.nl/blog/ev-certificates-make-the-web-slow-and-unreliable/). The article describes my research into the impact of the  _type_ of SSL/TLS certificate on web performance and the effectiveness of OCSP stapling. The key take-aways  are: -->
 
@@ -40,9 +39,16 @@ Two days ago, I published my research in the article [EV Certificates Make The W
 - Do not use an EV certificate
 - For optimal performance, serve a DV certificate with a valid OCSP staple
 
-As part of my research I analyzed several big NL websites, but  I wondered what the big websites in NL are using today.
+<!-- Knowing the _type_ of certificate and OCSP stapling are important, I wanted to know what the big websites in NL are serving today. Are EV certificates popular?  -->
 
-## <a name="a"></a>How collected the data
+The research left me wondering what types of certificate the big websites in NL are serving today. 
+Are EV certificates popular? Do many sites serve their DV certificate with a stapled OCSP response?
+
+I carefully created a list of 500 high-traffic/premium brand NL domains and wrote a simple Bash shell script that stores the results of two OpenSSL commands in a tab-delimited file. Copy & paste into a Google Sheet, filter, sort, create charts ...
+
+Let's look at the data!
+
+<!-- ## <a name="a"></a>How collected the data
 
 Bash script
 For each website, run a few OpenSSL commands, store results in a local file 
@@ -52,7 +58,7 @@ Has OCSP staple?
 
 `echo QUIT | openssl s_client -servername www.cloudflare.com -connect www.cloudflare.com:443 -status 2> /dev/null | grep -A 17 'OCSP response:' | grep -B 17 'Next Update'`
 
-If the certificate is _not_ stapled, the command will show _no_ output.
+If the certificate is _not_ stapled, the command will show _no_ output. -->
 
 
 ## Many NL Websites Use an EV Certificate
