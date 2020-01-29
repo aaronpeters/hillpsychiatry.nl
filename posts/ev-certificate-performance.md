@@ -11,12 +11,10 @@ duration: 15
 highlight: true
 tags:
   - webperf
-  - ssl
   - tls
   - certificates
   - ocsp
   - research
-tweetId: '1221963392996577282'
 ---
 
 Extended Validation (EV) certificates are a bad choice for web performance. 
