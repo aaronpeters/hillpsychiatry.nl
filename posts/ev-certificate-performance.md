@@ -1,8 +1,5 @@
 ---
 title: EV Certificates Make The Web Slow and Unreliable
-title1: EV Certificates are Performance Killers
-title2: The Performance Impact of EV Certificates
-title3: HTTPS Certificates, OCSP Stapling
 description: Learn why EV certificates are a bad choice for site speed and reliability. Lots of data about browsers, revocation status checks and OCSP stapling.
 summary: Learn why EV certificates are a bad choice for site speed and reliability. Dive into the world of DV and EV certificates, browsers, online revocation status checks, OCSP stapling and performance. Lots of data!
 twitterImage: "/static/img/s/"
