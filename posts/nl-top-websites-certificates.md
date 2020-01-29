@@ -1,15 +1,18 @@
 ---
 draft: true
+permalink: /blog/test/index.html
 title: Analysis of HTTPS Certificates of Top NL Sites 
 description: More than 50% of the top 500 high traffic/premium brand websites in NL have a 'bad performance' SSL/TLS certiticate. 
 title0: NL Sites Suffer From Bad Performance Certificates
 title1: The Sorry State of HTTPS Certificates in NL
 title2: Most Top Websites in NL Have a Bad Performance Certificate
-title3: "HTTPS Certificates in NL: "
+title3: State of Web Performance in NL - Certificates
+title4: Most Top Websites in NL Have a Bad Performance Certificate
+title5: HTTPS Certificates in NL
 description1: Analysis of 500 high traffic/premium brand websites in NL. How many have a 'bad performance' certiticate?
 summary: TODO
 twitterImage: "/static/img/s/"
-date: 2020-01-28
+date: 2020-01-29
 duration: 15
 xhighlight: true
 xtags:
@@ -19,11 +22,25 @@ xtags:
   - ocsp
   - research
   - NL
-keyword: HTTPS Certificates NL
+keyword: HTTPS Certificates NL Performance
 ---
 
-SEO optimized intro.
-Make a few statements, link to the big EV cert perf article.
+During the past three months, I've researched the impact of the  _type_ of SSL/TLS certificate on website speed and reliability and the effectiveness of OCSP stapling. 
+
+Two days ago, I published my research in the article [EV Certificates Make The Web Slow and Unreliable](https://www.aaronpeters.nl/blog/ev-certificates-make-the-web-slow-and-unreliable/). The key take-aways are:
+
+<!-- Two days ago, I published [EV Certificates Make The Web Slow and Unreliable](https://www.aaronpeters.nl/blog/ev-certificates-make-the-web-slow-and-unreliable/). The article describes my research into the impact of the  _type_ of SSL/TLS certificate on web performance and the effectiveness of OCSP stapling. The key take-aways  are: -->
+
+<!-- - EV certificates are a _very_ bad choice from a web performance perspective
+- Your best option is a DV certificate, served with a valid OCSP staple -->
+
+<!-- - If you care about web performance, do not use an EV certificate
+- Your best option is a DV certificate, served with a valid OCSP staple -->
+
+- Do not use an EV certificate
+- For optimal performance, serve a DV certificate with a valid OCSP staple
+
+As part of my research I analyzed several big NL websites, but  I wondered what the big websites in NL are using today.
 
 ## <a name="a"></a>How collected the data
 
