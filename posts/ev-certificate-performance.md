@@ -16,7 +16,6 @@ tags:
   - certificates
   - ocsp
   - research
-keyword: EV Certificate Performance
 tweetId: '1221963392996577282'
 ---
 
