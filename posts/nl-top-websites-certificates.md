@@ -1,14 +1,12 @@
 ---
 draft: true
 permalink: /blog/test/index.html
-title: Analysis of HTTPS Certificates of Top NL Sites 
-description: More than 50% of the top 500 high traffic/premium brand websites in NL have a 'bad performance' SSL/TLS certiticate. 
-title0: NL Sites Suffer From Bad Performance Certificates
-title1: The Sorry State of HTTPS Certificates in NL
-title2: Most Top Websites in NL Have a Bad Performance Certificate
-title3: State of Web Performance in NL - Certificates
-title5: HTTPS Certificates in NL
-description1: Analysis of 500 high traffic/premium brand websites in NL. How many have a 'bad performance' certiticate?
+title: The Sorry State of HTTPS Performance in NL
+description: The speed and reliability of many high-traffic/premium brand websites in NL suffers from their choice for the wrong type of SSL/TLS certiticate or server configuration.
+title0: The Sorry State of SSL/TLS Certificates in NL
+title2: State of Web Performance in NL - Certificates
+description1: Many high-traffic/premium brand websites in NL deliver a suboptimal user experience because 
+description2: Analysis of 500 high-traffic/premium brand websites in NL. How many suffer from a 'bad performance' certiticate?
 summary: TODO
 twitterImage: "/static/img/s/"
 date: 2020-01-29
@@ -41,8 +39,8 @@ Two days ago, I published my research in the article [EV Certificates Make The W
 
 <!-- Knowing the _type_ of certificate and OCSP stapling are important, I wanted to know what the big websites in NL are serving today. Are EV certificates popular?  -->
 
-The research left me wondering what types of certificate the big websites in NL are serving today. 
-Are EV certificates popular? Do many sites serve their DV certificate with a stapled OCSP response?
+In scope of my research I analyzed a few NL websites, but the research left me hungry for more data and insights. I wanted to have a bigger and better view on the state of HTTPS Performance in NL.
+Are EV certificates popular in NL? Do many NL sites serve their DV certificate with a stapled OCSP response?
 
 I carefully created a list of 500 high-traffic/premium brand NL domains and wrote a simple Bash shell script that stores the results of two OpenSSL commands in a tab-delimited file. Copy & paste into a Google Sheet, filter, sort, create charts ...
 
