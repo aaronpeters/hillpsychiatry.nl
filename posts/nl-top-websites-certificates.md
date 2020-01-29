@@ -66,7 +66,12 @@ Has OCSP staple?
 If the certificate is _not_ stapled, the command will show _no_ output. -->
 
 
-## Many NL Websites Use an EV Certificate
+## Sadly, EV Certificates Are Quite Popular
+
+Extended Validation certificates are expensive, a hassle to acquire and provide zero security benefits since browsers stopped showing the 'green bar'.
+However, [EV certs _do_ make your website slower and less robust](/blog/ev-certificates-make-the-web-slow-and-unreliable/#ev-cert-perf).
+
+I expected maybe 10% of the big NL sites to serve an EV certificate, but unfortunately the number is much higher:
 
 <img loading="lazy" class="responsive-ugh" src="/static/img/24percent-of-websites-have-an-ev-certificate.svg" width="548" height="339" alt="">
 
