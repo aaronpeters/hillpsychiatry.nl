@@ -7,6 +7,7 @@ title0: The Sorry State of SSL/TLS Certificates in NL.
 title2: State of Web Performance in NL - Certificates
 description1: Many high-traffic/premium brand websites in NL deliver a suboptimal user experience because 
 description2: Analysis of 500 high-traffic/premium brand websites in NL. 62% are serving an SSL/TLS certificate that hurts the user experience.
+twitterImage: "/static/img/s/"
 date: 2020-01-30
 duration: 7
 highlight: true
