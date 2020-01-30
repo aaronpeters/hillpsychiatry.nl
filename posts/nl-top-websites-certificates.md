@@ -1,17 +1,16 @@
 ---
-draft: true
 permalink: /blog/state-of-ssl-tls-certificates-in-nl/index.html
 title: The Sorry State of SSL/TLS Certificates in NL
 description: The speed and reliability of most high-traffic/premium brand websites in NL suffers from their choice for the wrong type of SSL/TLS certiticate or server configuration.
+summary: The speed and reliability of most high-traffic/premium brand websites in NL suffers from their choice for the wrong type of SSL/TLS certiticate or server configuration. View the results of my analysis of 500 websites.
 title0: The Sorry State of SSL/TLS Certificates in NL.
 title2: State of Web Performance in NL - Certificates
 description1: Many high-traffic/premium brand websites in NL deliver a suboptimal user experience because 
 description2: Analysis of 500 high-traffic/premium brand websites in NL. 62% are serving an SSL/TLS certificate that hurts the user experience.
-summary: TODO
-date: 2020-01-29
+date: 2020-01-30
 duration: 7
-xhighlight: true
-xtags:
+highlight: true
+tags:
   - webperf
   - ssl
   - tls
@@ -49,7 +48,7 @@ I carefully created a list of 500 high-traffic/premium brand NL websites, wrote 
 
 The spreadsheet made me sad 😢
 
-**62% of the top NL websites serve a SSL/TLS certificate that hurts web performance**
+**63% of the top NL websites serve a SSL/TLS certificate that hurts web performance**
 
 Let's walk through the data.
 
@@ -75,34 +74,36 @@ However, [EV certs _do_ make your website slower and less robust](/blog/ev-certi
 I expected maybe 10% of the big NL sites to serve an EV certificate, but unfortunately it's more than 2x that: 
 <!-- **One out of four top NL websites uses an EV certificate**. -->
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/24percent-of-websites-have-an-ev-certificate.svg" width="548" height="339" alt="24 percent of top NL websites have an EV certificate">
+<img loading="lazy" class="responsive-ugh" src="/static/img/25percent-of-websites-have-an-ev-certificate.svg" width="548" height="339" alt="25 percent of top NL websites have an EV certificate">
 
 Bol.com, Coolblue and HEMA are just a few of the big brands that serve the slow EV certificate.
 
 ## Stapling DV/OV Certificates is Not Very Common
 
-The 76% of NL websites that don't use an EV certificate have made the right decision. 
-[DV/OV certificates are the better choice from a web performance perspective](/blog/ev-certificates-make-the-web-slow-and-unreliable/#ev-cert-perf), even if the certificate does not have a stapled "not revoked" OCSP response.
+The 75% of NL websites that don't use an EV certificate have made the right decision. 
+[DV/OV certificates are the better choice from a web performance perspective](/blog/ev-certificates-make-the-web-slow-and-unreliable/#dv-cert-perf), even if the certificate does not have a stapled "not revoked" OCSP response.
 
 That said, OCSP stapling _does_ add real value because in Firefox this effectively gets rid of a blocking request to the Certificate Authority's server very early in the page load process. This request easily takes 100 ms and for some visitors probably much longer.
 
 Unless you're using a CDN that will do it for you, OCSP stapling doesn't just magically happen.
 Activation/implementation requires time and effort.
-Perhaps this is why **only half of the 381 websites that serve a DV or OV certificate have it stapled**.
+Perhaps this is why only half of the 376 websites that serve a DV or OV certificate have it stapled.
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/50percent-of-dv-or-ov-certificates-are-not-ocsp-stapled.svg" width="548" height="339" alt="50% of top NL websites have an DV/OV certificate without OCSP staple">
+<img loading="lazy" class="responsive-ugh" src="/static/img/51percent-of-dv-or-ov-certificates-are-not-ocsp-stapled.svg" width="548" height="339" alt="51% of top NL websites have an DV/OV certificate without OCSP staple">
 
 Example websites that should put OCSP stapling on their to-do list are Wetransfer, Funda and TUI.
 
 ## Most of Top NL Websites Should Serve a Better Certificate
 
-EV certificates are bad for web performance and so are non-OCSP stapled DV/OV certificates.
+124 websites serve an EV certificate and 192 serve a non-OCSP stapled DV/OV certificate. 
 
-A simple calculation of (119 + 194)/500 shows **62% of the high-traffic/premium brand websites in NL have a 'bad performance' SSL/TLS certificate** !
+124 + 192 = 316 and 316 / 500 = 63%.
 
-<img loading="lazy" class="responsive-ugh" src="/static/img/62percent-of-websites-have-a-bad-performance-certificate.svg" width="548" height="339" alt="62 percent of top NL websites have a Bad Performance certificate">
+So, the _majority_ of high-traffic/premium brand websites in NL are doing it wrong and consequently provide a suboptimal user experience.
 
-Assuming 25000 new HTTPS connections are established with the servers of those 313 websites on average every day by browsers that send that blocking request to the Certificate Authority, and the request to the CA takes 100 ms, then the total time wasted is 782500 seconds or roughly 9 days. Daily.
+<img loading="lazy" class="responsive-ugh" src="/static/img/63percent-of-websites-have-a-bad-performance-certificate.svg" width="548" height="339" alt="63 percent of top NL websites have a Bad Performance certificate">
+
+Assuming 25000 new HTTPS connections are established with the servers of those 316 websites on average every day by browsers that send that blocking request to the Certificate Authority, and the request to the CA takes 100 ms, then the total time of users wasted _daily_ is 790000 seconds or roughly 9 days
 
 <!-- NL devs, we can fix this, right? -->
 <!-- The Web is slow enough even _with_ high-performance SSL/TLS certificates.  -->
