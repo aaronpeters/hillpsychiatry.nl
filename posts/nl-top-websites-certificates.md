@@ -19,6 +19,7 @@ tags:
   - ocsp
   - research
   - nl
+tweetId: '1222865345633038336'
 keyword: SSL/TLS Certificates NL Performance
 ---
 
