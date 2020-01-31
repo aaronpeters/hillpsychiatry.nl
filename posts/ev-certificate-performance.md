@@ -4,6 +4,7 @@ description: Learn why EV certificates are a bad choice for site speed and relia
 summary: Learn why EV certificates are a bad choice for site speed and reliability. Dive into the world of DV and EV certificates, browsers, online revocation status checks, OCSP stapling and performance. Lots of data!
 twitterImage: "/static/img/s/"
 date: 2020-01-28
+dateUpdated: 2020-01-31
 duration: 15
 highlight: true
 tags:
@@ -473,6 +474,8 @@ Better security because site visitors have more trust in a website with an EV ce
 A big thanks to Ryan Sleevi for taking the time to provide me with a wealth of information about certificates, OCSP and performance. You rock!
 
 For those interested in reading another lengthy article about SSL/TLS, OCSP and performance: [Matt Hobbs](https://twitter.com/TheRealNooshu) published an awesome article yesterday with the title "[The impact of SSL certificate revocation on web performance](https://nooshu.github.io/blog/2020/01/26/the-impact-of-ssl-certificate-revocation-on-web-performance/)". I highly recommend reading it. It's complementary to my article and provides a lot of information about topics like Chain of Trust and Certificate Revocation List.
+
+A few days after first publishing this article, I posted some stats about the certifcates the big sites in The Netherlands are using in [The Sorry State of SSL/TLS Certificates in NL](/blog/state-of-ssl-tls-certificates-in-nl/).
 
 <!-- "Hey Aaron, what about other browsers?"
 
