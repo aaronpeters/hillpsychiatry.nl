@@ -17,7 +17,7 @@ date: 2019-11-21
 
 ---
 
-# Websitesnelheid Consultant & Engineer
+# Web Performance Consultant & Engineer
 
 Sinds 2010 help ik (grote) bedrijven de website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic, lagere kosten en hogere conversie.
 
