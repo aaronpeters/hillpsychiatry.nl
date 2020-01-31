@@ -1,10 +1,11 @@
 ---
 layout: layouts/nl.njk
 permalink: /nl/index.html
-title: Aaron Peters - Websitesnelheid consultant & engineer
+title: Aaron Peters - Web Performance Consultant / Engineer
+description: "Freelance web performance consultant sinds 2009. Websitesnelheid monitoring, optimalisatie en training. CDN specialist."
+description-old: Sinds 2010 help ik (grote) bedrijven om hun website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic en hogere conversie.
 description2: Aaron Peters zorgt dat uw website supersnel wordt én blijft. Ruim 10 jaar ervaring bij o.a. Vodafone en Beslist.
 description1: Ik realiseer dat uw website snel laadt. Uw bezoekers en Google zullen dit waarderen, resulterend in meer traffic, hogere conversie en meer vertrouwen in uw merk.
-description: Sinds 2010 help ik (grote) bedrijven om hun website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic en hogere conversie.
 tags:
   - nav
 navtitle: Nederlands
