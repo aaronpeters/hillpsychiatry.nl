@@ -631,7 +631,7 @@ pre[class*="language-"] {
 }
 
 .responsive-ugh {
-	max-width: 300px;
+	max-width: 100%;
 	height: auto;
 }
 
@@ -807,44 +807,10 @@ pre[class*="language-"] {
 
 }
 
-
-/* such a stupid way to have the pre elements be sortof as wide as main element :( */
-@media screen and (min-width:600px) {
-	
-	pre[class*="language-"] {
-		max-width: 540px;
-	}
-
-	.responsive-ugh {
-		max-width: 540px;
-	}
-	
-}
-
 @media screen and (min-width:768px) {
 
 	.profile-pic {
 		display: block;
 	}
 	
-	pre[class*="language-"] {
-		max-width: 680px;
-	}
-
-	.responsive-ugh {
-		max-width: 680px;
-	}
-	
-}
-
-@media screen and (min-width:1000px) {
-	
-	pre[class*="language-"] {
-		max-width: 920px;
-	}
-
-	.responsive-ugh {
-		max-width: 920px;
-	}
-		
 }
