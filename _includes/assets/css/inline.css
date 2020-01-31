@@ -597,7 +597,7 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string {
 	color: #8d6e63;
-	background: hsla(0, 0%, 100%, .5);
+	xbackground: hsla(0, 0%, 100%, .5);
 }
 
 .token.atrule,
