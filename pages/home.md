@@ -1,11 +1,12 @@
 ---
 layout: layouts/home.njk
 title: Aaron Peters - Web Performance Consultant / Engineer
+description: Freelance web performance consultant & engineer with 10 years experience in helping businesses understand and improve website speed and reliability.
+description-previous: Since 2010, I help medium and large businesses make their website fast, secure and Google-friendly, resulting in more traffic and higher revenue. 
 description-b: I'm a freelance web performance optimization consultant & engineer with 10 years experience in making websites fast, secure and Google-friendly.
 description-c: I'm a freelance web performance optimization consultant and engineer with 10 years experience in making (large) websites blazing fast.
 description0: Freelance web performance consultant & engineer with 10 years experience in helping medium / large businesses make their website strong and fast.
 description-d: Since 2010, I help medium and large businesses improve customer satisfaction, do better in Google and increase revenue by making their website fast.
-description: Since 2010, I help medium and large businesses make their website fast, secure and Google-friendly, resulting in more traffic and higher revenue. 
 date: 2019-11-20
 permalink: /
 
