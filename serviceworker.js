@@ -8,6 +8,7 @@ const filesToCache = [
   '/nl/',
   '/contact/',
   '/static/img/aaron-peters-profile-400x400.jpg',
+  '/static/img/information.svg',
   '/blog/',
   '/blog/ev-certificates-make-the-web-slow-and-unreliable/',
   '/blog/state-of-ssl-tls-certificates-in-nl/',
