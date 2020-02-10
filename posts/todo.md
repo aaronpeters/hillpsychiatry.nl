@@ -9,13 +9,13 @@ date: 2019-01-01
 ## Top Prio
 
 - Text on /nl/ must be more friendly: Want to get serious with making your website fast? I can help !
-- 404 on the /favicon.ico (Google this ... easy to fix)
 - Sitemap.xml contains /blog/tags/navAscending/ and this should not be there
 
 ### Blog
 
-- Add articles: CRuX API, EV Certs, Chrome image lazy load native, Hero Image Optimization at hollandsnieuwe, 
-- New article ideas: MS Edge Perf Checklist, CDN/Cloud Debugging with Curl
+- Add articles: CRuX API, repost Chrome image lazy load native, 
+- Add hollandsnieuwe articles: see email to Ewout
+- New article ideas: Binkies perf review, Build a Wall, not Steps (waterfall chart), MS Edge Perf Checklist, CDN/Cloud Debugging with Curl
 - Update articles: iframe performance (testpages, run in modern browser, new techniques)
 - Responsive images: 11ty plugin
 - Auto create images: convert ...
@@ -23,7 +23,11 @@ date: 2019-01-01
 
 ## Performance
 
-- Lazy load images (JS based)
+- Offline
+--- Contact form: on load, if offline, disable form + say something [example](https://bug336359.bmoattachments.org/attachment.cgi?id=220609)
+- PWA: 
+--- https://okitavera.me/article/turn-your-eleventy-into-offline-first-pwa/
+--- replace my SW with this
 - Static assets
 --- Versioning
 --- Caching, max-age=365d (/.jpg|png|css|js|woff2)
@@ -32,8 +36,6 @@ date: 2019-01-01
 
 
 ## Legal
-
-- Cookie consent & privacy policy or ... remove GA ?
 
 
 ## SEO
