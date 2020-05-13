@@ -10,15 +10,26 @@ date: 2019-01-01
 
 - Text on /nl/ must be more friendly: Want to get serious with making your website fast? I can help !
 - Sitemap.xml contains /blog/tags/navAscending/ and this should not be there
+- Add logos: Replacedirect, Saleduck, Humbird (Beslist always is bottom one)
 
 ### Blog
 
 - Add articles: CRuX API, repost Chrome image lazy load native, 
 - Add hollandsnieuwe articles: see email to Ewout
-- New article ideas: Binkies perf review, Build a Wall, not Steps (waterfall chart), MS Edge Perf Checklist, CDN/Cloud Debugging with Curl
+- New article ideas: Filmstrip FTW, Binkies perf review, CDN/Cloud Debugging with Curl
 - Update articles: iframe performance (testpages, run in modern browser, new techniques)
 - Responsive images: 11ty plugin
 - Auto create images: convert ...
+
+- Article: Web Perf Metrics can be wrong
+FCP doc = https://developers.google.com/web/tools/lighthouse/audits/first-contentful-paint
+Google: "First Contentful Paint (FCP) measures the time from navigation to the time when the browser renders the first bit of content from the DOM"
+Paint Timing API definition: https://w3c.github.io/paint-timing/#first-contentful-paint
+WPT: "FCP ... The point in time when the first image or text is rendered to the screen (something other than background colors)"
+
+https://www.webpagetest.org/video/compare.php?tests=200415_KP_ffe5fdbd31eb04e9be7bc0a8268a1b34-r%3A1-c%3A0&thumbSize=200&ival=100&end=visual
+WPT says FCP = 3.2 seconds and that is correct as per the spec, but it takes a full 2.1 seconds longer for anything useful/meaningful to appear.
+
 
 
 ## Performance
