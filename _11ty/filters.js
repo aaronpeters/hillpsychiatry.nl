@@ -7,8 +7,8 @@ module.exports = {
   },
   isOwnWebmention: (webmention) => {
     const urls = [
-      'https://sia.codes',
-      'https://twitter.com/thegreengreek'
+      'https://www.aaronpeters.nl',
+      'https://twitter.com/aaronpeters'
     ]
     const authorUrl = webmention.author ? webmention.author.url : false
     // check if a given URL is part of this site.
