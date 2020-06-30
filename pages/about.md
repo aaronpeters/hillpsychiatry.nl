@@ -37,7 +37,7 @@ CDNs have evolved from simple proxy/caching solutions to highly-configurable con
 
 I have 8+ years of hands-on experience testing, evaluating, configuring and tuning content delivery networks incl. Cloudflare, Fastly, CDNetworks and Verizon/EdgeCast.
 
-In November 2011 I launched [CDN Planet](https://www.cdnplanet.com), a website packed with information about content delivery networks. One year later I co-founded TurboBytes, a Multi-CDN service provider, where we worked with ChinaCache, TATA, StackPath/Highwinds and many other CDNs.
+In November 2011, I launched [CDN Planet](https://www.cdnplanet.com), a website packed with information about content delivery networks. One year later I co-founded TurboBytes, a Multi-CDN service provider, where we worked with ChinaCache, TATA, StackPath/Highwinds and many other CDNs.
 
 ## Get in touch
 Interested in learning more about my expertise and way of working, and perhaps working together?

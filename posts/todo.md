@@ -14,6 +14,31 @@ date: 2019-01-01
 
 ### Blog
 
+#### CDN Finder
+Workers KV and what I'm using as the key (https://scotthelme.co.uk/
+hacking-table-storage-to-do-order-by-on-timestamp/)
+
+#### Workers stuff
+
+- add (security) headers to Workers Sites (Staging!)
+- add redirects to Workers Sites, easy!
+- controling/optimizing caching on Workers Sites (html vs static, add/edit headers, versioning)
+
+#### Making CDN Planet Fast and Secure
+
+Old: Static + HW CDN
+New: Static + Workers Sites (Brotli, HTTP prioritization)
+
+- SVGOMG: https://www.webpagetest.org/result/200604_D6_6cce28d93cd51aa7948f99c3771aba3c/
+
+- Fonts: load async: https://www.webpagetest.org/result/200605_1Q_8c30a22e1027d45774021a0c084333f1/
+- Fonts: switched from 3x Roboto to 2x Inter self-hosted: https://www.webpagetest.org/result/200606_4P_a4439b15303e6ae13f89538a03ff9ac0/
+- Fonts: preload, subset: https://www.webpagetest.org/result/200608_59_63ae3ece020aa7c3506613904c4f44c0/ : not good, FCP, LCP and SI increase by ~0.3 seconds
+- Fonts: don't do the preload: https://www.webpagetest.org/result/200608_9R_de3a1bb5642e826c92487353e3179f08/ : minus 160 KB and text rendered a bit sooner in custom font
+
+- Security headers: https://www.webpagetest.org/result/200606_4P_a4439b15303e6ae13f89538a03ff9ac0/
+
+
 - Add articles: CRuX API, repost Chrome image lazy load native, 
 - Add hollandsnieuwe articles: see email to Ewout
 - New article ideas: Filmstrip FTW, Binkies perf review, CDN/Cloud Debugging with Curl
@@ -31,6 +56,18 @@ https://www.webpagetest.org/video/compare.php?tests=200415_KP_ffe5fdbd31eb04e9be
 WPT says FCP = 3.2 seconds and that is correct as per the spec, but it takes a full 2.1 seconds longer for anything useful/meaningful to appear.
 
 
+#### Blog about Eleventy work
+
+- DOCUMENTATION.md and todo.md
+- drafts should be in either _drafts (probably best) or use `draft: false` in front matter
+- Collections!
+- Custom filters!
+- Macros!
+
+CDN Planet
+- Social images: puppeteer (needed to manually install correct version for some packages), generate helper data files that live outside 11ty, ...
+- Imageoptim (Saved 8,5 MB out of 12,9 MB. 65,6% per file on average (up to 66,7%) - took 80 minutes for 286 images). Too slow, so: only do for new/updated content and with imagemin, like so:
+- 
 
 ## Performance
 
