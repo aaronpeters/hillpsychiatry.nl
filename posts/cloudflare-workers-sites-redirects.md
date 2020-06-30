@@ -11,7 +11,7 @@ tags:
   - workers
   - redirects
 keyword: Cloudflare Workers Sites
-tweetId: '1277957045254119431'
+tweetId: '1277959553364094980'
 ---
 
 About a month ago, I rebuilt the entire [CDN Planet](https://www.cdnplanet.com/) website from scratch and decided to use Cloudflare Workers Sites (together with Eleventy of course, my favorite static site generator). 
