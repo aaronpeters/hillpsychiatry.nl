@@ -76,7 +76,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("static/img");
   // eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("_includes/assets/");
-  eleventyConfig.addPassthroughCopy("_wpo");
+  eleventyConfig.addPassthroughCopy("_wpo/mybiosource");
 
   /* Markdown Plugins */
   let markdownIt = require("markdown-it");
