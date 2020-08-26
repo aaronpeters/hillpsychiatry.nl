@@ -60,7 +60,7 @@
 	</script>
 
   <script>
-    if ("serviceWorker" in navigator && window.location.href.indexOf("_wpo") == -1) {
+    if ("serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/serviceworker.js")
         .then(function() {
