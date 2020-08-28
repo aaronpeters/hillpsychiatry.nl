@@ -36,7 +36,8 @@ class LiteYTEmbed extends HTMLElement {
        */
       this.posterUrl = `https://i.ytimg.com/vi/${this.videoId}/sddefault.jpg`;
       // Warm the connection for the poster image
-      LiteYTEmbed.addPrefetch('preload', this.posterUrl, 'image');
+      // Aaron: disabled because does results in error in console in Chrome
+      //LiteYTEmbed.addPrefetch('preload', this.posterUrl, 'image');
       // TODO: support dynamically setting the attribute via attributeChangedCallback
   }
 
