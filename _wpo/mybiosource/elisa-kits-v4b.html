@@ -1,7 +1,8 @@
 <!-- Changelog
-	Versus v2:
-  - Native lazy loading for images (works only for HTML images, not CSS bg images): remove uk-img attribute, add loading="lazy"
-  - Native lazy loading for the Youtube iframe embed (DOES NOT WORK and I don't understand why not; asked Addy O. to take a look)
+	Versus v3:
+  - Youtube embed: use Arthur Corenzan solution (https://css-tricks.com/lazy-load-embedded-youtube-videos/)
+    This solution also requires the user to click the play button twice to actually see the video play
+    REVERTED: added @media all and (max-width: 560px) { .yt-embed { width:100% } } to stylesheet.css to make the video not be wider than the viewport on small screens
 
   TODO:
   - Preload Cabin font (13 KB over the wire; most pages need this font)
@@ -1100,7 +1101,14 @@
 
 <div class="uk-text-center">
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/rfsWsJLGB6k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/rfsWsJLGB6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <iframe 
+      class="yt-embed" 
+      width="560" height="315" 
+      src="https://www.youtube.com/embed/rfsWsJLGB6k" 
+      srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/rfsWsJLGB6k?autoplay=1><img src=https://img.youtube.com/vi/rfsWsJLGB6k/hqdefault.jpg alt='Troubleshooting ELISA Assays'><span>▶</span></a>"
+      frameborder="0" 
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
 </div>
 
 <hr class="uk-divider-icon"/>
@@ -1404,8 +1412,7 @@
     })();
 
 </script>
-
-
 <!--End of Tawk.to Script--><!-- footer_eof //-->
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!-- Changelog
-	Versus v2:
-  - Native lazy loading for images (works only for HTML images, not CSS bg images): remove uk-img attribute, add loading="lazy"
-  - Native lazy loading for the Youtube iframe embed (DOES NOT WORK and I don't understand why not; asked Addy O. to take a look)
+	Versus v3:
+  - Youtube embed: use Paul Irish' Lite YouTube Embed (https://github.com/paulirish/lite-youtube-embed), incl. delayed loading of the required CSS and JS
+    Three dislikes with this, most importantly: the user has to click the play button twice :(
 
   TODO:
   - Preload Cabin font (13 KB over the wire; most pages need this font)
@@ -1100,7 +1100,10 @@
 
 <div class="uk-text-center">
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/rfsWsJLGB6k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/rfsWsJLGB6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/rfsWsJLGB6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe> -->
+    <lite-youtube videoid="rfsWsJLGB6k" style="background-image: url('https://i.ytimg.com/vi/rfsWsJLGB6k/sddefault.jpg');">
+      <div class="lty-playbtn"></div>
+    </lite-youtube>
 </div>
 
 <hr class="uk-divider-icon"/>
@@ -1404,8 +1407,38 @@
     })();
 
 </script>
-
-
 <!--End of Tawk.to Script--><!-- footer_eof //-->
+
+<!-- Start of Youtube embed lite CSS and JS code
+  https://github.com/paulirish/lite-youtube-embed
+  Delay loading of the CSS and JS to after onload to not compete for bandwidth during the load of important content
+-->
+<script>
+  function loadResource(url, resourceType){
+    var doc = document
+
+    if (resourceType == "css") {
+      var link = doc.createElement("link")
+      
+      link.href = url
+      link.type = "text/css"
+      link.rel = "stylesheet"
+      doc.getElementsByTagName("head")[0].appendChild(link)
+    } 
+    
+    if (resourceType == "js") {
+      var script = doc.createElement("script")
+          p = doc.getElementsByTagName("script")[0]
+      
+      script.src = url
+      p.parentNode.insertBefore(script, p);
+    }
+  }
+  window.addEventListener('load', function(){
+    loadResource("assets/css/lite-yt-embed.css", "css")
+    loadResource("assets/js/lite-yt-embed.js", "js")
+  }, false)
+</script>
+<!-- End of Youtube embed lite CSS and JS code -->
 </body>
 </html>

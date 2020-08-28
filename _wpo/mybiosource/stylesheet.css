@@ -2031,3 +2031,7 @@ h1.corona-virus {
 .covid-table td {
     vertical-align: middle !important;
 }
+
+/* @media all and (max-width: 560px) { 
+  .yt-embed { width:100% } 
+} */
