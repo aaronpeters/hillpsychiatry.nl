@@ -9,6 +9,7 @@
   Impact:
   - Preconnect to GA has no impact because the fetch is not delayed (duh)
   - Preconnect to Tawk: forgot to add the crossorigin attribute. After fixing, this is clearly working well
+  - Crunch images: 
 
   TODO:
   - Preconnect to: https://i.ytimg.com
@@ -1405,16 +1406,18 @@
 <script>
   function loadResource(url, resourceType, attr){
     var doc = document,
-        elem = doc.createElement("link")
+        elem
 
     if (resourceType == "css") {
+      elem = doc.createElement("link")
       elem.href = url
       elem.type = "text/css"
       elem.rel = "stylesheet"
     }
 
     if (resourceType == "js") {
-      script.src = url
+      elem = doc.createElement("script")
+      elem.src = url
     }
 
     if (attr) {
