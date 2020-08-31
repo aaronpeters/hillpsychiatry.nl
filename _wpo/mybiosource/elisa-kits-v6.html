@@ -4,10 +4,14 @@
   - Set width 20px for the hamburger menu + set width and height for the logo images in the header
   - Set width and height for HTML images (here: the animal images)
 
-  WPT: 
+  WPT: https://www.webpagetest.org/video/compare.php?tests=200831_FJ_c7168c62a69105caf47ceed3672a8921-r%3A1-c%3A0&thumbSize=200&ival=100&end=doc
+
+  Impact:
+  - Logo image appears sooner (because of loading=eager)
+  - Header icons (hamburger, search) do not appear sooner (because of uikit.min.js executing after domInteractive)
 
   TODO:
-  - Preload Cabin font (13 KB over the wire; most pages need this font)
+  - Cabin font: Preload the WOFF2 (13 KB over the wire; most pages need this font, just not *this* page) + Self-host (= in stylesheet.css, no @import but simply the @font-face declaration in HTML)
   - Load GA and Tawk after onload + Preconnect
   - Crunch images
 -->
