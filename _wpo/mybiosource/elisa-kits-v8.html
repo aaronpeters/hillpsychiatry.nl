@@ -2,15 +2,16 @@
 	Versus v7:
   - Load Tawk after onload + Preconnect
   - Preconnect to GA
+  - Crunch images
   
   WPT: 
 
   Impact:
-  - 
+  - Preconnect to GA has no impact because the fetch is not delayed (duh)
+  - Preconnect to Tawk: forgot to add the crossorigin attribute. After fixing, this is clearly working well
 
   TODO:
-  - Load GA after onload + Preconnect
-  - Crunch images
+  - Preconnect to: https://i.ytimg.com
   - Move late/async stylesheets from HEAD to bottom BODY, so browsers initiate fetches later => other resources load sooner (hmm, total KBs is only 3 ... not worth it?)
   - Subset Cabin font (= remove glyphs and unused font features, to bring file size down to ~15 KB)
 -->
@@ -37,7 +38,7 @@
     TODO: change crossorigin preconnect to preload hint for the WOFF2 webfont?
 	-->
 	<link rel="preconnect" href="https://www.google-analytics.com">
-  <link rel="preconnect" href="https://embed.tawk.to">
+  <link rel="preconnect" href="https://embed.tawk.to" crossorigin>
   
   <link rel="preload" href="assets/webfonts/Cabin-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
@@ -1403,29 +1404,28 @@
 -->
 <script>
   function loadResource(url, resourceType, attr){
-    var doc = document
+    var doc = document,
+        elem = doc.createElement("link")
 
     if (resourceType == "css") {
-      var link = doc.createElement("link")
-      
-      link.href = url
-      link.type = "text/css"
-      link.rel = "stylesheet"
-      doc.getElementsByTagName("head")[0].appendChild(link)
-    } 
-    
-    if (resourceType == "js") {
-      var script = doc.createElement("script")
-          p = doc.getElementsByTagName("script")[0]
-      
-      script.src = url
-
-      if (attr) {
-        script.setAttribute(Object.keys(attr)[0], Object.values(attr)[0]) 
-      }
-      p.parentNode.insertBefore(script, p);
+      elem.href = url
+      elem.type = "text/css"
+      elem.rel = "stylesheet"
     }
+
+    if (resourceType == "js") {
+      script.src = url
+    }
+
+    if (attr) {
+      Object.entries(attr).forEach(([attribute, value]) => {
+        elem.setAttribute(attribute, value) 
+      })
+    }
+
+    doc.getElementsByTagName("head")[0].appendChild(elem)
   }
+
   window.addEventListener('load', function(){
     loadResource("assets/css/lite-yt-embed.css", "css")
     loadResource("assets/js/lite-yt-embed.js", "js")
