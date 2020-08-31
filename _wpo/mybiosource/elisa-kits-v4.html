@@ -1,14 +1,14 @@
 <!-- Changelog
 	Versus v3:
   - Youtube embed: use Paul Irish' Lite YouTube Embed (https://github.com/paulirish/lite-youtube-embed), incl. delayed loading of the required CSS and JS
-    Three dislikes with this, most importantly: the user has to click the play button twice :(
+
+  WPT: https://www.webpagetest.org/video/compare.php?tests=200828_T3_df20e3d6291b6e0531bb7e06a664b2a8-r%3A1-c%3A0&thumbSize=200&ival=100&end=doc
 
   TODO:
   - Preload Cabin font (13 KB over the wire; most pages need this font)
+  - Don't use domain sharding
   - Set width 20px for the hamburger menu 
-	- More resource hints? Preconnect?
-	- Native lazy loading
-	- Youtube Paul Irish
+  - Load GA and Tawk after onload + Preconnect
 -->
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN"><!-- Better use HTML5: <!doctype html> -->
 <html dir="LTR" lang="en">
@@ -32,8 +32,9 @@
     Preconnect to *this* domain with the crossorigin attribute, for faster same-domain font loading
     TODO: change crossorigin preconnect to preload hint for the WOFF2 webfont?
 	-->
-	<!-- <link rel="preconnect" href="https://www.mybiosource.com" crossorigin>
-	<link rel="preconnect" href="https://cdn.mybiosource.com"> -->
+	<!-- <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://s.adroll.com">
+   -->
   <link rel="preload" href="assets/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/images/elisa-kits.png" as="image" type="image/png">
   

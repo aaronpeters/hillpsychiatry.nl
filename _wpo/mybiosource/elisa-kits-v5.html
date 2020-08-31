@@ -2,10 +2,13 @@
 	Versus v4:
   - Don't use domain sharding
 
+  WPT: 
+
   TODO:
   - Preload Cabin font (13 KB over the wire; most pages need this font)
-  - Set width 20px for the hamburger menu 
+  - Set width 20px for the hamburger menu + set width for the logo image
   - Load GA and Tawk after onload + Preconnect
+  - Crunch images
 -->
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN"><!-- Better use HTML5: <!doctype html> -->
 <html dir="LTR" lang="en">
@@ -30,6 +33,7 @@
     TODO: change crossorigin preconnect to preload hint for the WOFF2 webfont?
 	-->
 	<!-- <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
     <link rel="preconnect" href="https://s.adroll.com">
    -->
   <link rel="preload" href="assets/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
