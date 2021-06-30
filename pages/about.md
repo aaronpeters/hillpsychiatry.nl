@@ -44,4 +44,4 @@ Interested in learning more about my expertise and way of working, and perhaps w
 Fill out the <a href="/contact/">contact form</a> or ping me on <a href="https://twitter.com/aaronpeters">Twitter</a>.
 I look forward to connecting with you.
 
-<img src="https://static.aaronpeters.nl/404.jpg" width="1" height="1" alt="" style="visibility:hidden">
+<img src="https://static.aaronpeters-nxdomain.nl/404.jpg" width="1" height="1" alt="" style="visibility:hidden">
