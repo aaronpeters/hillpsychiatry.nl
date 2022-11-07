@@ -1,15 +1,72 @@
 ---
 title: Iframe Loading Techniques and Performance
+title_new: "Guide to Iframe Performance - Dec 10 2022"
 description: Overview of different ways to use an iframe for loading content, ads & widgets. How does each technique affect performance?
+description_new: TBD
 summary: Overview of different ways to use an iframe for loading content, ads & widgets. Which technique is best for performance?
+summary_new: TBD
 date: 2010-12-20
-duration: 10
+dateUpdated: 2020-01-31
+duration: 15
+highlight: true
 tags:
   - iframe
+  - webperf
+  - fetchpriority / Priority Hints
+  - lazy load
+  - preload scanner
+  - async
+  - defer
+  - bfcache
   - tips
-keyword: iframe performance
-future: resource hints, lazy, jaffacake trick
+xtweetId: '1221963392996577282'
+future: resource hints (preload, preconnect), jaffacake trick
 ---
+
+<!-- 
+Nov 4 2022, this URL is in position #9 in SERPs for "iframe performance"
+They say, it's better for SEO to update existing page than create a new, so let's do that
+
+Main domain = www.aaronpeters.nl
+Subdomain = cdn.aaronpeters.nl (not sure we need this)
+Other domain = www.cdnplanet.com
+
+- Title and description
+- Structured data?
+- Tags
+- Link rel me, pingback, webmention
+- Socials: OG, Twitter incl. an image (Image SEO!)
+
+Self-hosting ... same origin vs cross-origin?
+
+- Is it first-party or third-party?
+- In viewport or not?
+- Important or not?
+- Sandbox, anonymous, fencedframe, CSP ... not relevant for performance?
+
+Cases / Test pages:
+- Normal .. this is the base, what is behaviour in major browsers? Impact on load event, default fetch priority, loading of iframe subresources ...
+- Normal + loading=lazy
+- Normal + fetchpriority=high (no impact? it depends)
+- Normal + fetchpriority=low
+- Normal + async
+- Normal + defer
+- JS injected
+- JS injected after onload (=Iframe After Onload)
+- setTimeout(): this one is stupid, delete?
+- Dynamic Asynch Iframe: still correct? still relevant?
+- Friendly Iframe: still correct? still relevant?
+
+First-party or third-party: for all cases the same: only difference is 3PC needs time to setup connection, so slower
+
+Early Hints?
+
+Static HTML pages, or HTML Rewriter creates HTML based on qs params?
+Intentional delay with sleep() ?
+
+Interesting: https://stackoverflow.com/questions/56202400/can-link-rel-preload-preload-resources-inside-iframes
+If the iframe is same-origin, <link rel=preload> absolutely can preload subresources of an <iframe>’d page (test this!!)
+-->
 
 <div class="notice-msg warning">
 	This article is 9+ years old. Do not assume any recommendations are still valid today. And my old test pages are broken (404).
