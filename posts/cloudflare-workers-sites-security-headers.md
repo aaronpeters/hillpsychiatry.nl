@@ -13,28 +13,31 @@ tags:
   - csp
   - headers
   - security
-keyword: Cloudflare Workers Sites
+keyword: Workers Sites CSP
 XtweetId: '1277959553364094980'
 ---
 
-[Cloudflare Workers Sites](https://workers.cloudflare.com/sites)
-The worker script is in the `workers-site` folder, name `index.js`
-All requests go through this script.
+You're using [Cloudflare Workers Sites](https://workers.cloudflare.com/sites) and everything works.
+Now you want to improve security of your site with Content Security Policy and other security headers like `x-content-type-options`.
 
 How to add security headers, including CSP, to HTML responses?
 No need to add to stylesheets, images, scripts and other subresources.
 
 ## Approach to Generating Your CSP
 
-- Read up on CSP, starting with the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) documentation on MDN
+- Read up on CSP, starting with the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) documentation on MDN and [CSP With Google](https://csp.withgoogle.com/docs/index.html)
 - Browse through your site with Network panel in Dev Tools open to find out which domains are serving scripts, images, fonts, etc
 - Create your content security policy (tip: use the tool at [Report URI](https://report-uri.com/home/generate))
 - 
 ## Cloudflare Workers Sites Security Headers Code
 
+The worker script is in the `workers-site` folder, name `index.js`
+All requests go through this script.
+
 ``` js
 // See the Workers Sites template for more info
 // https://github.com/cloudflare/worker-sites-template/blob/master/workers-site/index.js
+// You probably started here: https://developers.cloudflare.com/workers/sites/start-from-existing/
 let response = await getAssetFromKV(event, options)
 
 const request = event.request
@@ -43,8 +46,7 @@ if(request.headers.get('Accept').includes('text/html')){
   // Add new headers (CSP, Report-To, ...)
   newResponse = new Response(newResponse.body, newResponse) // TODO: fix this
 
-  const userAgent = request.headers.get('User-Agent') || '' // TODO: remove, only needed for report-to
-  const newHeaders = createNewHeaders(CSP, userAgent)
+  const newHeaders = createNewHeaders()
 
   Object.entries(newHeaders).forEach(([headerName, headerValue]) => {
     newResponse.headers.set(headerName, headerValue)
@@ -57,9 +59,10 @@ if(request.headers.get('Accept').includes('text/html')){
 
 Bla bla explain the code above
 
+Let's take a look at the `createNewHeaders` function and the `CSP` constant.
 
 ``` js
-function createNewHeaders(CSP, userAgent){
+function createNewHeaders(){
   // all security headers except CSP
   let newHeaders = {
     'strict-transport-security': 'max-age=31536000; includeSubDomains',
@@ -107,6 +110,8 @@ Screenshot of Dev Tools
 
 Deploy to staging, browse the site, spot errors in console, update your CSP, repeat.
 Staging is easy with Workers Sites!
+
+[https://developers.cloudflare.com/workers/quickstart/#configure](Configure your Worker) and 
 
 ---
 

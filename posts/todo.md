@@ -14,6 +14,15 @@ date: 2019-01-01
 
 ### Blog
 
+#### CWV 
+
+PSI is hmm 
+https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.focus-bikes.com%2Fnl_en%2F185837-paralane-8-9&tab=mobile
+- Cumulative Layout Shift = 0.664 (very red), yet in Diagnostics section it gets the lwo prio gray dot for Avoid large layout shifts
+- Passed Audits: Preload key requests is green while the page has >20 preloads for fonts
+- Largest Contentful Paint element: this is easy way to know which element defined LCP (works better than WPT)
+
+
 #### CDN Finder
 Workers KV and what I'm using as the key (https://scotthelme.co.uk/
 hacking-table-storage-to-do-order-by-on-timestamp/)

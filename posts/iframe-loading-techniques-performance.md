@@ -56,6 +56,7 @@ Cases / Test pages:
 - setTimeout(): this one is stupid, delete?
 - Dynamic Asynch Iframe: still correct? still relevant?
 - Friendly Iframe: still correct? still relevant?
+- Scott Jehl trick: https://gomakethings.com/html-includes-using-web-components-and-iframes/
 
 First-party or third-party: for all cases the same: only difference is 3PC needs time to setup connection, so slower
 
@@ -66,6 +67,9 @@ Intentional delay with sleep() ?
 
 Interesting: https://stackoverflow.com/questions/56202400/can-link-rel-preload-preload-resources-inside-iframes
 If the iframe is same-origin, <link rel=preload> absolutely can preload subresources of an <iframe>’d page (test this!!)
+
+Also:
+- "the title attribute is required for accessibility on <iframe> and <frame> tags"
 -->
 
 <div class="notice-msg warning">
