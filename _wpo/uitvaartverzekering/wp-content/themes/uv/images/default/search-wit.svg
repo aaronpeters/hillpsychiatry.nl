@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
-  <g id="Zoeken" transform="translate(-1372 -93)">
-    <rect id="BG" width="46" height="46" rx="23" transform="translate(1372 93)" fill="#FFF"/>
-    <path id="search" d="M13.209,11.62a7.339,7.339,0,1,0-1.591,1.591L16.409,18,18,16.411,13.209,11.62Zm-5.9.756a5.062,5.062,0,1,1,5.062-5.062,5.068,5.068,0,0,1-5.062,5.062Z" transform="translate(1386 106.998)" fill="#1f2430"/>
-  </g>
-</svg>
