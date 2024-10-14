@@ -1,8 +1,8 @@
 ---
 layout: layouts/contact.njk
 permalink: /contact/index.html
-title: Get in touch with Aaron Peters
-description: Interested in hiring me as your web performance optimization consultant or have some other inquiry? Let me know.
+title: Get in touch with Bart Peters
+description: TODO
 tags:
   - nav
 navtitle: Contact

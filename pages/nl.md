@@ -1,12 +1,8 @@
 ---
 layout: layouts/nl.njk
 permalink: /nl/index.html
-title: Aaron Peters - Web Performance Consultant / Engineer
+title: Bart Peters - TOD
 description: "Freelance web performance consultant sinds 2009. Advies, begeleiding en hands-on implementatie voor performance monitoring en code optimalisatie. CDN specialist."
-description-maybe: "Freelance web performance consultant sinds 2010. Performance monitoring en code optimalisatie: advies, begeleiding en hands-on implementatie. CDN specialist."
-description-old: Sinds 2010 help ik (grote) bedrijven om hun website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic en hogere conversie.
-description2: Aaron Peters zorgt dat uw website supersnel wordt én blijft. Ruim 10 jaar ervaring bij o.a. Vodafone en Beslist.
-description1: Ik realiseer dat uw website snel laadt. Uw bezoekers en Google zullen dit waarderen, resulterend in meer traffic, hogere conversie en meer vertrouwen in uw merk.
 tags:
   - nav
 navtitle: Nederlands
@@ -14,15 +10,13 @@ navorder: 4
 secondary: true
 section: nl
 date: 2019-11-21
-todo: performance monitoring/analytics/dashboarding, 
 ---
 
-# Web Performance Consultant & Engineer
+# Awesome Amsterdam Psychiatrist
 
-Sinds 2010 help ik (grote) bedrijven de website snel, veilig en Google-vriendelijk te maken, resulterend in meer traffic, lagere kosten en hogere conversie.
+Since 2010, I help cure weird people.
 
-In mijn toolbox zit een up-to-date en diepe kennis van browsers, protocollen, webtechnologieën, CDNs en UX/web performance best practices. 
-Belangrijk nog is mijn **10 jaar ervaring met websitesnelheid optimalisatie** in de praktijk brengen, op locatie of op afstand en altijd in een goede samenwerking met marketing, product en engineering teams.
+In my toolbox is large book with descriptions of all pills - including those on the black market. 
 
 Wilt u een écht snelle website en borgen dat de site ook snel blijft?
 Neem contact met mij op middels het <a href="/contact/">contactformulier</a> of via <a href="https://twitter.com/aaronpeters">Twitter</a>.

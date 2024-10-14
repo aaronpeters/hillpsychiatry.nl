@@ -252,16 +252,6 @@ article {
 	padding-bottom: 1em;
 }
 
-.postlist {
-	display: grid;
-	gap: 1em 2em;
-}
-
-.postlist-date {
-	font-size: 80%;
-	color: var(--graymedium);
-}
-
 /* Post Tags */
 a[rel="tag"],
 a[rel="tag"]:visited {
@@ -747,17 +737,6 @@ pre[class*="language-"] {
 
 	footer {
 		text-align: left;
-	}
-
-	article.postlist-item {
-		padding: 1em;
-		background-color: var(--white);
-		/* maybe_box-shadow: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12); */
-		border: 1px solid var(--graylighter);
-	}
-
-	.postlist {
-		grid-template-columns: repeat(2, 1fr);
 	}
 
 }

@@ -2,14 +2,11 @@ const { DateTime } = require("luxon");
 const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-es");
 const htmlmin = require("html-minifier");
-const pluginRss = require("@11ty/eleventy-plugin-rss");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const filters = require('./_11ty/filters');
 
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
-
-  eleventyConfig.addPlugin(pluginRss);
+  
   eleventyConfig.addPlugin(syntaxHighlight);
 
   // Filters
@@ -70,14 +67,11 @@ module.exports = function(eleventyConfig) {
 
 
   // Don't process folders with static assets e.g. images
-  eleventyConfig.addPassthroughCopy("serviceworker.js");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("static/js");
   eleventyConfig.addPassthroughCopy("static/img");
   // eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("_includes/assets/");
-  eleventyConfig.addPassthroughCopy("_wpo/");
-  eleventyConfig.addPassthroughCopy("_testpages/");
 
   /* Markdown Plugins */
   let markdownIt = require("markdown-it");

@@ -8,19 +8,11 @@
   <meta name="referrer" content="no-referrer-when-downgrade">
   <meta name="robots" content="index,follow">
 
-  <title>{{ renderData.title or title or metadata.title }}{% if (section == "blog") or (section == "post") %} - Aaron Peters{% endif %}</title>
+  <title>{{ renderData.title or title or metadata.title }}{% if (section == "blog") or (section == "post") %} - Bart Peters{% endif %}</title>
 
   <link rel="icon" href="/favicon.ico">
   
   {% include "components/seo.njk" %}
-
-  {% if twitterImage %}
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@aaronpeters" />
-  <meta name="twitter:title" content="{{ renderData.title or title or metadata.title }}" />
-  <meta name="twitter:description" content="{{ renderData.description or description }}" />
-  <meta name="twitter:image" content="{{ metadata.url + twitterImage + page.fileSlug + ".png" }}" />
-  {% endif %}
 
   {# <script>{{ js | jsmin | safe }}</script> #}
 

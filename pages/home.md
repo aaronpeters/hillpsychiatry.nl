@@ -1,27 +1,17 @@
 ---
 layout: layouts/home.njk
-title: Aaron Peters - Web Performance Consultant / Engineer
-description: Freelance web performance consultant & engineer with 10 years experience in helping businesses understand and improve website speed and reliability.
-description-previous: Since 2010, I help medium and large businesses make their website fast, secure and Google-friendly, resulting in more traffic and higher revenue. 
-description-b: I'm a freelance web performance optimization consultant & engineer with 10 years experience in making websites fast, secure and Google-friendly.
-description-c: I'm a freelance web performance optimization consultant and engineer with 10 years experience in making (large) websites blazing fast.
-description0: Freelance web performance consultant & engineer with 10 years experience in helping medium / large businesses make their website strong and fast.
-description-d: Since 2010, I help medium and large businesses improve customer satisfaction, do better in Google and increase revenue by making their website fast.
+title: Bart Peters
+description: TOD
 date: 2019-11-20
 permalink: /
 
 ---
 
-# Web Performance Consultant & Engineer
+# Awesome Amsterdam Psychiatrist
 
-Since 2010, I help medium and large businesses make their website blazing fast, secure and Google-friendly, resulting in more traffic, lower costs and higher revenue.
+Since 2010, I help cure weird people.
 
-In my toolbox is an up-to-date and deep understanding of browsers, protocols, networking, CDNs, modern web technologies and UX/performance best practices. 
-More importantly - there is <strong>10 years experience in <i>doing</i> web performance optimization</strong> in close cooperation with marketing, product and engineering teams, on location and remote.
-
-Need help improving site speed and empowering your team to keep site speed at a high level? 
-Fill out the <a href="/contact/">contact form</a> or ping me on <a href="https://twitter.com/aaronpeters" rel="me">Twitter</a>.
-I look forward to connecting with you.
+In my toolbox is large book with descriptions of all pills - including those on the black market. 
 
 <div class="trusted-by">
 	Trusted by these great companies
