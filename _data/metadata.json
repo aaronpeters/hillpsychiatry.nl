@@ -1,12 +1,10 @@
 {
-  "title": "Aaron Peters",
-  "url": "https://www.aaronpeters.nl",
+  "title": "Bart Peters",
+  "url": "https://www.hillpsychiatry.nl",
   "author": {
-    "name": "Aaron Peters",
-    "email": "aaronpeters.nl@gmail.com",
-    "github": "https://github.com/aaronpeters"
+    "name": "Bart Peters",
+    "email": "hillpsychiatry.nl@gmail.com",
+    "github": "https://github.com/aaronpeters/hillpsychiatry.nl"
   },
-  "domain": "www.aaronpeters.nl",
-  "webmentions-from-twitter": "https://brid.gy/twitter/aaronpeters",
-  "twitterhandle": "https://twitter.com/aaronpeters"
+  "domain": "www.hillpsychiatry.nl"
 }

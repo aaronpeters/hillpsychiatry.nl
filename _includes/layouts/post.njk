@@ -42,22 +42,11 @@ section: post
 
     <p>
       {% if tweetId %}
-      <a href="{{ metadata.twitterhandle }}/status/{{ tweetId }}">Join the conversation on Twitter</a> or share this article with a <a
-          href="https://twitter.com/intent/retweet?tweet_id={{ tweetId }}" target="_blank" rel="noopener">retweet</a>.
-      {% else %}
-         If you liked this article and think others should read it, please <a href="{{ page.url | generateShareLink(title) }}" target="_blank" rel="noopener">share it</a>. Or, <a href="{{ page.url | generateDiscussionLink }}">find the conversation</a> on Twitter.
       {% endif %}
     </p>
   </div>
 
 </article>
-
-<section id="webmentions-container">
-  <h3>Webmentions</h3>
-  {% set webmentionUrl %}{{ page.url | url | absoluteUrl(site.url) }}{% endset %}
-  {% include 'components/webmentions.njk' %}
-</section>
-
 
 <nav class="bottom-body-nav">
   ← go back to the <a href="{{ '/blog/' | url }}">Web Performance Blog</a>
