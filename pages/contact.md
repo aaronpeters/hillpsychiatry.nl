@@ -1,8 +1,8 @@
 ---
 layout: layouts/contact.njk
 permalink: /contact/index.html
-title: Get in touch with Bart Peters
-description: TODO
+title: Bart Peters - Neem contact op 
+description: Neem contact op met Bart Peters van Hillpsychiatry.
 tags:
   - nav
 navtitle: Contact
@@ -11,7 +11,5 @@ section: contact
 date: 2019-11-20
 
 ---
-
-Interested in hiring me or have some other inquiry? 
-Use the form to send me an [email](mailto:aaron@aaronpeters.nl) and I will get back to you within a few business days.
-You may also contact me on [Twitter](https://twitter.com/aaronpeters) or [Linkedin](http://www.linkedin.com/in/aaronpeters).
+Gebruik onderstaand formulier of stuur een [email](mailto:bdpeters@aaronpeters.nl).<br>
+Ik neem binnen 3 werkdagen contact met u op.

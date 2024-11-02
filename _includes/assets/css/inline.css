@@ -17,7 +17,8 @@ html{-webkit-text-size-adjust:100%}h1{font-size:2em;margin:.67em 0}hr{box-sizing
 	--bluelighter: #90caf9;
 	--bluelight: #42a5f5;
 	--blue: #1976d2;
-	--bluedark: #1565C0;
+	--bluedark: #062447;
+  --bluedarker: #042b58;
 
 	--redlighter: #EF9A9A;
 	--red: #D32F2F;
@@ -55,7 +56,7 @@ body {
 	grid-template-rows: auto 1fr auto;
 	grid-template-columns: 100%;
 	padding: 1.1em;
-	background-color: var(--white);
+	background-color: var(--graylightest);
 }
 
 .wrapper {
@@ -69,7 +70,7 @@ a[href] {
 	color: var(--black);
 	text-decoration: none;
 	background-repeat: no-repeat;
-	background-image: linear-gradient(to right,#FFAB91,#FFAB91,#FFAB91);
+	background-image: linear-gradient(to right,#042b58,#042b58,#042b58);
 	background-size: 100% 2px;
 	background-position: center bottom;
 	padding-bottom: 0.1em;
@@ -94,7 +95,7 @@ a[href]:hover {
 }
 a[href]:focus, a[href]:active {
 	color: var(--white);
-	background-color: var(--orange);
+	background-color: var(--bluedarker);
 	background-image: none;
 	outline: 0;
 }
@@ -211,7 +212,7 @@ header > em {
 }
 
 .nav a[data-current="current item"] {
-	border-bottom: 4px solid var(--orange);
+	border-bottom: 4px solid var(--bluedarker);
 }
 
 .nav a:not([data-current="current item"]) {
@@ -224,7 +225,7 @@ header > em {
 
 /* Main */
 main {
-	max-width: 50em;
+	/* max-width: 50em; */
 	padding: 2em 0;
 }
 
@@ -310,8 +311,8 @@ textarea {
 
 button {
 	width: 50%;
-	border: 1px solid #bf360c;
-	background-color: var(--orange);
+	border: 1px solid #011123;
+	background-color: var(--bluedarker);
 	color: var(--white);
 	cursor: pointer;
 }
@@ -320,7 +321,7 @@ input:focus,
 input:active,
 textarea:focus, 
 textarea:active {
-	outline: 4px solid var(--orange);
+	outline: 4px solid var(--bluedarker);
 }
 
 button:focus {
@@ -352,6 +353,29 @@ button:active {
 /* Helpers */
 .graymedium {
 	color: var(--graymedium);
+}
+
+/* Home */
+.homepage-main {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas:
+		"pic pitch"
+	;
+  grid-column-gap: 2em;
+  align-items: center;
+  background-color: aliceblue;
+}
+
+.homepage-main > .pitch {
+	grid-area: pitch;
+}
+.homepage-main > .pic {
+	grid-area: pic;
+}
+.homepage-main > .pic > img {
+  max-width: 99%;
+  height: auto;
 }
 
 /* Customers */
@@ -604,7 +628,7 @@ pre[class*="language-"] {
 .token.regex,
 .token.important,
 .token.variable {
-	color: var(--orange);
+	color: var(--bluedarker);
 }
 
 .token.important,
