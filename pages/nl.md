@@ -4,7 +4,7 @@ permalink: /nl/index.html
 title: Bart Peters - TOD
 description: "Freelance web performance consultant sinds 2009. Advies, begeleiding en hands-on implementatie voor performance monitoring en code optimalisatie. CDN specialist."
 tags:
-  - nav
+  - Xnav
 navtitle: Nederlands
 navorder: 4
 secondary: true
