@@ -2,10 +2,10 @@
 eleventyExcludeFromCollections: true
 layout: layouts/page.njk
 permalink: /contact/success/index.html
-title: Message received !
+title: E-mail is verstuurd naar Bart Peters
 date: 2019-11-21
 
 ---
 
-I will respond to your email within one or two business days, but sometimes it takes a bit longer.
-Don't hesitate to poke me on <a href="http://twitter.com/aaronpeters">Twitter</a> when you are impatient ;-)
+Ik neem binnen 3 werkdagen contact met u op.
+Heeft u haast? Stuur een e-mail naar [hillpsychiatry@protonmail.com](mailto:hillpsychiatry@protonmail.com)
