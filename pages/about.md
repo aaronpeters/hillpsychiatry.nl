@@ -8,12 +8,8 @@ tags:
 navtitle: Resume
 navorder: 2
 section: about
-date: 2019-11-19
+date: 2024-12-02
 
 ---
 
-# Bart's Awesome Resume !
-
-Hier is tekst of een PDF versie van jouw CV.
-
-Aanbevelingen van mensen met wie je hebt gewerkt kunnen ook hier, maar beter op de homepage.
+Bekijk mijn <a href="/static/CV-Bart-Peters-26102024-Keypublications.pdf">Curriculum Vitae</a> (PDF).
