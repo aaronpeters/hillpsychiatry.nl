@@ -209,6 +209,7 @@ header > em {
 
 .nav a[href], .nav a[href]:hover {
 	background-image: none;
+  border-bottom: 4px solid var(--bluedarker);
 }
 
 .nav a[data-current="current item"] {
@@ -216,7 +217,7 @@ header > em {
 }
 
 .nav a:not([data-current="current item"]) {
-	border-bottom: 4px solid var(--white);
+	border-bottom: 4px solid var(--graylightest);
 }
 
 .nav a.secondary {
@@ -325,12 +326,12 @@ textarea:active {
 }
 
 button:focus {
-	background: #ff5722;
-	outline: 4px solid #bf360c;
+	background: var(--blue);
+	outline: 4px solid var(--blue);
 }
 
 button:hover {
-	background: #bf360c;
+	background: var(--bluelight);
 	outline: 0;
 }
 
@@ -357,25 +358,26 @@ button:active {
 
 /* Home */
 .homepage-main {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  grid-template-areas:
-		"pic pitch"
-	;
-  grid-column-gap: 2em;
-  align-items: center;
-  background-color: aliceblue;
+  display: block;
 }
 
-.homepage-main > .pitch {
-	grid-area: pitch;
-}
 .homepage-main > .pic {
-	grid-area: pic;
+  /* margin-bottom: 1em; */
 }
+
 .homepage-main > .pic > img {
   max-width: 99%;
   height: auto;
+}
+
+#reference-cite {
+  margin-bottom: 1em;
+}
+.cite-container {
+  display: inline-block;
+  padding-left: 1em;
+  margin: 1em 0;
+  border-left: 4px solid var(--graylight);
 }
 
 /* Customers */
@@ -681,6 +683,7 @@ pre[class*="language-"] {
 @media screen and (min-width:601px) {
 
 	body {
+    max-width: 65em;
 		padding: 2em;
 	}
 
@@ -726,38 +729,35 @@ pre[class*="language-"] {
 		margin-right: 2em;  
 	}
 
+  .homepage-main {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-areas:
+      "pic pitch"
+    ;
+    grid-column-gap: 2em;
+    align-items: start;
+    /* max-width: 400px; */
+    /* align-items: center; */
+  }
+  
+  .homepage-main > .pitch {
+    grid-area: pitch;
+  }
+  .homepage-main > .pic {
+    grid-area: pic;
+  }
 }
 
 @media screen and (min-width:820px) {
 
-	.customers {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-areas: initial;
-		grid-column-gap: 3em;
-	  grid-row-gap: 3em;
-		align-items: center;
-		justify-content: center;
-		margin-top: 2em;
-		margin-bottom: 4em;
-	}
+	.homepage-main {
+    align-items: center;
+  }
 
-	.c1,
-	.c2,
-	.c3,
-	.c4,
-	.c5,
-	.c6,
-	.c7,
-	.c8,
-	.c9 {
-		grid-area: auto;
-	}
-
-	.customer.big > img {
-		height: auto;
-		max-width: 133px;
-	}
+  /* .homepage-main > .pic > img {
+    max-width: 400px;
+  } */
 
 	footer {
 		text-align: left;
