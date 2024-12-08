@@ -12,4 +12,4 @@ date: 2024-12-02
 
 ---
 
-Bekijk mijn <a href="/static/CV-Bart-Peters-26102024-Keypublications.pdf">Curriculum Vitae</a> (PDF).
+Bekijk mijn <a href="/static/CV-Bart-Peters-27112024.pdf">Curriculum Vitae</a> (PDF).

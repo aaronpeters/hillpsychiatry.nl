@@ -11,5 +11,5 @@ section: contact
 date: 2019-11-20
 
 ---
-Gebruik onderstaand formulier of stuur een [email](mailto:hillpsychiatry@gmail.com).<br>
+Gebruik onderstaand formulier of stuur een [e-mail](mailto:hillpsychiatry@gmail.com).<br>
 Ik neem binnen 3 werkdagen contact met u op.
