@@ -2,7 +2,7 @@
 eleventyExcludeFromCollections: true
 layout: layouts/page.njk
 permalink: /contact/success/index.html
-title: E-mail is verstuurd naar Bart Peters
+title: E-mail is verstuurd naar Dr. Bart Peters
 date: 2019-11-21
 
 ---

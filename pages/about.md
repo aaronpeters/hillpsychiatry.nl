@@ -1,7 +1,7 @@
 ---
 layout: layouts/about.njk
 permalink: /about/index.html
-title: Bart Peters' Resume
+title: Dr. Bart Peters' Resume
 description: TODO
 tags:
   - nav

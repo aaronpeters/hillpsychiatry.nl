@@ -1,7 +1,7 @@
 ---
 layout: layouts/contact.njk
 permalink: /contact/index.html
-title: Bart Peters - Neem contact op 
+title: Dr. Bart Peters - Neem contact op 
 description: Neem contact op met Bart Peters van Hillpsychiatry.
 tags:
   - nav
