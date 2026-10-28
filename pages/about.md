@@ -6,7 +6,7 @@ description: TODO
 tags:
   - nav
 navtitle: Resume
-navorder: 2
+navorder: 1
 section: about
 date: 2024-12-02
 

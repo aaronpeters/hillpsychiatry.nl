@@ -4,9 +4,9 @@ permalink: /adhd-diagnostiek/index.html
 title: ADHD diagnostiek door Dr. Bart Peters
 description: TODO
 tags:
-  - Xnav
+  - nav
 navtitle: ADHD diagnostiek
-navorder: 4
+navorder: 3
 section: adhd-diagnostiek
 date: 2026-11-01
 

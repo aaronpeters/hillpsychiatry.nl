@@ -6,7 +6,7 @@ description: TODO
 tags:
   - nav
 navtitle: Kwaliteitsstatuut
-navorder: 3
+navorder: 4
 section: kwaliteitsstatuut
 date: 2026-08-28
 

@@ -6,7 +6,7 @@ description: Neem contact op met Bart Peters van Hillpsychiatry.
 tags:
   - nav
 navtitle: Contact
-navorder: 3
+navorder: 2
 section: contact
 date: 2019-11-20
 
